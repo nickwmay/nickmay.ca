@@ -1,12 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import {
-  contact, prologue, hospitality, tech, companies, throughline, speaking, speakingTopics, board, potatoPuns, repertory, theatreStats, beliefs, inDevelopment,
+  contact, prologue, hospitality, onTour, tech, companies, shopifyBag, throughline, speaking, speakingTopics, board, potatoPuns, repertory, theatreStats, beliefs, inDevelopment,
 } from '../data/show';
 
 const acts = {
-  prologue: { id: 'prologue', cue: 'LX 2', label: 'Prologue', title: 'The Creative', sub: 'Theatre school, then a life in theatre', scenes: prologue },
-  hospitality: { id: 'act-1', cue: 'LX 3', label: 'Act I', title: 'The Hospitality Operator', sub: 'Restaurants, retail & tours, 2011–2020', scenes: hospitality },
+  prologue: { id: 'prologue', cue: 'LX 2', label: 'Prologue', title: 'The Creative', sub: 'Theatre school, then a lifetime of creating and storytelling', scenes: prologue },
+  hospitality: { id: 'act-1', cue: 'LX 3', label: 'Act I', title: 'The Hospitality Operator', sub: 'Restaurants, retail & social enterprise, 2011–2017', scenes: hospitality },
   tech: { id: 'act-2', cue: 'LX 5', label: 'Act II', title: 'The Tech Operator', sub: 'Product, technical & people operations, 2017–now', scenes: tech },
 };
 type Act = (typeof acts)[keyof typeof acts];
@@ -100,22 +100,35 @@ const bulbs = Array.from({ length: 19 });
       <h2 class="section-title reveal"><span class="eyebrow">Who’s Who in the Cast</span><span class="title-text">Nick May</span></h2>
       <div class="whos-who-body">
         <figure class="headshot reveal">
-          <img class="hs hs-a" src="/images/headshot-smile.jpg" alt="Nick May, smiling" width="800" height="1000" />
-          <img class="hs hs-b" src="/images/headshot-smirk.jpg" alt="" aria-hidden="true" width="800" height="1000" loading="lazy" />
+          <button class="headshot-btn" type="button" aria-label="Put the sunglasses on Nick" aria-pressed="false">
+            <img class="hs hs-a" src="/images/headshot-smile.jpg" alt="Nick May, smiling" width="800" height="1000" />
+            <img class="hs hs-b" src="/images/headshot-smirk.jpg" alt="" aria-hidden="true" width="800" height="1000" loading="lazy" />
+            <svg class="shades" viewBox="0 0 26 7" shape-rendering="crispEdges" aria-hidden="true">
+              <g fill="#000">
+                <rect x="0" y="0" width="26" height="1" /><rect x="0" y="1" width="2" height="1" /><rect x="24" y="1" width="2" height="1" />
+                <rect x="2" y="1" width="9" height="3" /><rect x="3" y="4" width="7" height="1" /><rect x="4" y="5" width="5" height="1" />
+                <rect x="15" y="1" width="9" height="3" /><rect x="16" y="4" width="7" height="1" /><rect x="17" y="5" width="5" height="1" />
+                <rect x="11" y="1" width="4" height="1" />
+              </g>
+              <g fill="#fff"><rect x="4" y="1" width="1" height="1" /><rect x="3" y="2" width="1" height="1" /><rect x="17" y="1" width="1" height="1" /><rect x="16" y="2" width="1" height="1" /></g>
+            </svg>
+            <span class="deal" aria-hidden="true">DEAL WITH IT</span>
+          </button>
           <figcaption class="bs-only">TALENT · HEADSHOT · NICK MAY</figcaption>
+          <p class="shades-hint foh-only" aria-hidden="true">psst… hover (or tap) me</p>
         </figure>
         <div class="bio">
           <p class="bio-lede">
-            <strong>NICK MAY</strong> <em>(Himself)</em> is thrilled to be making his debut on this website.
-            A theatre-school kid, his career took the jungle-gym route: theatre, then hospitality, then tech. What looked unrelated turned into an unfair advantage.
+            <strong>NICK MAY</strong> <em>(He/Him)</em> is thrilled to be making his debut on this website.
+            A theatre nerd at heart, his career took the jungle-gym route: theatre, then hospitality, then tech. What looked unrelated turned into an unfair advantage.
           </p>
           <p>
             By day he’s Senior Director, Talent Operations &amp; Technology at Wealthsimple, building people systems that scale and still feel human.
             Before that he spent the better part of a decade at Shopify, ending as Director of Technical Operations and Chief of Staff to the CTO.
           </p>
           <p>
-            By night (and weekends, and most of his vacation days) he produces, directs and dramaturgs with <a href={contact.topikos}>Theatre Topikós</a>,
-            the Toronto queer theatre collective he co-founded in 2014. He’s produced work in three countries, won Best New Play at the Toronto Fringe,
+            During rare moments of “free time”, he is the creative director/producer of <a href={contact.topikos}>Theatre Topikós</a>,
+            a Toronto queer theatre collective he co-founded in 2014. He’s produced work in three countries, won Best New Play at the Toronto Fringe,
             and sits on the board of the <a href={board.url}>SummerWorks Performance Festival</a>. He also speaks on panels about AI, work and queer leadership.
           </p>
           <p class="bio-thanks">
@@ -157,6 +170,7 @@ const bulbs = Array.from({ length: 19 });
         {[
           ['#prologue', 'Prologue', 'The Creative'],
           ['#act-1', 'Act I', 'The Hospitality Operator'],
+          ['#on-tour', 'Entr’acte', 'The Touring Company'],
           ['#act-2', 'Act II', 'The Tech Operator'],
           ['#repertory', 'In Repertory', 'The Director / Producer'],
           ['#speaking', 'Special Engagement', 'On the Bill'],
@@ -181,6 +195,7 @@ const bulbs = Array.from({ length: 19 });
               <div class="scene-body">
                 <h3 class="scene-role">{s.role}</h3>
                 <p class="scene-where">{s.where}</p>
+                {s.tag && <p class="scene-tag">{s.tag}</p>}
                 {s.note && <p class="scene-note">{s.note}</p>}
               </div>
             </li>
@@ -188,6 +203,20 @@ const bulbs = Array.from({ length: 19 });
         </ol>
       </section>
     ))}
+
+    <!-- ENTR'ACTE: ON TOUR -->
+    <section id="on-tour" class="section on-tour" data-cue="LX 4 · TOUR">
+      <div class="tour-card reveal">
+        <p class="tour-kicker"><span>Entr’acte</span> · The Touring Company</p>
+        <h2 class="tour-role">{onTour.role}</h2>
+        <p class="tour-where">{onTour.where} · {onTour.years}</p>
+        <p class="tour-note">{onTour.note}</p>
+        <svg class="tour-route" viewBox="0 0 400 60" aria-hidden="true">
+          <path d="M10 45 C 70 5, 120 55, 180 25 S 300 5, 390 35" />
+          <circle cx="10" cy="45" r="4" /><circle cx="180" cy="25" r="4" /><circle cx="390" cy="35" r="4" />
+        </svg>
+      </div>
+    </section>
 
     {[acts.tech].map((a: Act) => (
       <section id={a.id} class="section act" data-cue={`${a.cue} · GO`}>
@@ -197,8 +226,16 @@ const bulbs = Array.from({ length: 19 });
           {companies.map((c, i) => (
             <li class="laminate reveal" style={`--brand:${c.color};--ink-on:${c.ink};--d:${i * 120}ms;--sway:${i % 2 ? -1 : 1}`}>
               <span class="lam-hole" aria-hidden="true"></span>
-              <span class="lam-top">All Access</span>
-              <span class="lam-name">{c.name}</span>
+              <span class="lam-top">All Access{c.act && ` · ${c.act}`}</span>
+              <span class="lam-name">
+                {c.logo && <img class:list={['lam-logo', { invert: c.invert }]} src={c.logo} alt={c.name} />}
+                {c.bag && (
+                  <span class="lam-shopify">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d={shopifyBag} /></svg>
+                    <span>shopify</span>
+                  </span>
+                )}
+              </span>
               <span class="lam-role">{c.role}</span>
               <span class="lam-years">{c.years}</span>
             </li>
@@ -212,6 +249,7 @@ const bulbs = Array.from({ length: 19 });
               <div class="scene-body">
                 <h3 class="scene-role">{s.role}</h3>
                 <p class="scene-where">{s.where}</p>
+                {s.tag && <p class="scene-tag">{s.tag}</p>}
                 {s.note && <p class="scene-note">{s.note}</p>}
               </div>
             </li>
@@ -268,10 +306,10 @@ const bulbs = Array.from({ length: 19 });
     <section id="speaking" class="section speaking" data-cue="LX 6.5 · SPECIAL">
       <h2 class="section-title reveal"><span class="eyebrow">A Special Engagement</span><span class="title-text">On the Bill</span></h2>
       <div class="speak-grid">
-        <figure class="speak-hero reveal">
-          <img src="/images/speaking-mic.jpg" alt="Nick speaking on a panel at HR in Tech Crawl" loading="lazy" width="1600" height="1066" />
-          <img class="speak-inset" src="/images/speaking-panel.jpg" alt="Nick and fellow panelists laughing on stage" loading="lazy" width="1400" height="933" />
-        </figure>
+        <div class="speak-photos reveal">
+          <img class="sp-main" src="/images/speaking-mic.jpg" alt="Nick speaking on a panel at HR in Tech Crawl" loading="lazy" width="1400" height="1073" />
+          <img class="sp-side" src="/images/speaking-panel.jpg" alt="Nick laughing with fellow panelists on stage" loading="lazy" width="829" height="900" />
+        </div>
         <div class="speak-copy">
           <p class="speak-lede">Panels, keynotes, fireside chats. Nick brings a performer’s timing to conversations about AI, work and the people doing it.</p>
           <ul class="topics">{speakingTopics.map((t) => <li>{t}</li>)}</ul>
@@ -458,6 +496,13 @@ const bulbs = Array.from({ length: 19 });
         const dy = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / 300));
         p.style.transform = `translate(${dx * 3}px, ${dy * 3}px)`;
       });
+    });
+
+    // Deal with it.
+    const hsBtn = document.querySelector<HTMLButtonElement>('.headshot-btn');
+    hsBtn?.addEventListener('click', () => {
+      const on = hsBtn.classList.toggle('shades-on');
+      hsBtn.setAttribute('aria-pressed', String(on));
     });
 
     // Tear off a ticket stub.
