@@ -1202,3 +1202,10 @@ html[data-mode='backstage'] .scene-logo { width: 72px; height: 72px; }
 .street-marquee text { font: 800 6.4px 'Instrument Sans', sans-serif; letter-spacing: .6px; fill: #fff3d6; }
 .stamp text { font-size: 16px; letter-spacing: 1px; }
 @media (prefers-reduced-motion: reduce) { .beam { transform: none; } }
+
+/* SummerWorks card: solid black, same hover treatment as the Topikós card above it */
+.board, .board:hover { background: #1d1714; color: #f3ead7; border-color: #1d1714; }
+.board .board-role, .board:hover .board-role { color: #e9c97b; }
+.board-logo { box-shadow: 4px 4px 0 rgba(0,0,0,.35); }
+html[data-mode='backstage'] .board, html[data-mode='backstage'] .board:hover { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+html[data-mode='backstage'] .board .board-role { color: var(--ink-soft); }
