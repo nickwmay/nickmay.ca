@@ -363,46 +363,56 @@ const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.local
       </div>
     </section>
 
-    {[acts.tech].map((a: Act) => (
-      <section id={a.id} class="section act" data-cue={`${a.cue} · GO`}>
-        <h2 class="section-title reveal"><span class="eyebrow">{a.label}</span><span class="title-text">{a.title}</span></h2>
-        <p class="act-sub">{a.sub}</p>
-        <ul class="laminates" aria-label="Companies">
-          {companies.map((c, i) => (
-            <li class="laminate reveal" style={`--brand:${c.color};--ink-on:${c.ink};--d:${i * 120}ms;--sway:${i % 2 ? -1 : 1}`}>
-              <span class="lam-hole" aria-hidden="true"></span>
-              <span class="lam-top">All Access{c.act && ` · ${c.act}`}</span>
-              <span class="lam-name">
-                {c.logo && <img class:list={['lam-logo', { invert: c.invert }]} src={c.logo} alt={c.name} />}
-                {c.bag && (
-                  <span class="lam-shopify">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d={shopifyBag} /></svg>
-                    <span>shopify</span>
+    <!-- ACT II: the lighting rig -->
+    <section id="act-2" class="section act rig-section" data-cue={`${acts.tech.cue} · GO`}>
+      <h2 class="section-title reveal"><span class="eyebrow">{acts.tech.label}</span><span class="title-text">{acts.tech.title}</span></h2>
+      <p class="act-sub">{acts.tech.sub}</p>
+      <p class="rig-hint">Click a light to focus it.</p>
+      <div class="rig-wrap">
+        <div class="rig" style={`--n:${tech.length}`}>
+          <ul class="rig-stints" aria-label="Companies">
+            {companies.map((c) => (
+              <li class="stint" style={`grid-column: span ${c.span}; --brand:${c.color}; --ink-on:${c.ink}`}>
+                <span class="stint-bracket" aria-hidden="true"></span>
+                <span class="stint-tag">
+                  <span class="stint-logo">
+                    {c.logo && <img class:list={['lam-logo', { invert: c.invert }]} src={c.logo} alt={c.name} />}
+                    {c.bag && (<span class="lam-shopify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d={shopifyBag} /></svg><span>shopify</span></span>)}
                   </span>
-                )}
-              </span>
-              <span class="lam-role">{c.role}</span>
-              <span class="lam-years">{c.years}</span>
-            </li>
-          ))}
-        </ul>
-        <ol class="scenes">
-          {a.scenes.map((s, i) => (
-            <li class="scene reveal">
-              <span class="scene-q" aria-hidden="true">Q{i + 1}</span>
-              <span class="scene-years">{s.years}</span>
-              <div class="scene-body">
-                <h3 class="scene-role">{s.role}</h3>
-                <p class="scene-where">{s.where}</p>
-                {s.tag && <p class="scene-tag">{s.tag}</p>}
-                {s.note && <p class="scene-note">{s.note}</p>}
-              </div>
-              {s.logo && <img class:list={['scene-logo', s.logoClass]} src={s.logo} alt={`${s.where} logo`} loading="lazy" />}
-            </li>
-          ))}
-        </ol>
-      </section>
-    ))}
+                  <span class="stint-meta">{c.act ? `${c.act} · ` : ''}{c.years}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <div class="rig-pipe" aria-hidden="true"></div>
+          <ol class="rig-lights">
+            {tech.map((s, i) => {
+              const brand = companies.find((c) => c.name === s.where)?.color ?? 'var(--accent)';
+              return (
+                <li class="rig-col" style={`--i:${i}; --brand:${brand}`} data-i={i}>
+                  <button class="fixture" type="button" aria-label={`Focus ${s.role}, ${s.years}`} aria-pressed="false">
+                    <svg viewBox="0 0 40 52" aria-hidden="true">
+                      <rect class="fx-clamp" x="17" y="0" width="6" height="7" rx="1" />
+                      <path class="fx-yoke" d="M8 26 V10 H32 V26" />
+                      <rect class="fx-can" x="10" y="14" width="20" height="26" rx="4" />
+                      <ellipse class="fx-lens" cx="20" cy="42" rx="11" ry="4.5" />
+                    </svg>
+                    <span class="fx-num" aria-hidden="true">{i + 1}</span>
+                  </button>
+                  <span class="beam" aria-hidden="true"></span>
+                  <article class="rig-card">
+                    <p class="rc-years">{s.years}</p>
+                    <h3 class="rc-role">{s.role}</h3>
+                    <p class="rc-where">{s.where}</p>
+                    {s.note && <p class="rc-note">{s.note}</p>}
+                  </article>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </div>
+    </section>
 
     <!-- REPERTORY -->
     <section id="repertory" class="section repertory" data-cue="LX 6 · FLY OUT">
@@ -730,6 +740,19 @@ const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.local
       });
       const head = document.getElementById('bill-upcoming-head');
       if (head) head.hidden = !document.querySelector('.bill-upcoming .bill-item');
+    }
+
+    // Act II: lights come up on cue, and a click focuses one.
+    const rig = document.querySelector<HTMLElement>('.rig');
+    if (rig) {
+      new IntersectionObserver(([e], obs) => { if (e.isIntersecting) { rig.classList.add('lit'); obs.disconnect(); } }, { threshold: .25 }).observe(rig);
+      const cols = rig.querySelectorAll<HTMLElement>('.rig-col');
+      cols.forEach((col) => col.addEventListener('click', () => {
+        const same = col.classList.contains('focus');
+        cols.forEach((c) => { c.classList.remove('focus'); c.querySelector('.fixture')!.setAttribute('aria-pressed', 'false'); });
+        rig.classList.toggle('focusing', !same);
+        if (!same) { col.classList.add('focus'); col.querySelector('.fixture')!.setAttribute('aria-pressed', 'true'); }
+      }));
     }
 
     // Flip the early-job badges.
