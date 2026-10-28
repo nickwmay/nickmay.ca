@@ -6,7 +6,7 @@ import {
 
 const acts = {
   prologue: { id: 'prologue', cue: 'LX 2', label: 'Prologue', title: 'The Creative', sub: 'Born in Toronto. Raised by the theatre.', scenes: prologue },
-  hospitality: { id: 'act-1', cue: 'LX 3', label: 'Act I', title: 'The Hospitality Operator', sub: 'From Commodore 64 crosswords to general manager', scenes: hospitality },
+  hospitality: { id: 'act-1', cue: 'LX 3', label: 'Act I', title: 'Odd Jobs to Operator', sub: 'From Commodore 64 crosswords to general manager', scenes: hospitality },
   tech: { id: 'act-2', cue: 'LX 5', label: 'Act II', title: 'The Tech Operator', sub: 'Product, technical & people operations, 2017–now', scenes: tech },
 };
 type Act = (typeof acts)[keyof typeof acts];
@@ -161,7 +161,7 @@ const bulbs = Array.from({ length: 19 });
       <ol class="ro-list">
         {[
           ['#prologue', 'Prologue', 'The Creative'],
-          ['#act-1', 'Act I', 'The Hospitality Operator'],
+          ['#act-1', 'Act I', 'Odd Jobs to Operator'],
           ['#on-tour', 'Entr’acte', 'The Touring Company'],
           ['#act-2', 'Act II', 'The Tech Operator'],
           ['#repertory', 'In Repertory', 'The Director / Producer'],
