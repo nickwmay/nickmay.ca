@@ -17,10 +17,10 @@ export type Scene = {
 
 export const prologue: Scene[] = [
   { set: 'toronto', years: 'Scene 1', role: 'Born and raised in Toronto', where: 'Enter: one theatre nerd', note: '(Nobody is surprised by what happens next.)' },
-  { set: 'stage', years: 'Scene 2', role: 'Finds the stage', where: 'High school musicals · Community theatre · Movie extra', note: '(Blink and you’ll miss him in the background of a film or two.)' },
-  { set: 'nyc', years: 'Scene 3', role: 'Moves to New York City', where: 'Theatre school', note: '(Packs light. Dreams big. Learns that every great show runs on a great crew.)' },
-  { set: 'home', years: 'Scene 4', role: 'Home to Toronto', where: 'Stage & screen, 2007', note: '(Stops waiting for the call and starts making the work.)' },
-  { set: 'topikos', years: 'Scene 5', role: 'Co-founds Theatre Topikós', where: 'With Jess Bryson, 2014', tag: 'Spoiler alert', note: 'A queer theatre collective, still running in repertory. (More on that later in the programme.)' },
+  { set: 'stage', years: 'Scene 2', role: 'Finds the stage', where: 'Grease in high school · Community theatre · Movie extra', note: '(That’s him in the back of the crowd. No, further back.)' },
+  { set: 'nyc', years: 'Scene 3', role: 'Moves to New York City', where: 'AMDA, New York · 2003', note: '(Packs light. Dreams big. Learns that every great show runs on a great crew.)' },
+  { set: 'home', years: 'Scene 4', role: 'Home to Toronto', where: '2007 · Stage, then hospitality, then tech', note: '(Stops waiting for the call, starts making the work, and quietly falls for spreadsheets.)' },
+  { set: 'topikos', years: 'Scene 5', role: 'Co-founds Theatre Topikós', where: 'Fast forward to 2014 · with Jess Bryson', tag: 'Spoiler alert', note: 'A queer theatre collective, still running in repertory. (More on that later in the programme.)' },
 ];
 
 // The opening number: early jobs as a scrolling reel of badges. Click one to flip it.

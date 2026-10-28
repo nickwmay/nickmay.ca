@@ -1109,3 +1109,53 @@ html[data-mode='backstage'] .mini-cue.on { background: var(--accent); color: #00
 html[data-mode='backstage'] .cap-role { font: 700 22px/1.3 var(--mono); }
 html[data-mode='backstage'] .cap-note { font: 14px/1.5 var(--mono); }
 @media (prefers-reduced-motion: reduce) { .mini-curtain { display: none; } }
+
+/* Mini-stage v2 sets */
+.dome-ribs path { fill: none; stroke: rgba(243, 234, 215, .22); stroke-width: 1.2; }
+.windows rect { fill: #ffd98a; opacity: .55; }
+.mv-board { fill: #7a1424; stroke: #e9c97b; stroke-width: 1.5; }
+.mv-text { font: 800 8px 'Instrument Sans', sans-serif; fill: #fff3d6; }
+.mv-marquee { fill: #e9c97b; }
+.mv-small { font: 800 6px 'Instrument Sans', sans-serif; letter-spacing: .5px; fill: #3e0a12; }
+.boards { fill: #2a1a12; }
+.grease-board { fill: #12091f; stroke: #ff4f9a; stroke-width: 2; }
+.grease-text { font: 40px 'Yellowtail', cursive; fill: #ff4f9a; stroke: #ffe0ef; stroke-width: .8; paint-order: stroke; filter: drop-shadow(0 0 4px rgba(255, 79, 154, .8)); }
+.grease-sub { font: 700 7px 'Instrument Sans', sans-serif; letter-spacing: 1.5px; fill: #ffe2a0; }
+.af-legs { fill: none; stroke: #8a5a30; stroke-width: 3; }
+.af-board { fill: #1d1714; stroke: #f3ead7; stroke-width: 1; }
+.af-text { font: 700 5.6px 'Instrument Sans', sans-serif; letter-spacing: .4px; fill: #f3ead7; }
+.af-red { fill: #ff8a8a; }
+.movie-kicker { font: 700 7px 'Instrument Sans', sans-serif; letter-spacing: 2px; fill: #e9c97b; }
+.screen { fill: #e9e3d6; stroke: #0d0d0d; stroke-width: 3; }
+.extra circle, .extra rect { fill: #8f8a80; }
+.nick-dot { fill: #e0703f; animation: nickpulse 1.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes nickpulse { 50% { transform: scale(1.5); } }
+.arrow { fill: none; stroke: #d62f2f; stroke-width: 3; stroke-linecap: round; }
+.arrow-head { fill: #d62f2f; }
+.arrow-label { font: 400 16px 'Yellowtail', cursive; fill: #d62f2f; }
+.amda-board { fill: #fff; }
+.amda-text { font: 900 17px 'Instrument Sans', sans-serif; letter-spacing: 1px; fill: #1b75bc; }
+.amda-bar { fill: #1b75bc; }
+.amda-sub { font: 700 4.6px 'Instrument Sans', sans-serif; letter-spacing: .6px; fill: #fff; }
+.plane-body { fill: #f3ead7; }
+.trail { stroke: rgba(255,255,255,.55); stroke-width: 1.5; stroke-dasharray: 4 4; fill: none; }
+.plane { transform: translateX(-90px); }
+.set.on .plane { animation: fly 6s linear infinite; }
+@keyframes fly { from { transform: translateX(-90px); } to { transform: translateX(500px); } }
+.desk-top, .desk-leg { fill: #6b4423; }
+.lt-screen { fill: #2a2a2e; }
+.lt-glow { fill: #1b3a5c; }
+.lt-code { font: 700 14px 'JetBrains Mono', monospace; fill: #9dff6a; }
+.lt-base { fill: #9a9aa2; }
+.set-home .suitcase rect { fill: #8a5a30; }
+.ff { font: 700 9px 'JetBrains Mono', monospace; letter-spacing: 1px; fill: #f3ead7; animation: vhs 1.2s steps(2) infinite; }
+@keyframes vhs { 50% { opacity: .55; } }
+.stamp rect { fill: rgba(214, 47, 47, .08); stroke: #e8354b; stroke-width: 3.5; }
+.stamp text { font: 900 18px 'Instrument Sans', sans-serif; letter-spacing: 1.5px; fill: #e8354b; }
+.stamp { opacity: 0; }
+.set.on .stamp { animation: stamp .45s cubic-bezier(.3,1.6,.5,1) .9s both; }
+@keyframes stamp { from { opacity: 0; transform: translate(262px, 138px) rotate(-12deg) scale(2.4); } to { opacity: 1; transform: translate(262px, 138px) rotate(-12deg) scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .stamp { opacity: 1; }
+  .plane { transform: translateX(180px); }
+}
