@@ -6,7 +6,7 @@ import {
 
 const acts = {
   prologue: { id: 'prologue', cue: 'LX 2', label: 'Prologue', title: 'The Creative', sub: 'Theatre school, then a lifetime of creating and storytelling', scenes: prologue },
-  hospitality: { id: 'act-1', cue: 'LX 3', label: 'Act I', title: 'The Hospitality Operator', sub: 'From paper routes to general manager', scenes: hospitality },
+  hospitality: { id: 'act-1', cue: 'LX 3', label: 'Act I', title: 'The Hospitality Operator', sub: 'From Commodore 64 crosswords to general manager', scenes: hospitality },
   tech: { id: 'act-2', cue: 'LX 5', label: 'Act II', title: 'The Tech Operator', sub: 'Product, technical & people operations, 2017–now', scenes: tech },
 };
 type Act = (typeof acts)[keyof typeof acts];
@@ -189,10 +189,18 @@ const bulbs = Array.from({ length: 19 });
                   <li aria-hidden={copy === 1 ? 'true' : undefined}>
                     <button class:list={['badge', `badge-${j.key}`]} type="button" tabindex={copy === 1 ? -1 : undefined} aria-label={`${j.label}: ${j.lesson}`}>
                       <span class="badge-face badge-front">
+                        {j.first && <span class="first-flag">No. 1</span>}
                         {j.key === 'oddjobs' && (<><span class="hello">HELLO <small>my name is</small></span><span class="hello-name">{j.label}</span></>)}
                         {j.key === 'paper' && (<><span class="masthead">The Daily Route</span><span class="paper-cols"></span><span class="badge-label">{j.label}</span></>)}
                         {j.key === 'mcd' && (<><svg class="arches" viewBox="0 0 24 24" aria-hidden="true"><path d={mcdArches} /></svg><span class="badge-label">{j.label}</span></>)}
-                        {j.key === 'blockbuster' && (<span class="ticket-bb"><span>{j.label}</span></span>)}
+                        {j.key === 'blockbuster' && (<img class="bb-logo" src="/images/logos/blockbuster.png" alt="" />)}
+                        {j.key === 'c64' && (<><span class="c64-screen"><span>**** C64 ****</span><span>READY.</span><span>RUN<i class="c64-cursor"></i></span></span><span class="badge-label">{j.label}</span></>)}
+                        {j.key === 'lawns' && (<><span class="lawn-snow"></span><span class="lawn-grass"></span><span class="badge-label">{j.label}</span></>)}
+                        {j.key === 'callcentre' && (<><span class="keypad">{[...'123456789*0#'].map((k) => <i>{k}</i>)}</span><span class="badge-label">{j.label}</span></>)}
+                        {j.key === 'cater' && (<><svg class="glass" viewBox="0 0 24 32" aria-hidden="true"><path d="M5 2 H19 C19 12 16 16 12 16 C8 16 5 12 5 2 Z M12 16 V28 M7 29 H17" /><path class="wine" d="M6 7 H18 C17.5 12 15 15 12 15 C9 15 6.5 12 6 7 Z" /></svg><span class="badge-label">{j.label}</span></>)}
+                        {j.key === 'ambassador' && (<><span class="gift"></span><span class="badge-label">{j.label}</span></>)}
+                        {j.key === 'writer' && (<><span class="typed">Chapter one.<br />It was a dark and stormy pitch…</span><span class="badge-label">{j.label}</span></>)}
+                        {j.key === 'pm' && (<><span class="checklist"><i>Scope</i><i>Schedule</i><i>Ship</i></span><span class="badge-label">{j.label}</span></>)}
                         {j.key === 'serving' && (<><span class="pad-head">Table 7 · 2 guests</span><span class="pad-lines"></span><span class="badge-label">{j.label}</span></>)}
                         {j.key === 'restaurants' && (<><span class="chalk-head">Tonight</span><span class="badge-label">{j.label}</span></>)}
                         {j.key === 'hotels' && (<><span class="key-room">Room 1204</span><span class="key-stripe"></span><span class="badge-label">{j.label}</span></>)}

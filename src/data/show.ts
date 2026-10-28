@@ -24,13 +24,20 @@ export const prologue: Scene[] = [
 export const mcdArches = 'M17.243 3.006c2.066 0 3.742 8.714 3.742 19.478H24c0-11.588-3.042-20.968-6.766-20.968-2.127 0-4.007 2.81-5.248 7.227-1.241-4.416-3.121-7.227-5.231-7.227C3.031 1.516 0 10.888 0 22.476h3.014c0-10.763 1.658-19.47 3.724-19.47 2.066 0 3.741 8.05 3.741 17.98h2.997c0-9.93 1.684-17.98 3.75-17.98Z';
 
 export const earlyJobs = [
-  { key: 'oddjobs', label: 'Odd Jobs', lesson: 'Say yes. Figure it out.' },
-  { key: 'paper', label: 'Paper Routes', lesson: 'Show up. Every day. Rain or shine.' },
+  { key: 'c64', label: 'Crosswords on a C64', first: true, lesson: 'First build, sold door to door. “What can I make with what I have right now?”' },
+  { key: 'lawns', label: 'Driveways & Lawns', lesson: 'Every season has a side hustle.' },
+  { key: 'paper', label: 'Flyers & Papers', lesson: 'Show up. Every day. Rain or shine.' },
   { key: 'mcd', label: 'McDonald’s', lesson: 'Systems, speed and a smile.' },
   { key: 'blockbuster', label: 'Blockbuster', lesson: 'Be kind, please rewind.' },
+  { key: 'callcentre', label: 'Call Centre Rep', lesson: 'Stay calm. Solve the problem.' },
   { key: 'serving', label: 'Serving Tables', lesson: 'Read the room before it reads you.' },
+  { key: 'cater', label: 'Cater Waiter', lesson: 'Pour, smile, disappear.' },
+  { key: 'ambassador', label: 'Brand Ambassador', lesson: 'Believe in it, or don’t sell it.' },
+  { key: 'writer', label: 'Freelance Writer', lesson: 'Find the story. Cut the rest.' },
+  { key: 'pm', label: 'Freelance Project Manager', lesson: 'Nothing’s done until it ships.' },
   { key: 'restaurants', label: 'Managing Restaurants', lesson: 'Run the floor. Run the numbers.' },
   { key: 'hotels', label: 'Hotels', lesson: 'Hospitality never clocks out.' },
+  { key: 'oddjobs', label: 'Odd Jobs', lesson: 'Say yes. Figure it out.' },
 ];
 
 export const hospitality: Scene[] = [
