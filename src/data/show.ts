@@ -91,14 +91,13 @@ export type Engagement = {
   where: string;
   url?: string;
   img?: string;
-  upcoming?: boolean;
+  on: string; // ISO date of the talk; it moves to Previously the day after
 };
 
 export const speaking: Engagement[] = [
-  { date: 'Nov 11, 2026 · 2:55pm', event: 'HRFest Canada', title: 'AI Ate the Training Department: What L&D Becomes Next', where: 'Rebel, Toronto', url: 'https://hrfest.ca', upcoming: true },
-  { date: 'Nov 18, 2026', event: 'QT Qonference 2026', title: 'Who Gets to Lead the Future of Work?', where: 'Evergreen Brick Works, Toronto', url: 'https://queertech.org', img: '/images/qt-qonference-2026.jpg', upcoming: true },
-  // TODO: confirm year
-  { date: '2026', event: 'HR in Tech Crawl', title: 'Remote, Hybrid, or Bust: Recruiting for the Future of Work', where: 'Toronto' },
+  { date: 'Nov 11, 2026 · 2:55pm', event: 'HRFest Canada', title: 'AI Ate the Training Department: What L&D Becomes Next', where: 'Rebel, Toronto', url: 'https://hrfest.ca', on: '2026-11-11' },
+  { date: 'Nov 18, 2026', event: 'QT Qonference 2026', title: 'Who Gets to Lead the Future of Work?', where: 'Evergreen Brick Works, Toronto', url: 'https://queertech.org', img: '/images/qt-qonference-2026.jpg', on: '2026-11-18' },
+  { date: '2026', event: 'HR in Tech Crawl', title: 'Remote, Hybrid, or Bust: Recruiting for the Future of Work', where: 'Toronto', on: '2026-06-01' }, // exact day unknown; only used for sorting
 ];
 
 export const speakingTopics = ['AI, HR & the future of work', 'People systems & ops', 'Product operations', 'Queer leadership', 'Career pivots'];
@@ -116,7 +115,6 @@ export type Production = {
 };
 
 export const repertory: Production[] = [
-  // TODO: confirm POZ's Toronto Fringe year
   { title: 'POZ', year: '2024–25', credit: 'Director · Producer · Dramaturg', where: 'Toronto · Montreal', img: '/images/TT_POZ.jpg', laurel: 'Toronto Fringe Best New Play · Patron’s Pick', blurb: 'Mark Keller’s play. Toronto Star Critic’s Pick: “This is storytelling at its best.”' },
   { title: 'Wordplay', year: '2014–17', credit: 'Co-writer · Producer', where: 'Toronto · Dublin · Edinburgh', img: '/images/TT_Wordplay_600.jpg', laurel: 'Best New Writing nominee, Dublin', blurb: 'A dark comedy about a fag and his hag, written with Jess Bryson.' },
   { title: '5 Guys Chillin’', year: '2017', credit: 'Director · Producer', where: 'Toronto · Guelph', img: '/images/TT_5Guys_600.jpg', blurb: 'The Canadian premiere of Peter Darney’s verbatim drama.' },

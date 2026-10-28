@@ -1230,3 +1230,20 @@ html[data-mode='backstage'] .tour-logo { filter: grayscale(1) invert(1); box-sha
   .passport { width: 44px; }
   .tour-logo { grid-column: 2; width: 52px; height: 52px; }
 }
+
+/* Pause / play for moving pieces */
+.motion-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-left: 10px; padding: 4px 10px 4px 8px;
+  border: 1px solid var(--ink); border-radius: 999px; background: transparent;
+  font: 600 11px/1 var(--body); letter-spacing: .08em; text-transform: uppercase; font-style: normal;
+  color: var(--ink); cursor: pointer; vertical-align: middle;
+}
+.motion-btn:hover { background: var(--ink); color: var(--paper); }
+.motion-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mb-icon { width: 8px; height: 9px; border-left: 3px solid currentColor; border-right: 3px solid currentColor; }
+.motion-btn[aria-pressed='true'] .mb-icon { border: 0; border-left: 8px solid currentColor; border-top: 4.5px solid transparent; border-bottom: 4.5px solid transparent; width: 0; height: 0; }
+.reel-window.paused .reel-row { animation-play-state: paused; }
+.mini-controls { display: flex; justify-content: flex-end; margin-top: 14px; }
+.mini-controls + .mini-cues { margin-top: 10px; }
+@media (prefers-reduced-motion: reduce) { .motion-btn { display: none; } }

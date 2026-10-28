@@ -4,8 +4,25 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
+  noindex?: boolean;
 }
-const { title, description } = Astro.props;
+const { title, description, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og-image.png', Astro.site);
+
+// Search engines read this to understand who the site is about.
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Nick May',
+  url: 'https://nickmay.ca',
+  image: new URL('/images/headshot-smile.jpg', Astro.site).href,
+  jobTitle: 'Senior Director, Talent Operations & Technology',
+  worksFor: { '@type': 'Organization', name: 'Wealthsimple' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Toronto', addressCountry: 'CA' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'American Musical and Dramatic Academy' },
+  sameAs: ['https://www.linkedin.com/in/nickwmay', 'https://theatretopikos.com'],
+};
 ---
 
 <!doctype html>
@@ -15,8 +32,20 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Nick May" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Nick May in The Jungle Gym: theatre, hospitality, tech. A career in several acts." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

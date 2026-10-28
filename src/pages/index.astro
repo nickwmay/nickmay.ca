@@ -20,6 +20,10 @@ const motes = Array.from({ length: 22 }, () => ({
   s: (1 + rand() * 2.5).toFixed(1), d: (8 + rand() * 10).toFixed(1), delay: (-rand() * 10).toFixed(1),
 }));
 const bulbs = Array.from({ length: 19 });
+// Talks sort themselves by date at build time; a script below re-checks in the browser.
+const today = new Date().toISOString().slice(0, 10);
+const upcomingTalks = speaking.filter((e) => e.on >= today).sort((a, b) => a.on.localeCompare(b.on));
+const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.localeCompare(a.on));
 ---
 
 <Base
@@ -273,6 +277,7 @@ const bulbs = Array.from({ length: 19 });
             </div>
           ))}
         </div>
+        <div class="mini-controls"><button class="motion-btn" type="button" data-motion="mini" aria-pressed="false"><span class="mb-icon" aria-hidden="true"></span><span class="mb-label">Pause</span></button></div>
         <div class="mini-cues" role="group" aria-label="Choose a scene">
           {prologue.map((sc, i) => (
             <button type="button" class:list={['mini-cue', { on: i === 0 }]} data-i={i} aria-pressed={i === 0 ? 'true' : 'false'}>
@@ -318,7 +323,7 @@ const bulbs = Array.from({ length: 19 });
                 )))}
               </ul>
             </div>
-            <p class="reel-hint">Hover to pause · tap a badge to flip it</p>
+            <p class="reel-hint">Tap a badge to flip it <button class="motion-btn" type="button" data-motion="reel" aria-pressed="false"><span class="mb-icon" aria-hidden="true"></span><span class="mb-label">Pause</span></button></p>
           </div>
         )}
         <ol class="scenes">
@@ -460,10 +465,10 @@ const bulbs = Array.from({ length: 19 });
         </div>
       </div>
 
-      <h3 class="bill-head">Coming up</h3>
-      <ul class="bill">
-        {speaking.filter((e) => e.upcoming).map((e, i) => (
-          <li class="bill-item upcoming reveal" style={`--d:${i * 120}ms`}>
+      <h3 class="bill-head" id="bill-upcoming-head" hidden={upcomingTalks.length === 0}>Coming up</h3>
+      <ul class="bill bill-upcoming">
+        {upcomingTalks.map((e, i) => (
+          <li class="bill-item upcoming reveal" style={`--d:${i * 120}ms`} data-on={e.on}>
             {e.img && <img src={e.img} alt={`${e.event} speaker card`} loading="lazy" width="96" height="120" />}
             <div class="bill-body">
               <p class="bill-date"><span class="live-dot" aria-hidden="true"></span>{e.date}</p>
@@ -474,13 +479,14 @@ const bulbs = Array.from({ length: 19 });
         ))}
       </ul>
       <h3 class="bill-head">Previously</h3>
-      <ul class="bill past">
-        {speaking.filter((e) => !e.upcoming).map((e) => (
+      <ul class="bill past bill-past">
+        {pastTalks.map((e) => (
           <li class="bill-item reveal">
+            {e.img && <img src={e.img} alt={`${e.event} speaker card`} loading="lazy" width="96" height="120" />}
             <div class="bill-body">
               <p class="bill-date">{e.date}</p>
               <p class="bill-title">“{e.title}”</p>
-              <p class="bill-event">{e.event} · {e.where}</p>
+              <p class="bill-event">{e.url ? <a href={e.url}>{e.event}</a> : e.event} · {e.where}</p>
             </div>
           </li>
         ))}
@@ -669,13 +675,24 @@ const bulbs = Array.from({ length: 19 });
       hsBtn.setAttribute('aria-pressed', String(on));
     });
 
+    // Pause / play buttons for anything that moves on its own.
+    function setMotionButton(btn: HTMLButtonElement, paused: boolean) {
+      btn.setAttribute('aria-pressed', String(paused));
+      btn.querySelector('.mb-label')!.textContent = paused ? 'Play' : 'Pause';
+    }
+    document.querySelector<HTMLButtonElement>('[data-motion="reel"]')?.addEventListener('click', (ev) => {
+      const btn = ev.currentTarget as HTMLButtonElement;
+      const win = document.querySelector('.reel-window')!;
+      setMotionButton(btn, win.classList.toggle('paused'));
+    });
+
     // The Creative: a little stage with scene changes.
     const mini = document.querySelector<HTMLElement>('.mini');
     if (mini) {
       const sets = mini.querySelectorAll('.set');
       const caps = mini.querySelectorAll('.cap');
       const cues = mini.querySelectorAll<HTMLButtonElement>('.mini-cue');
-      let cur = 0, timer = 0, busy = false;
+      let cur = 0, timer = 0, busy = false, held = false;
       const show = (n: number) => {
         if (n === cur || busy) return;
         const swap = () => {
@@ -688,11 +705,31 @@ const bulbs = Array.from({ length: 19 });
         mini.classList.add('closing');
         setTimeout(() => { swap(); mini.classList.remove('closing'); busy = false; }, 550);
       };
-      const auto = () => { clearInterval(timer); if (!reduced) timer = window.setInterval(() => show((cur + 1) % sets.length), 5200); };
+      const auto = () => { clearInterval(timer); if (!reduced && !held) timer = window.setInterval(() => show((cur + 1) % sets.length), 5200); };
       cues.forEach((c) => c.addEventListener('click', () => { show(Number(c.dataset.i)); auto(); }));
       mini.addEventListener('pointerenter', () => clearInterval(timer));
       mini.addEventListener('pointerleave', auto);
       new IntersectionObserver(([e]) => (e.isIntersecting ? auto() : clearInterval(timer))).observe(mini);
+      mini.querySelector<HTMLButtonElement>('[data-motion="mini"]')?.addEventListener('click', (ev) => {
+        held = !held;
+        setMotionButton(ev.currentTarget as HTMLButtonElement, held);
+        held ? clearInterval(timer) : auto();
+      });
+    }
+
+    // Talks whose date has passed move from Coming up to Previously.
+    {
+      const d = new Date();
+      const todayISO = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      const past = document.querySelector('.bill-past');
+      document.querySelectorAll<HTMLElement>('.bill-upcoming .bill-item').forEach((li) => {
+        if ((li.dataset.on ?? '') >= todayISO) return;
+        li.classList.remove('upcoming');
+        li.querySelector('.live-dot')?.remove();
+        past?.prepend(li);
+      });
+      const head = document.getElementById('bill-upcoming-head');
+      if (head) head.hidden = !document.querySelector('.bill-upcoming .bill-item');
     }
 
     // Flip the early-job badges.

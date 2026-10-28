@@ -1,0 +1,53 @@
+<!doctype html>
+<!-- Source for public/og-image.png (1200x630). Regenerate from the repo root:
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --virtual-time-budget=6000 --window-size=1200,630 --screenshot="$PWD/public/og-image.png" "file://$PWD/scripts/og-card.html" -->
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Sans:wght@400..700&display=swap" />
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    background:
+      radial-gradient(circle at 36% 44%, rgba(255, 236, 190, .55) 0, rgba(255, 220, 160, .18) 22%, transparent 46%),
+      radial-gradient(ellipse at 50% 120%, #7a1424 0%, #3e0a12 72%);
+    color: #f7ecd6; font-family: 'Instrument Sans', sans-serif;
+  }
+  .curtain { position: absolute; top: 0; bottom: 0; width: 70px;
+    background: repeating-linear-gradient(90deg, rgba(0,0,0,.35) 0 2px, transparent 2px 22px, rgba(255,255,255,.06) 22px 26px, transparent 26px 40px), linear-gradient(180deg, #8e1a2c, #4a0b15); }
+  .l { left: 0; } .r { right: 0; }
+  .valance { position: absolute; top: 0; left: 0; right: 0; height: 26px; background: radial-gradient(circle at 20px -6px, #8e1a2c 20px, transparent 21px) 0 0 / 40px 26px repeat-x; }
+  .bulbs { position: absolute; left: 110px; right: 420px; display: flex; justify-content: space-between; }
+  .bulbs i { width: 10px; height: 10px; border-radius: 50%; background: #ffe2a0; box-shadow: 0 0 12px 3px rgba(255,210,120,.7); }
+  .bulbs i:nth-child(3n+2) { opacity: .25; box-shadow: none; }
+  .top { top: 92px; } .bottom { bottom: 104px; }
+  .copy { position: absolute; left: 112px; top: 128px; width: 640px; }
+  .kicker { font-weight: 600; font-size: 18px; letter-spacing: .32em; text-transform: uppercase; color: #e9c97b; }
+  .name { font: 800 128px/0.9 'Fraunces', serif; letter-spacing: -.035em; margin-top: 22px; font-variation-settings: 'opsz' 144; }
+  .in { font: italic 400 34px/1.4 'Fraunces', serif; color: #fff3d6; }
+  .show { font: italic 500 64px/1 'Fraunces', serif; }
+  .sub { margin-top: 26px; font-size: 22px; color: #e8d9bd; letter-spacing: .02em; }
+  .photo { position: absolute; right: 112px; top: 92px; width: 300px; height: 375px; border: 6px solid #f3ead7; outline: 2px solid #e9c97b; outline-offset: 8px; transform: rotate(2.5deg); background: url('../public/images/headshot-smile.jpg') center / cover; box-shadow: 0 30px 60px -20px rgba(0,0,0,.7); }
+  .url { position: absolute; right: 112px; bottom: 60px; font: 700 22px 'Instrument Sans', sans-serif; letter-spacing: .08em; color: #e9c97b; }
+  .mark { position: absolute; left: 112px; bottom: 50px; width: 46px; height: 46px; }
+</style>
+</head>
+<body>
+  <div class="valance"></div>
+  <div class="curtain l"></div><div class="curtain r"></div>
+  <div class="bulbs top"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="copy">
+    <p class="kicker">The Programme · Toronto</p>
+    <p class="name">Nick May</p>
+    <p class="in">in</p>
+    <p class="show">The Jungle Gym</p>
+    <p class="sub">Theatre. Hospitality. Tech. A career in several acts.</p>
+  </div>
+  <div class="bulbs bottom"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="photo"></div>
+  <svg class="mark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="35" fill="none" stroke="#e0703f" stroke-width="10" /><polyline points="7,68 7,32 36,68 36,32 64,64 93,32 93,68" fill="none" stroke="#f7f5f0" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" /></svg>
+  <p class="url">nickmay.ca</p>
+</body>
+</html>
