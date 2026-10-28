@@ -101,7 +101,7 @@ export const speaking: Engagement[] = [
   { date: '2026', event: 'HR in Tech Crawl', title: 'Remote, Hybrid, or Bust: Recruiting for the Future of Work', where: 'Toronto' },
 ];
 
-export const speakingTopics = ['AI & the future of work', 'People systems & ops', 'Product operations', 'Queer leadership', 'Career pivots'];
+export const speakingTopics = ['AI, HR & the future of work', 'People systems & ops', 'Product operations', 'Queer leadership', 'Career pivots'];
 
 export const board = { role: 'Board of Directors', org: 'SummerWorks Performance Festival', url: 'https://summerworks.ca' };
 
