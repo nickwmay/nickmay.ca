@@ -1,0 +1,466 @@
+---
+import Base from '../layouts/Base.astro';
+import {
+  contact, prologue, hospitality, tech, companies, throughline, speaking, speakingTopics, board, potatoPuns, repertory, theatreStats, beliefs, inDevelopment,
+} from '../data/show';
+
+const acts = {
+  prologue: { id: 'prologue', cue: 'LX 2', label: 'Prologue', title: 'The Creative', sub: 'Theatre school, then a life in theatre', scenes: prologue },
+  hospitality: { id: 'act-1', cue: 'LX 3', label: 'Act I', title: 'The Hospitality Operator', sub: 'Restaurants, retail & tours, 2011–2020', scenes: hospitality },
+  tech: { id: 'act-2', cue: 'LX 5', label: 'Act II', title: 'The Tech Operator', sub: 'Product, technical & people operations, 2017–now', scenes: tech },
+};
+type Act = (typeof acts)[keyof typeof acts];
+
+const name = 'Nick May';
+// Dust in the spotlight. Fixed seed so the build is stable.
+let seed = 7;
+const rand = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+const motes = Array.from({ length: 22 }, () => ({
+  x: Math.round(rand() * 100), y: Math.round(rand() * 100),
+  s: (1 + rand() * 2.5).toFixed(1), d: (8 + rand() * 10).toFixed(1), delay: (-rand() * 10).toFixed(1),
+}));
+const bulbs = Array.from({ length: 19 });
+---
+
+<Base
+  title="Nick May: theatre, hospitality, tech"
+  description="Nick May builds systems that scale and still feel human. Senior Director at Wealthsimple, formerly Shopify, and director/producer with Theatre Topikós."
+>
+  <div class="blackout" aria-hidden="true"><span class="blackout-cue">STANDBY</span></div>
+
+  <header class="marquee">
+    <a href="#cover" class="monogram" aria-label="Nick May, back to top">
+      <svg viewBox="0 0 48 48" width="42" height="42" aria-hidden="true">
+        <circle class="mg-ring" cx="24" cy="24" r="22.5" />
+        <circle class="mg-ring mg-ring-in" cx="24" cy="24" r="20" />
+        <g class="mg-glyph">
+          <path class="mg-hair" d="M12.5 15.5 V32.5" />
+          <path class="mg-thick" d="M12.5 15.5 L24 32.5" />
+          <path class="mg-hair" d="M24 15.5 V32.5" />
+          <path class="mg-thick" d="M24 15.5 L29.75 30" />
+          <path class="mg-hair" d="M29.75 30 L35.5 15.5" />
+          <path class="mg-thick mg-stem" d="M35.5 15.5 V32.5" />
+          <path class="mg-serif" d="M10.5 32.5 H14.5 M10.5 15.5 H13 M22 32.5 H26 M34 15.5 H37.5 M33.5 32.5 H37.5" />
+        </g>
+      </svg>
+      <span class="monogram-word">Nick&nbsp;May</span>
+    </a>
+    <nav class="marquee-nav" aria-label="Sections">
+      <a href="#whos-who">Who’s Who</a>
+      <a href="#speaking">Speaking</a>
+      <a href="#repertory">Theatre</a>
+      <a href="#stage-door">Contact</a>
+    </nav>
+    <button class="mode-switch" type="button" aria-pressed="false" title="Switch view (B)">
+      <span class="mode-opt mode-foh">Front of House</span>
+      <span class="mode-opt mode-bs">Backstage</span>
+    </button>
+  </header>
+
+  <main>
+    <!-- COVER -->
+    <section id="cover" class="cover" data-cue="LX 1 · GO">
+      <div class="curtain curtain-l" aria-hidden="true"></div>
+      <div class="curtain curtain-r" aria-hidden="true"></div>
+      <div class="motes" aria-hidden="true">
+        {motes.map((m) => <span style={`--x:${m.x}%;--y:${m.y}%;--s:${m.s}px;--d:${m.d}s;--delay:${m.delay}s`}></span>)}
+      </div>
+
+      <div class="cover-inner foh-only">
+        <div class="bulbs" aria-hidden="true">{bulbs.map((_, i) => <i style={`--i:${i % 3}`}></i>)}</div>
+        <p class="cover-kicker">The Programme · Toronto · Season 2026</p>
+        <h1 class="cover-title" aria-label="Nick May in The Jungle Gym">
+          <span class="cover-name" aria-hidden="true">
+            {[...name].map((ch, i) => <span class="ltr" style={`--n:${i}`}>{ch === ' ' ? ' ' : ch}</span>)}
+          </span>
+          <span class="cover-in" aria-hidden="true">in</span>
+          <span class="cover-show" aria-hidden="true">The Jungle Gym</span>
+        </h1>
+        <p class="cover-sub">A career in several acts. Theatre. Hospitality. Tech.<br />Running time: ongoing. No intermission (there is one).</p>
+        <div class="bulbs" aria-hidden="true">{bulbs.map((_, i) => <i style={`--i:${i % 3}`}></i>)}</div>
+        <a href="#whos-who" class="cover-cta">Take your seat ↓</a>
+      </div>
+
+      <div class="cover-inner bs-only">
+        <p class="cover-kicker">PROMPT BOOK — THE JUNGLE GYM — rev. 2026.10</p>
+        <pre class="terminal" aria-label="Terminal"><span class="tl" style="--l:0"><span class="t-prompt">sm@stage-left ~ $</span> whoami</span>
+<span class="tl" style="--l:1">nick may</span>
+<span class="tl" style="--l:2"><span class="t-prompt">sm@stage-left ~ $</span> cat roles.txt</span>
+<span class="tl" style="--l:3">producer   director   dramaturg</span>
+<span class="tl" style="--l:4">operator   systems-thinker   host</span>
+<span class="tl" style="--l:5"><span class="t-prompt">sm@stage-left ~ $</span> uptime</span>
+<span class="tl" style="--l:6">since theatre school · 3 careers · 0 regrets</span>
+<span class="tl" style="--l:7"><span class="t-prompt">sm@stage-left ~ $</span> <span class="t-cursor">▍</span></span></pre>
+        <p class="sm-note">// SM note: same show, crew’s view. Press <kbd>B</kbd> to go back out front.</p>
+      </div>
+    </section>
+
+    <!-- WHO'S WHO -->
+    <section id="whos-who" class="section whos-who" data-cue="LX 1.5">
+      <h2 class="section-title reveal"><span class="eyebrow">Who’s Who in the Cast</span><span class="title-text">Nick May</span></h2>
+      <div class="whos-who-body">
+        <figure class="headshot reveal">
+          <img class="hs hs-a" src="/images/headshot-smile.jpg" alt="Nick May, smiling" width="800" height="1000" />
+          <img class="hs hs-b" src="/images/headshot-smirk.jpg" alt="" aria-hidden="true" width="800" height="1000" loading="lazy" />
+          <figcaption class="bs-only">TALENT · HEADSHOT · NICK MAY</figcaption>
+        </figure>
+        <div class="bio">
+          <p class="bio-lede">
+            <strong>NICK MAY</strong> <em>(Himself)</em> is thrilled to be making his debut on this website.
+            A theatre-school kid, his career took the jungle-gym route: theatre, then hospitality, then tech. What looked unrelated turned into an unfair advantage.
+          </p>
+          <p>
+            By day he’s Senior Director, Talent Operations &amp; Technology at Wealthsimple, building people systems that scale and still feel human.
+            Before that he spent the better part of a decade at Shopify, ending as Director of Technical Operations and Chief of Staff to the CTO.
+          </p>
+          <p>
+            By night (and weekends, and most of his vacation days) he produces, directs and dramaturgs with <a href={contact.topikos}>Theatre Topikós</a>,
+            the Toronto queer theatre collective he co-founded in 2014. He’s produced work in three countries, won Best New Play at the Toronto Fringe,
+            and sits on the board of the <a href={board.url}>SummerWorks Performance Festival</a>. He also speaks on panels about AI, work and queer leadership.
+          </p>
+          <p class="bio-thanks">
+            He wanted to be a roller coaster tester, but couldn’t break into that industry. Thanks to every mentor along the way.
+          </p>
+          <p class="sm-note bs-only">// SM note: theatre kid → GM → tour director → ops → director. Every role is a rehearsal for the next one.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIRECTOR'S NOTE: THE THROUGHLINE -->
+    <section id="throughline" class="section throughline" data-cue="LX 1.8 · SPOT">
+      <h2 class="section-title reveal"><span class="eyebrow">A Note from the Director</span><span class="title-text">The Throughline</span></h2>
+      <p class="act-sub">
+        Three careers, one job: make the show run, and make everyone in the room feel looked after.
+        Every act taught a piece of it.
+      </p>
+      <div class="strands">
+        {throughline.strands.map((st, i) => (
+          <article class="strand reveal" style={`--d:${i * 140}ms`}>
+            <p class="strand-act">{st.act}</p>
+            <p class="strand-lesson">{st.lesson}</p>
+            <p class="strand-skill">{st.skill}</p>
+          </article>
+        ))}
+      </div>
+      <svg class="merge reveal" viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M100 0 C100 70, 300 50, 300 120" />
+        <path d="M300 0 L300 120" />
+        <path d="M500 0 C500 70, 300 50, 300 120" />
+      </svg>
+      <p class="thesis reveal"><span class="foh-only">“{throughline.thesis}”</span><span class="bs-only">return "{throughline.thesis}";</span></p>
+    </section>
+
+    <!-- RUNNING ORDER -->
+    <section class="section running-order" data-cue="SND 1">
+      <h2 class="section-title reveal"><span class="eyebrow">Running Order</span><span class="title-text">Tonight’s Programme</span></h2>
+      <ol class="ro-list">
+        {[
+          ['#prologue', 'Prologue', 'The Creative'],
+          ['#act-1', 'Act I', 'The Hospitality Operator'],
+          ['#act-2', 'Act II', 'The Tech Operator'],
+          ['#repertory', 'In Repertory', 'The Director / Producer'],
+          ['#speaking', 'Special Engagement', 'On the Bill'],
+          ['#intermission', 'Intermission', 'Notes from the Lobby'],
+          ['#in-development', 'Act III', 'In Development'],
+          ['#stage-door', 'Curtain Call', 'The Stage Door'],
+        ].map(([href, label, title], i) => (
+          <li class="reveal" style={`--d:${i * 60}ms`}><a href={href}><span class="ro-label">{label}</span><span class="ro-dots"></span><span class="ro-title">{title}</span></a></li>
+        ))}
+      </ol>
+    </section>
+
+    {[acts.prologue, acts.hospitality].map((a: Act) => (
+      <section id={a.id} class="section act" data-cue={`${a.cue} · GO`}>
+        <h2 class="section-title reveal"><span class="eyebrow">{a.label}</span><span class="title-text">{a.title}</span></h2>
+        <p class="act-sub">{a.sub}</p>
+        <ol class="scenes">
+          {a.scenes.map((s, i) => (
+            <li class="scene reveal">
+              <span class="scene-q" aria-hidden="true">Q{i + 1}</span>
+              <span class="scene-years">{s.years}</span>
+              <div class="scene-body">
+                <h3 class="scene-role">{s.role}</h3>
+                <p class="scene-where">{s.where}</p>
+                {s.note && <p class="scene-note">{s.note}</p>}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))}
+
+    {[acts.tech].map((a: Act) => (
+      <section id={a.id} class="section act" data-cue={`${a.cue} · GO`}>
+        <h2 class="section-title reveal"><span class="eyebrow">{a.label}</span><span class="title-text">{a.title}</span></h2>
+        <p class="act-sub">{a.sub}</p>
+        <ul class="laminates" aria-label="Companies">
+          {companies.map((c, i) => (
+            <li class="laminate reveal" style={`--brand:${c.color};--ink-on:${c.ink};--d:${i * 120}ms;--sway:${i % 2 ? -1 : 1}`}>
+              <span class="lam-hole" aria-hidden="true"></span>
+              <span class="lam-top">All Access</span>
+              <span class="lam-name">{c.name}</span>
+              <span class="lam-role">{c.role}</span>
+              <span class="lam-years">{c.years}</span>
+            </li>
+          ))}
+        </ul>
+        <ol class="scenes">
+          {a.scenes.map((s, i) => (
+            <li class="scene reveal">
+              <span class="scene-q" aria-hidden="true">Q{i + 1}</span>
+              <span class="scene-years">{s.years}</span>
+              <div class="scene-body">
+                <h3 class="scene-role">{s.role}</h3>
+                <p class="scene-where">{s.where}</p>
+                {s.note && <p class="scene-note">{s.note}</p>}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))}
+
+    <!-- REPERTORY -->
+    <section id="repertory" class="section repertory" data-cue="LX 6 · FLY OUT">
+      <h2 class="section-title reveal"><span class="eyebrow">Running in Repertory, 2014–now</span><span class="title-text">The Director / Producer</span></h2>
+      <p class="act-sub">
+        With <a href={contact.topikos}>Theatre Topikós</a>, Nick produces, directs and does dramaturgy on bold, topical queer work,
+        and co-leads the Toronto Queer Theatre Festival with Mark Keller. Shows have toured from Toronto to Dublin, Edinburgh and Montreal.
+      </p>
+
+      <ul class="stats">
+        {theatreStats.map((s) => (
+          <li class="stat reveal">
+            <span class="stat-num" data-count={s.value} data-suffix={s.suffix ?? ''}>{s.value}{s.suffix ?? ''}</span>
+            <span class="stat-label">{s.label}</span>
+          </li>
+        ))}
+      </ul>
+
+      <ul class="rep-list">
+        {repertory.map((p, i) => (
+          <li class="rep reveal" style={`--d:${i * 70}ms`}>
+            <img src={p.img} alt={`${p.title} poster`} loading="lazy" width="96" height="96" />
+            <div>
+              <p class="rep-meta">{p.year} · {p.credit}</p>
+              <h3 class="rep-title">{p.title}</h3>
+              <p class="rep-where">{p.where}</p>
+              {p.laurel && <p class="rep-laurel">★ {p.laurel}</p>}
+              <p class="rep-blurb">{p.blurb}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <a class="topikos-cta reveal" href={contact.topikos}>
+        <span class="tc-kicker">Now playing</span>
+        <span class="tc-title">Theatre Topikós</span>
+        <span class="tc-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="board reveal" href={board.url}>
+        <span class="board-role">{board.role}</span>
+        <span class="board-org">{board.org}</span>
+        <span class="board-arrow" aria-hidden="true">↗</span>
+      </a>
+    </section>
+
+    <!-- SPEAKING -->
+    <section id="speaking" class="section speaking" data-cue="LX 6.5 · SPECIAL">
+      <h2 class="section-title reveal"><span class="eyebrow">A Special Engagement</span><span class="title-text">On the Bill</span></h2>
+      <div class="speak-grid">
+        <figure class="speak-hero reveal">
+          <img src="/images/speaking-mic.jpg" alt="Nick speaking on a panel at HR in Tech Crawl" loading="lazy" width="1600" height="1066" />
+          <img class="speak-inset" src="/images/speaking-panel.jpg" alt="Nick and fellow panelists laughing on stage" loading="lazy" width="1400" height="933" />
+        </figure>
+        <div class="speak-copy">
+          <p class="speak-lede">Panels, keynotes, fireside chats. Nick brings a performer’s timing to conversations about AI, work and the people doing it.</p>
+          <ul class="topics">{speakingTopics.map((t) => <li>{t}</li>)}</ul>
+          <a class="speak-cta" href={`mailto:${contact.email}?subject=Speaking%20inquiry`}>Book Nick for your stage →</a>
+        </div>
+      </div>
+
+      <h3 class="bill-head">Coming up</h3>
+      <ul class="bill">
+        {speaking.filter((e) => e.upcoming).map((e, i) => (
+          <li class="bill-item upcoming reveal" style={`--d:${i * 120}ms`}>
+            {e.img && <img src={e.img} alt={`${e.event} speaker card`} loading="lazy" width="96" height="120" />}
+            <div class="bill-body">
+              <p class="bill-date"><span class="live-dot" aria-hidden="true"></span>{e.date}</p>
+              <p class="bill-title">“{e.title}”</p>
+              <p class="bill-event">{e.url ? <a href={e.url}>{e.event}</a> : e.event} · {e.where}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <h3 class="bill-head">Previously</h3>
+      <ul class="bill past">
+        {speaking.filter((e) => !e.upcoming).map((e) => (
+          <li class="bill-item reveal">
+            <div class="bill-body">
+              <p class="bill-date">{e.date}</p>
+              <p class="bill-title">“{e.title}”</p>
+              <p class="bill-event">{e.event} · {e.where}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- INTERMISSION -->
+    <section id="intermission" class="section intermission" data-cue="HOUSE LIGHTS UP">
+      <h2 class="section-title reveal"><span class="eyebrow">Intermission · 15 minutes</span><span class="title-text">Notes from the Lobby</span></h2>
+      <p class="act-sub">Things Nick believes, mostly learned the hard way. Tap one to tear off the stub.</p>
+      <div class="tickets">
+        {beliefs.map((b, i) => (
+          <button class="ticket reveal" type="button" style={`--tilt:${(i % 3) - 1}deg;--d:${(i % 4) * 80}ms`}>
+            <span class="ticket-no">ADMIT ONE · No. {String(i + 1).padStart(3, '0')}</span>
+            <span class="ticket-text">{b}</span>
+            <span class="ticket-stub" aria-hidden="true">{String(i + 1).padStart(3, '0')}</span>
+          </button>
+        ))}
+      </div>
+    </section>
+
+    <!-- IN DEVELOPMENT -->
+    <section id="in-development" class="section in-dev" data-cue="LX 7 · PRESET">
+      <h2 class="section-title reveal"><span class="eyebrow">Act III</span><span class="title-text">In Development</span></h2>
+      <p class="act-sub">New work in the rehearsal hall. Not ready for previews yet.</p>
+      <div class="dev-cards">
+        {inDevelopment.map((d) => (
+          <article class:list={['dev-card', 'reveal', { 'is-potato': d.potato }]}>
+            <p class="dev-status">{d.status}</p>
+            <h3>{d.title}</h3>
+            <p>{d.blurb}</p>
+            {d.potato && (
+              <div class="spud-stage">
+                <button class="spud" type="button" aria-label="Poke the potato for a pun" data-puns={JSON.stringify(potatoPuns)}>
+                  <svg viewBox="0 0 120 100" width="120" height="100" aria-hidden="true">
+                    <ellipse class="spud-shadow" cx="60" cy="94" rx="40" ry="5" />
+                    <path class="spud-body" d="M18 52 C14 28 38 10 64 12 C92 14 110 30 106 54 C102 78 82 90 58 88 C34 86 21 72 18 52 Z" />
+                    <circle class="spud-dimple" cx="36" cy="36" r="2.2" />
+                    <circle class="spud-dimple" cx="88" cy="70" r="2.6" />
+                    <circle class="spud-dimple" cx="44" cy="74" r="1.8" />
+                    <g class="spud-eye"><circle cx="50" cy="46" r="9" fill="#fff" /><circle class="pupil" cx="52" cy="48" r="4.2" /></g>
+                    <g class="spud-eye"><circle cx="76" cy="44" r="10" fill="#fff" /><circle class="pupil" cx="78" cy="46" r="4.6" /></g>
+                    <path class="spud-mouth" d="M56 64 Q64 71 72 63" />
+                  </svg>
+                </button>
+                <p class="spud-pun" aria-live="polite">{potatoPuns[0]}</p>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- STAGE DOOR -->
+    <section id="stage-door" class="section stage-door" data-cue="LX 8 · CURTAIN">
+      <h2 class="section-title reveal"><span class="eyebrow">Curtain Call</span><span class="title-text">The Stage Door</span></h2>
+      <p class="stage-door-lede">Want to talk systems, shows or something else entirely? Come round the back and say hi.</p>
+      <ul class="door-links">
+        <li><a href={`mailto:${contact.email}`}><span>Email</span>{contact.email}</a></li>
+        <li><a href={contact.linkedin}><span>LinkedIn</span>in/nickwmay</a></li>
+        <li><a href={contact.topikos}><span>Theatre</span>theatretopikos.com</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="foh-only">Please silence your phones. No flash photography. © {new Date().getFullYear()} Nick May.</p>
+    <p class="bs-only">// built with Astro · hand-coded in Toronto · strike set after every deploy</p>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const btn = document.querySelector<HTMLButtonElement>('.mode-switch')!;
+    const blackout = document.querySelector<HTMLElement>('.blackout')!;
+    const cueLabel = blackout.querySelector('.blackout-cue')!;
+    const terminal = document.querySelector<HTMLElement>('.terminal')!;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const sync = () => btn.setAttribute('aria-pressed', String(root.dataset.mode === 'backstage'));
+    sync();
+
+    // Retype the terminal each time we go backstage.
+    const retype = () => { terminal.classList.remove('typing'); void terminal.offsetWidth; terminal.classList.add('typing'); };
+    if (root.dataset.mode === 'backstage') retype();
+
+    function setMode(mode: 'foh' | 'backstage') {
+      const apply = () => {
+        root.dataset.mode = mode;
+        sync();
+        if (mode === 'backstage') retype();
+        try { localStorage.setItem('nm-mode', mode); } catch {}
+      };
+      if (reduced) return apply();
+      cueLabel.textContent = mode === 'backstage' ? 'LX BLACKOUT · GO' : 'HOUSE TO HALF · GO';
+      blackout.classList.add('on');
+      setTimeout(() => { apply(); blackout.classList.remove('on'); }, 450);
+    }
+    const toggle = () => setMode(root.dataset.mode === 'backstage' ? 'foh' : 'backstage');
+
+    btn.addEventListener('click', toggle);
+    addEventListener('keydown', (e) => {
+      const t = e.target as HTMLElement;
+      if (e.metaKey || e.ctrlKey || e.altKey || /INPUT|TEXTAREA/.test(t.tagName)) return;
+      if (e.key.toLowerCase() === 'b') toggle();
+    });
+
+    // Spotlight follows the pointer on the cover.
+    const cover = document.querySelector<HTMLElement>('.cover')!;
+    cover.addEventListener('pointermove', (e) => {
+      const r = cover.getBoundingClientRect();
+      cover.style.setProperty('--sx', `${((e.clientX - r.left) / r.width) * 100}%`);
+      cover.style.setProperty('--sy', `${((e.clientY - r.top) / r.height) * 100}%`);
+    });
+
+    // Count the stats up once they're lit.
+    const countUp = (el: HTMLElement) => {
+      const end = Number(el.dataset.count), suffix = el.dataset.suffix ?? '';
+      if (reduced) return;
+      const t0 = performance.now();
+      const step = (t: number) => {
+        const k = Math.min(1, (t - t0) / 1200);
+        el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))) + suffix;
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+
+    // Things fade up as they enter, like lights on a cue.
+    const io = new IntersectionObserver((entries) => {
+      for (const en of entries) {
+        if (!en.isIntersecting) continue;
+        en.target.classList.add('lit');
+        const num = en.target.querySelector<HTMLElement>('[data-count]');
+        if (num) countUp(num);
+        io.unobserve(en.target);
+      }
+    }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    // Poke the potato.
+    document.querySelectorAll<HTMLButtonElement>('.spud').forEach((spud) => {
+      const puns: string[] = JSON.parse(spud.dataset.puns ?? '[]');
+      const out = spud.parentElement!.querySelector('.spud-pun')!;
+      let i = 0;
+      spud.addEventListener('click', () => {
+        i = (i + 1) % puns.length;
+        out.textContent = puns[i];
+        spud.classList.remove('boing'); void spud.offsetWidth; spud.classList.add('boing');
+      });
+    });
+    // Its eyes follow you around the room.
+    addEventListener('pointermove', (e) => {
+      document.querySelectorAll<SVGCircleElement>('.spud .pupil').forEach((p) => {
+        const r = p.ownerSVGElement!.getBoundingClientRect();
+        const dx = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / 300));
+        const dy = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / 300));
+        p.style.transform = `translate(${dx * 3}px, ${dy * 3}px)`;
+      });
+    });
+
+    // Tear off a ticket stub.
+    document.querySelectorAll('.ticket').forEach((t) => t.addEventListener('click', () => t.classList.toggle('torn')));
+  </script>
+</Base>
