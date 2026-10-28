@@ -1,12 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import {
-  contact, prologue, hospitality, onTour, tech, companies, shopifyBag, throughline, speaking, speakingTopics, board, potatoPuns, coachingQuestions, repertory, theatreStats, beliefs, inDevelopment,
+  contact, prologue, earlyJobs, mcdArches, hospitality, onTour, tech, companies, shopifyBag, throughline, speaking, speakingTopics, board, potatoPuns, coachingQuestions, repertory, theatreStats, beliefs, inDevelopment,
 } from '../data/show';
 
 const acts = {
   prologue: { id: 'prologue', cue: 'LX 2', label: 'Prologue', title: 'The Creative', sub: 'Theatre school, then a lifetime of creating and storytelling', scenes: prologue },
-  hospitality: { id: 'act-1', cue: 'LX 3', label: 'Act I', title: 'The Hospitality Operator', sub: 'Restaurants, retail & social enterprise, 2011–2017', scenes: hospitality },
+  hospitality: { id: 'act-1', cue: 'LX 3', label: 'Act I', title: 'The Hospitality Operator', sub: 'From paper routes to general manager', scenes: hospitality },
   tech: { id: 'act-2', cue: 'LX 5', label: 'Act II', title: 'The Tech Operator', sub: 'Product, technical & people operations, 2017–now', scenes: tech },
 };
 type Act = (typeof acts)[keyof typeof acts];
@@ -78,7 +78,7 @@ const bulbs = Array.from({ length: 19 });
 <span class="tl" style="--l:1">nick may</span>
 <span class="tl" style="--l:2"><span class="t-prompt">sm@stage-left ~ $</span> cat roles.txt</span>
 <span class="tl" style="--l:3">producer   director   dramaturg</span>
-<span class="tl" style="--l:4">operator   systems-thinker   host</span>
+<span class="tl" style="--l:4">operator   systems-thinker</span>
 <span class="tl" style="--l:5"><span class="t-prompt">sm@stage-left ~ $</span> uptime</span>
 <span class="tl" style="--l:6">since theatre school · 3 careers · 0 regrets</span>
 <span class="tl" style="--l:7"><span class="t-prompt">sm@stage-left ~ $</span> <span class="t-cursor">▍</span></span></pre>
@@ -119,7 +119,10 @@ const bulbs = Array.from({ length: 19 });
           <p>
             During rare moments of “free time”, he is the creative director/producer of <a href={contact.topikos}>Theatre Topikós</a>,
             a Toronto queer theatre collective he co-founded in 2014. He’s produced work in three countries, won Best New Play at the Toronto Fringe,
-            and sits on the board of the <a href={board.url}>SummerWorks Performance Festival</a>. He also speaks on panels about AI, work and queer leadership.
+            and sits on the board of the <a href={board.url}>SummerWorks Performance Festival</a>.
+          </p>
+          <p>
+            He also speaks on panels about AI, work and queer leadership.
           </p>
           <p class="bio-thanks">
             He wanted to be a roller coaster tester, but couldn’t break into that industry. Thanks to every mentor along the way.
@@ -177,6 +180,32 @@ const bulbs = Array.from({ length: 19 });
       <section id={a.id} class="section act" data-cue={`${a.cue} · GO`}>
         <h2 class="section-title reveal"><span class="eyebrow">{a.label}</span><span class="title-text">{a.title}</span></h2>
         <p class="act-sub">{a.sub}</p>
+        {a.id === 'act-1' && (
+          <div class="reel reveal">
+            <p class="reel-title"><span>Opening Number</span> · Odd jobs, early learning &amp; growing</p>
+            <div class="reel-window">
+              <ul class="reel-row">
+                {[0, 1].map((copy) => earlyJobs.map((j) => (
+                  <li aria-hidden={copy === 1 ? 'true' : undefined}>
+                    <button class:list={['badge', `badge-${j.key}`]} type="button" tabindex={copy === 1 ? -1 : undefined} aria-label={`${j.label}: ${j.lesson}`}>
+                      <span class="badge-face badge-front">
+                        {j.key === 'oddjobs' && (<><span class="hello">HELLO <small>my name is</small></span><span class="hello-name">{j.label}</span></>)}
+                        {j.key === 'paper' && (<><span class="masthead">The Daily Route</span><span class="paper-cols"></span><span class="badge-label">{j.label}</span></>)}
+                        {j.key === 'mcd' && (<><svg class="arches" viewBox="0 0 24 24" aria-hidden="true"><path d={mcdArches} /></svg><span class="badge-label">{j.label}</span></>)}
+                        {j.key === 'blockbuster' && (<span class="ticket-bb"><span>{j.label}</span></span>)}
+                        {j.key === 'serving' && (<><span class="pad-head">Table 7 · 2 guests</span><span class="pad-lines"></span><span class="badge-label">{j.label}</span></>)}
+                        {j.key === 'restaurants' && (<><span class="chalk-head">Tonight</span><span class="badge-label">{j.label}</span></>)}
+                        {j.key === 'hotels' && (<><span class="key-room">Room 1204</span><span class="key-stripe"></span><span class="badge-label">{j.label}</span></>)}
+                      </span>
+                      <span class="badge-face badge-back">{j.lesson}</span>
+                    </button>
+                  </li>
+                )))}
+              </ul>
+            </div>
+            <p class="reel-hint">Hover to pause · tap a badge to flip it</p>
+          </div>
+        )}
         <ol class="scenes">
           {a.scenes.map((s, i) => (
             <li class="scene reveal">
@@ -515,6 +544,9 @@ const bulbs = Array.from({ length: 19 });
       const on = hsBtn.classList.toggle('shades-on');
       hsBtn.setAttribute('aria-pressed', String(on));
     });
+
+    // Flip the early-job badges.
+    document.querySelectorAll('.badge').forEach((b) => b.addEventListener('click', () => b.classList.toggle('flipped')));
 
     // Tear off a ticket stub.
     document.querySelectorAll('.ticket').forEach((t) => t.addEventListener('click', () => t.classList.toggle('torn')));

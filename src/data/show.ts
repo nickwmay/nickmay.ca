@@ -20,8 +20,20 @@ export const prologue: Scene[] = [
   { years: '2014', role: 'Co-founds Theatre Topikós', where: 'With Jess Bryson', note: 'A queer theatre collective, still running in repertory.' },
 ];
 
+// The opening number: early jobs as a scrolling reel of badges. Click one to flip it.
+export const mcdArches = 'M17.243 3.006c2.066 0 3.742 8.714 3.742 19.478H24c0-11.588-3.042-20.968-6.766-20.968-2.127 0-4.007 2.81-5.248 7.227-1.241-4.416-3.121-7.227-5.231-7.227C3.031 1.516 0 10.888 0 22.476h3.014c0-10.763 1.658-19.47 3.724-19.47 2.066 0 3.741 8.05 3.741 17.98h2.997c0-9.93 1.684-17.98 3.75-17.98Z';
+
+export const earlyJobs = [
+  { key: 'oddjobs', label: 'Odd Jobs', lesson: 'Say yes. Figure it out.' },
+  { key: 'paper', label: 'Paper Routes', lesson: 'Show up. Every day. Rain or shine.' },
+  { key: 'mcd', label: 'McDonald’s', lesson: 'Systems, speed and a smile.' },
+  { key: 'blockbuster', label: 'Blockbuster', lesson: 'Be kind, please rewind.' },
+  { key: 'serving', label: 'Serving Tables', lesson: 'Read the room before it reads you.' },
+  { key: 'restaurants', label: 'Managing Restaurants', lesson: 'Run the floor. Run the numbers.' },
+  { key: 'hotels', label: 'Hotels', lesson: 'Hospitality never clocks out.' },
+];
+
 export const hospitality: Scene[] = [
-  { years: '2011–14', role: 'Front of House Manager', where: 'Cardinal Rule, Roncesvalles', note: 'Weekly cocktail specials and a lot of keys.' },
   { years: '2014–16', role: 'General Manager', where: 'Hawthorne Food & Drink', tag: 'Social enterprise', note: 'A downtown restaurant backed by United Way Toronto that trained people coming out of homelessness or off social assistance for full-time careers in hospitality.' },
   { years: '2016–17', role: 'Toronto Community Lead', where: 'Mealshare', tag: 'Non-profit social enterprise', note: 'Partner restaurants donate a meal to someone in need every time a Mealshare item is ordered. Buy a meal, give a meal.' },
   { years: '2016–17', role: 'General Manager', where: 'Glad Day Bookshop', note: 'The oldest surviving LGBTQ bookstore in North America. Added a café and a bar.' },
@@ -93,7 +105,7 @@ export type Production = {
 
 export const repertory: Production[] = [
   // TODO: confirm POZ's Toronto Fringe year
-  { title: 'POZ', year: '2024–25', credit: 'Director', where: 'Toronto · Montreal', img: '/images/TT_POZ.jpg', laurel: 'Toronto Fringe Best New Play · Patron’s Pick', blurb: 'Mark Keller’s play. Toronto Star Critic’s Pick: “This is storytelling at its best.”' },
+  { title: 'POZ', year: '2024–25', credit: 'Director · Producer · Dramaturg', where: 'Toronto · Montreal', img: '/images/TT_POZ.jpg', laurel: 'Toronto Fringe Best New Play · Patron’s Pick', blurb: 'Mark Keller’s play. Toronto Star Critic’s Pick: “This is storytelling at its best.”' },
   { title: 'Wordplay', year: '2014–17', credit: 'Co-writer · Producer', where: 'Toronto · Dublin · Edinburgh', img: '/images/TT_Wordplay_600.jpg', laurel: 'Best New Writing nominee, Dublin', blurb: 'A dark comedy about a fag and his hag, written with Jess Bryson.' },
   { title: '5 Guys Chillin’', year: '2017', credit: 'Director · Producer', where: 'Toronto · Guelph', img: '/images/TT_5Guys_600.jpg', blurb: 'The Canadian premiere of Peter Darney’s verbatim drama.' },
   { title: 'Missed Connections', year: '2018', credit: 'Director', where: 'Toronto', img: '/images/TT_MissedConnections_600.jpg', blurb: 'Mark Keller’s short play about when longing tips into obsession.' },

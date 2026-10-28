@@ -854,3 +854,110 @@ html[data-mode='backstage'] .chair-wood { fill: #1d1f1d; stroke: var(--brass); s
 html[data-mode='backstage'] .chair-legs path { stroke: var(--brass); }
 html[data-mode='backstage'] .chair-canvas { fill: #1d1f1d; stroke: var(--accent); stroke-width: 1.5; }
 html[data-mode='backstage'] .chair-text { fill: var(--accent); }
+
+/* Tighter cover and act spacing */
+.cover { min-height: clamp(460px, 66svh, 660px); padding: 40px var(--gutter); }
+.cover-kicker { margin-bottom: 18px; }
+.cover-name { font-size: clamp(56px, 11vw, 148px); }
+.cover-sub { margin-top: 18px; }
+.bulbs { margin-bottom: 18px; }
+.bulbs + .cover-cta, .cover-sub + .bulbs { margin-top: 18px; }
+.cover-cta { margin-top: 20px; padding: 11px 22px; }
+#act-1 { padding-bottom: 40px; }
+.on-tour { padding-top: 40px; }
+
+/* Act I opening number: the early-jobs reel */
+.reel { margin: 0 calc(var(--gutter) * -1) 48px; }
+.reel-title { margin: 0 var(--gutter) 16px; font: 600 12px/1.4 var(--body); letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); }
+.reel-title span { color: var(--accent); }
+.reel-window {
+  overflow: hidden; padding: 18px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.reel-row { list-style: none; margin: 0; padding: 0; display: flex; gap: 18px; width: max-content; animation: reel 38s linear infinite; }
+.reel-window:hover .reel-row, .reel-window:focus-within .reel-row { animation-play-state: paused; }
+@keyframes reel { to { transform: translateX(calc(-50% - 9px)); } }
+.reel-hint { margin: 6px var(--gutter) 0; font: italic 14px/1 var(--display); color: var(--ink-soft); }
+
+.badge {
+  position: relative; width: 176px; height: 112px;
+  padding: 0; border: 0; background: none; cursor: pointer;
+  perspective: 700px;
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform .3s cubic-bezier(.3,1.6,.5,1);
+}
+.reel-row li:nth-child(odd) .badge { --tilt: -2deg; }
+.reel-row li:nth-child(3n) .badge { --tilt: 1.5deg; }
+.badge:hover { transform: rotate(0) translateY(-4px) scale(1.04); }
+.badge-face {
+  position: absolute; inset: 0; border-radius: 8px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  transition: transform .6s cubic-bezier(.4,.2,.2,1);
+  box-shadow: 0 12px 22px -14px rgba(0,0,0,.55);
+  overflow: hidden;
+}
+.badge-back {
+  transform: rotateY(180deg);
+  padding: 14px; text-align: center;
+  background: var(--ink); color: var(--paper);
+  font: italic 600 16px/1.25 'Fraunces', Georgia, serif;
+}
+.badge.flipped .badge-front { transform: rotateY(-180deg); }
+.badge.flipped .badge-back { transform: rotateY(0); }
+.badge-label { font: 700 13px/1.1 'Instrument Sans', system-ui, sans-serif; letter-spacing: .02em; }
+
+/* Odd jobs: hello sticker */
+.badge-oddjobs .badge-front { background: #fff; border: 2px solid #d62f2f; justify-content: flex-start; gap: 0; }
+.hello { width: 100%; padding: 8px 0 6px; background: #d62f2f; color: #fff; font: 900 18px/1 'Instrument Sans', sans-serif; letter-spacing: .06em; text-align: center; }
+.hello small { display: block; font-size: 10px; font-weight: 600; letter-spacing: .08em; margin-top: 2px; }
+.hello-name { flex: 1; display: grid; place-items: center; font: italic 700 24px/1 'Fraunces', serif; color: #1d1714; transform: rotate(-4deg); }
+
+/* Paper route: newsprint */
+.badge-paper .badge-front { background: #f4efe3; color: #1d1714; border: 1px solid #c9bfa8; }
+.masthead { font: 900 italic 17px/1 'Fraunces', serif; border-bottom: 2px solid #1d1714; padding-bottom: 3px; }
+.paper-cols { width: 70%; height: 22px; background: repeating-linear-gradient(90deg, #b9ae97 0 28%, transparent 28% 36%); opacity: .6;
+  -webkit-mask: repeating-linear-gradient(0deg, #000 0 2px, transparent 2px 5px); mask: repeating-linear-gradient(0deg, #000 0 2px, transparent 2px 5px); }
+
+/* McDonald's */
+.badge-mcd .badge-front { background: #da291c; color: #fff; }
+.arches { width: 54px; height: 54px; fill: #ffc72c; }
+
+/* Blockbuster: torn ticket on blue */
+.badge-blockbuster .badge-front { background: #0f3d91; }
+.ticket-bb {
+  display: grid; place-items: center;
+  width: 82%; height: 58%;
+  background: #ffd200;
+  clip-path: polygon(0 0, 92% 0, 100% 20%, 94% 40%, 100% 60%, 94% 80%, 100% 100%, 0 100%);
+  transform: rotate(-6deg);
+}
+.ticket-bb span { font: 900 italic 17px/1 'Instrument Sans', sans-serif; letter-spacing: .02em; color: #0f3d91; text-transform: uppercase; }
+
+/* Serving: order pad */
+.badge-serving .badge-front { background: #fffef7; color: #1d1714; border-top: 10px solid #3a7d44; justify-content: flex-start; padding-top: 10px; }
+.pad-head { font: 700 11px/1 'JetBrains Mono', monospace; color: #3a7d44; }
+.pad-lines { width: 78%; height: 30px; background: repeating-linear-gradient(0deg, transparent 0 9px, #d7d0bd 9px 10px); }
+.pad-lines + .badge-label { font: italic 600 15px/1 'Fraunces', serif; }
+
+/* Restaurants: chalkboard */
+.badge-restaurants .badge-front { background: #2b3a33; color: #f1efe6; border: 5px solid #8a5a30; }
+.chalk-head { font: italic 700 14px/1 'Fraunces', serif; opacity: .75; text-decoration: underline wavy rgba(241,239,230,.5); text-underline-offset: 4px; }
+.badge-restaurants .badge-label { font: 600 16px/1.15 'Fraunces', serif; text-align: center; padding: 0 10px; }
+
+/* Hotels: room key card */
+.badge-hotels .badge-front { background: linear-gradient(135deg, #e9e6df, #b9b3a6); color: #1d1714; align-items: flex-start; padding: 12px 14px; justify-content: flex-start; }
+.key-room { font: 700 11px/1 'JetBrains Mono', monospace; letter-spacing: .1em; }
+.key-stripe { position: absolute; left: 0; right: 0; bottom: 22px; height: 16px; background: #1d1714; }
+.badge-hotels .badge-label { position: absolute; left: 14px; bottom: 44px; font-size: 18px; }
+
+html[data-mode='backstage'] .badge-face { filter: grayscale(.85) contrast(1.05); }
+html[data-mode='backstage'] .badge:hover .badge-face { filter: none; }
+html[data-mode='backstage'] .badge-back { filter: none; background: #1d1f1d; color: var(--brass); font: 600 13px/1.4 var(--mono); border: 1px dashed var(--brass); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-window { overflow-x: auto; }
+  .reel-row li[aria-hidden='true'] { display: none; }
+}
+@media (max-width: 600px) { .badge { width: 150px; height: 96px; } .reel-row { animation-duration: 32s; } }
