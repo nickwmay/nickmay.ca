@@ -529,50 +529,6 @@ html[data-mode='backstage'] .motes { display: none; }
 }
 @keyframes type { to { clip-path: inset(0 0 0 0); } }
 
-/* Act II: backstage-pass laminates */
-.laminates { list-style: none; margin: 0 0 56px; padding: 40px 0 0; display: flex; flex-wrap: wrap; gap: 64px 28px; }
-.laminate {
-  --brand: #333; --ink-on: #fff; --sway: 1;
-  position: relative;
-  width: 200px;
-  padding: 26px 18px 18px;
-  border-radius: 12px;
-  background: var(--brand);
-  color: var(--ink-on);
-  box-shadow: 0 18px 30px -18px rgba(0,0,0,.5), inset 0 0 0 1px rgba(0,0,0,.08);
-  transform-origin: 50% -40px;
-  display: flex; flex-direction: column; gap: 6px;
-}
-.laminate::before {
-  /* the lanyard */
-  content: '';
-  position: absolute; left: 50%; top: -42px;
-  width: 14px; height: 50px; margin-left: -7px;
-  background: repeating-linear-gradient(45deg, var(--accent) 0 6px, color-mix(in srgb, var(--accent) 70%, #000) 6px 12px);
-  border-radius: 2px;
-  z-index: -1;
-}
-.laminate.lit { animation: swing 2.4s ease-out both; animation-delay: var(--d); }
-.laminate:hover { animation: swing 1.6s ease-out; }
-@keyframes swing {
-  0% { transform: rotate(calc(var(--sway) * 9deg)); }
-  30% { transform: rotate(calc(var(--sway) * -5deg)); }
-  55% { transform: rotate(calc(var(--sway) * 2.5deg)); }
-  80% { transform: rotate(calc(var(--sway) * -1deg)); }
-  100% { transform: rotate(0); }
-}
-.lam-hole { position: absolute; top: 9px; left: 50%; width: 34px; height: 7px; margin-left: -17px; border-radius: 4px; background: var(--paper); box-shadow: inset 0 1px 2px rgba(0,0,0,.4); }
-.lam-top { font: 700 10px/1 var(--mono); letter-spacing: .24em; text-transform: uppercase; opacity: .7; margin-top: 4px; }
-.lam-name { font: 800 26px/1.05 'Instrument Sans', system-ui, sans-serif; letter-spacing: -.02em; }
-.lam-role { font-size: 12px; line-height: 1.35; opacity: .85; }
-.lam-years {
-  margin-top: 8px; align-self: flex-start;
-  padding: 3px 8px; border-radius: 4px;
-  font: 700 11px/1.3 var(--mono);
-  background: var(--ink-on); color: var(--brand);
-}
-html[data-mode='backstage'] .laminate { border: 1px solid #333; }
-@media (max-width: 600px) { .laminate { width: calc(50% - 14px); } .lam-name { font-size: 21px; } }
 
 /* Repertory: stats, compact poster list, Topikós CTA */
 .stats { list-style: none; margin: 0 0 48px; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
@@ -801,15 +757,11 @@ html[data-mode='backstage'] .scene-tag { background: transparent; color: #9dff6a
 html[data-mode='backstage'] .tour-card { outline: none; border-style: dashed; background: transparent; }
 html[data-mode='backstage'] .tour-role { font: 700 22px/1.3 var(--mono); }
 
-/* Company logos on the laminates */
-.lam-name { display: flex; align-items: center; min-height: 34px; }
+/* Company logos (used on the Act II stint tags) */
 .lam-logo { display: block; height: 22px; width: auto; max-width: 100%; }
 .lam-logo.invert { height: 24px; filter: invert(1); mix-blend-mode: screen; }
 .lam-shopify { display: inline-flex; align-items: center; gap: 7px; font: 800 25px/1 'Instrument Sans', system-ui, sans-serif; letter-spacing: -.03em; }
 .lam-shopify svg { width: 26px; height: 26px; fill: currentColor; }
-.laminates { gap: 64px 24px; }
-.laminate { width: 210px; }
-@media (max-width: 600px) { .lam-logo { height: 17px; } .lam-shopify { font-size: 20px; } .lam-shopify svg { width: 21px; height: 21px; } }
 
 /* Headshot: the shades drop */
 .headshot { overflow: visible; }
@@ -1249,7 +1201,6 @@ html[data-mode='backstage'] .tour-logo { filter: grayscale(1) invert(1); box-sha
 @media (prefers-reduced-motion: reduce) { .motion-btn { display: none; } }
 
 /* ── Act II: the lighting rig ── */
-.rig-hint { margin: -16px 0 18px; font: italic 15px/1 var(--display); color: var(--ink-soft); }
 .rig-wrap { overflow-x: auto; scroll-snap-type: x proximity; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter) 12px; }
 .rig { --col: minmax(132px, 1fr); position: relative; min-width: calc(var(--n) * 140px); }
 .rig-stints, .rig-lights { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), var(--col)); column-gap: 12px; }
@@ -1334,3 +1285,4 @@ html[data-mode='backstage'] .stint-tag { filter: grayscale(.7); }
 @media (prefers-reduced-motion: reduce) {
   .beam, .rig-card { opacity: 1; transform: none; }
 }
+
