@@ -175,7 +175,75 @@ const bulbs = Array.from({ length: 19 });
       </ol>
     </section>
 
-    {[acts.prologue, acts.hospitality].map((a: Act) => (
+    <!-- PROLOGUE: a little stage you can play -->
+    <section id="prologue" class="section prologue" data-cue="LX 2 · GO">
+      <h2 class="section-title reveal"><span class="eyebrow">{acts.prologue.label}</span><span class="title-text">{acts.prologue.title}</span></h2>
+      <p class="act-sub">{acts.prologue.sub}</p>
+      <div class="mini" data-scene="0">
+        <div class="mini-stage" aria-hidden="true">
+          <div class="mini-sky"></div>
+          {prologue.map((sc, i) => (
+            <svg class:list={['set', `set-${sc.set}`, { on: i === 0 }]} viewBox="0 0 400 170" preserveAspectRatio="xMidYMax meet">
+              {sc.set === 'toronto' && (<g class="sil">
+                <rect x="20" y="110" width="40" height="60" /><rect x="64" y="90" width="30" height="80" /><rect x="98" y="120" width="26" height="50" />
+                <path d="M146 170 V82 h-7 l5 -9 h14 l5 9 h-7 V170 Z" /><rect x="150" y="12" width="2.5" height="62" /><rect x="140" y="96" width="22" height="5" />
+                <rect x="176" y="100" width="34" height="70" /><rect x="214" y="78" width="24" height="92" /><rect x="242" y="112" width="40" height="58" />
+                <rect x="286" y="94" width="28" height="76" /><rect x="318" y="124" width="60" height="46" />
+              </g>)}
+              {sc.set === 'stage' && (<g>
+                <rect class="sil" x="0" y="150" width="400" height="20" />
+                <rect class="banner" x="70" y="34" width="260" height="34" rx="3" /><text class="banner-text" x="200" y="57" text-anchor="middle">TONIGHT: THE SCHOOL MUSICAL</text>
+                <g class="clap" transform="translate(300 92) rotate(-8)"><rect class="sil" x="0" y="14" width="58" height="40" /><rect class="clap-top" x="0" y="0" width="58" height="12" /><text class="clap-text" x="6" y="38">EXTRA</text></g>
+                <circle class="spot-person sil" cx="150" cy="104" r="11" /><path class="sil" d="M136 150 Q138 118 150 116 Q162 118 164 150 Z" />
+                {[30, 70, 110, 150, 190, 230, 270, 310, 350].map((x) => <circle class="footlight" cx={x} cy="152" r="5" />)}
+              </g>)}
+              {sc.set === 'nyc' && (<g class="sil">
+                <rect x="10" y="100" width="36" height="70" /><rect x="50" y="70" width="28" height="100" /><rect x="82" y="110" width="30" height="60" />
+                <path d="M128 170 V70 h6 V52 h6 V36 h4 V14 h2 V36 h4 V52 h6 V70 h6 V170 Z" />
+                <rect x="172" y="88" width="34" height="82" /><path d="M214 170 V60 l12 -16 l12 16 V170 Z" /><rect x="244" y="104" width="30" height="66" />
+                <rect x="278" y="82" width="26" height="88" /><rect x="308" y="116" width="34" height="54" /><rect x="346" y="96" width="44" height="74" />
+              </g>)}
+              {sc.set === 'home' && (<g>
+                <g class="sil"><path d="M86 170 V82 h-7 l5 -9 h14 l5 9 h-7 V170 Z" /><rect x="90" y="12" width="2.5" height="62" /><rect x="40" y="118" width="34" height="52" /><rect x="110" y="104" width="30" height="66" /></g>
+                <g class="suitcase" transform="translate(220 100)"><rect x="0" y="10" width="96" height="60" rx="8" /><rect class="handle" x="34" y="0" width="28" height="14" rx="5" /><text x="48" y="48" text-anchor="middle">NYC → TO</text></g>
+                <rect class="sil" x="0" y="164" width="400" height="6" />
+              </g>)}
+              {sc.set === 'topikos' && (<g>
+                <rect class="marquee-box" x="60" y="34" width="280" height="86" rx="6" />
+                <text class="marquee-kicker" x="200" y="62" text-anchor="middle">NOW PLAYING</text>
+                <text class="marquee-name" x="200" y="96" text-anchor="middle">THEATRE TOPIKÓS</text>
+                {Array.from({ length: 20 }, (_, i) => <circle class="mbulb" cx={70 + i * 13.7} cy="42" r="3" style={`--i:${i % 3}`} />)}
+                {Array.from({ length: 20 }, (_, i) => <circle class="mbulb" cx={70 + i * 13.7} cy="112" r="3" style={`--i:${(i + 1) % 3}`} />)}
+                <rect class="sil" x="120" y="120" width="8" height="50" /><rect class="sil" x="272" y="120" width="8" height="50" />
+              </g>)}
+            </svg>
+          ))}
+          <div class="mini-spot"></div>
+          <div class="mini-curtain mini-curtain-l"></div>
+          <div class="mini-curtain mini-curtain-r"></div>
+          <div class="mini-valance"></div>
+        </div>
+        <div class="mini-caption" aria-live="polite">
+          {prologue.map((sc, i) => (
+            <div class:list={['cap', { on: i === 0 }]}>
+              <p class="cap-scene">{sc.years} of {prologue.length}{sc.tag && <span class="cap-tag">{sc.tag}</span>}</p>
+              <h3 class="cap-role">{sc.role}</h3>
+              <p class="cap-where">{sc.where}</p>
+              {sc.note && <p class="cap-note">{sc.note}</p>}
+            </div>
+          ))}
+        </div>
+        <div class="mini-cues" role="group" aria-label="Choose a scene">
+          {prologue.map((sc, i) => (
+            <button type="button" class:list={['mini-cue', { on: i === 0 }]} data-i={i} aria-pressed={i === 0 ? 'true' : 'false'}>
+              <span class="mc-n">{i + 1}</span><span class="mc-t">{sc.role}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {[acts.hospitality].map((a: Act) => (
       <section id={a.id} class="section act" data-cue={`${a.cue} · GO`}>
         <h2 class="section-title reveal"><span class="eyebrow">{a.label}</span><span class="title-text">{a.title}</span></h2>
         <p class="act-sub">{a.sub}</p>
@@ -317,6 +385,7 @@ const bulbs = Array.from({ length: 19 });
       </ul>
 
       <a class="topikos-cta reveal" href={contact.topikos}>
+        <span class="tc-logo" role="img" aria-label="Theatre Topikós logo"><span></span></span>
         <span class="tc-kicker">Now playing</span>
         <span class="tc-title">Theatre Topikós</span>
         <span class="tc-arrow" aria-hidden="true">→</span>
@@ -552,6 +621,32 @@ const bulbs = Array.from({ length: 19 });
       const on = hsBtn.classList.toggle('shades-on');
       hsBtn.setAttribute('aria-pressed', String(on));
     });
+
+    // The Creative: a little stage with scene changes.
+    const mini = document.querySelector<HTMLElement>('.mini');
+    if (mini) {
+      const sets = mini.querySelectorAll('.set');
+      const caps = mini.querySelectorAll('.cap');
+      const cues = mini.querySelectorAll<HTMLButtonElement>('.mini-cue');
+      let cur = 0, timer = 0, busy = false;
+      const show = (n: number) => {
+        if (n === cur || busy) return;
+        const swap = () => {
+          [sets, caps, cues].forEach((list) => list.forEach((el, i) => el.classList.toggle('on', i === n)));
+          cues.forEach((c, i) => c.setAttribute('aria-pressed', String(i === n)));
+          cur = n;
+        };
+        if (reduced) return swap();
+        busy = true;
+        mini.classList.add('closing');
+        setTimeout(() => { swap(); mini.classList.remove('closing'); busy = false; }, 550);
+      };
+      const auto = () => { clearInterval(timer); if (!reduced) timer = window.setInterval(() => show((cur + 1) % sets.length), 5200); };
+      cues.forEach((c) => c.addEventListener('click', () => { show(Number(c.dataset.i)); auto(); }));
+      mini.addEventListener('pointerenter', () => clearInterval(timer));
+      mini.addEventListener('pointerleave', auto);
+      new IntersectionObserver(([e]) => (e.isIntersecting ? auto() : clearInterval(timer))).observe(mini);
+    }
 
     // Flip the early-job badges.
     document.querySelectorAll('.badge').forEach((b) => b.addEventListener('click', () => b.classList.toggle('flipped')));
