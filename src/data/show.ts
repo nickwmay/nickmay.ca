@@ -52,7 +52,7 @@ export const hospitality: Scene[] = [
 ];
 
 // Not hospitality, not tech: its own touring company.
-export const onTour = { years: '2016–2020', role: 'International Tour Director', where: 'Evolve Tours', note: 'Not quite hospitality, not quite tech: pure operations. Running the show, just with a passport.' };
+export const onTour = { years: '2016–2017', role: 'International Tour Director', where: 'Evolve Tours', note: 'Not quite hospitality, not quite tech: pure operations. Running the show, just with a passport.' };
 
 export const tech: Scene[] = [
   { years: '2017–19', role: 'Merchant Success', where: 'Shopify' },

@@ -1209,3 +1209,24 @@ html[data-mode='backstage'] .scene-logo { width: 72px; height: 72px; }
 .board-logo { box-shadow: 4px 4px 0 rgba(0,0,0,.35); }
 html[data-mode='backstage'] .board, html[data-mode='backstage'] .board:hover { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
 html[data-mode='backstage'] .board .board-role { color: var(--ink-soft); }
+
+/* Entr'acte: a smaller side-quest card with a passport and the Evolve logo */
+.tour-card { max-width: 620px; padding: 18px 22px; display: grid; grid-template-columns: 56px 1fr 64px; gap: 18px; align-items: center; text-align: left; outline-offset: 4px; }
+.tour-role { margin: 6px 0 2px; font-size: clamp(20px, 2.6vw, 26px); }
+.tour-where { font-size: 12px; }
+.tour-note { margin: 8px 0 0; max-width: none; font-size: 15px; }
+.passport { width: 56px; height: auto; transform: rotate(-8deg); transition: transform .4s cubic-bezier(.3,1.6,.5,1); filter: drop-shadow(3px 4px 0 rgba(0,0,0,.25)); }
+.tour-card:hover .passport { transform: rotate(4deg) translateY(-3px); }
+.pp-cover { fill: #1f3a6b; }
+.pp-crest, .pp-crest-lines { fill: none; stroke: #e9c97b; stroke-width: 1.6; }
+.pp-word { font: 700 7px 'Instrument Sans', sans-serif; letter-spacing: 1.2px; fill: #e9c97b; }
+.pp-stamp circle { fill: none; stroke: #e0703f; stroke-width: 1.6; }
+.pp-stamp text { font: 800 5px 'Instrument Sans', sans-serif; fill: #e0703f; }
+.pp-stamp { transform: rotate(-14deg); transform-origin: 48px 72px; }
+.tour-logo { width: 64px; height: 64px; object-fit: contain; background: #fff; padding: 4px; transform: rotate(3deg); box-shadow: 3px 3px 0 var(--ink); }
+html[data-mode='backstage'] .tour-logo { filter: grayscale(1) invert(1); box-shadow: none; background: #000; }
+@media (max-width: 600px) {
+  .tour-card { grid-template-columns: 44px 1fr; gap: 14px; }
+  .passport { width: 44px; }
+  .tour-logo { grid-column: 2; width: 52px; height: 52px; }
+}

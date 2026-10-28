@@ -342,14 +342,19 @@ const bulbs = Array.from({ length: 19 });
     <!-- ENTR'ACTE: ON TOUR -->
     <section id="on-tour" class="section on-tour" data-cue="LX 4 · TOUR">
       <div class="tour-card reveal">
-        <p class="tour-kicker"><span>Entr’acte</span> · The Touring Company</p>
-        <h2 class="tour-role">{onTour.role}</h2>
-        <p class="tour-where">{onTour.where} · {onTour.years}</p>
-        <p class="tour-note">{onTour.note}</p>
-        <svg class="tour-route" viewBox="0 0 400 60" aria-hidden="true">
-          <path d="M10 45 C 70 5, 120 55, 180 25 S 300 5, 390 35" />
-          <circle cx="10" cy="45" r="4" /><circle cx="180" cy="25" r="4" /><circle cx="390" cy="35" r="4" />
+        <svg class="passport" viewBox="0 0 64 88" aria-hidden="true">
+          <rect x="2" y="2" width="60" height="84" rx="5" class="pp-cover" />
+          <circle cx="32" cy="38" r="12" class="pp-crest" /><path d="M24 38 H40 M32 28 V48 M26 31 Q32 38 26 45 M38 31 Q32 38 38 45" class="pp-crest-lines" />
+          <text x="32" y="66" text-anchor="middle" class="pp-word">PASSPORT</text>
+          <g class="pp-stamp"><circle cx="48" cy="72" r="10" /><text x="48" y="74.5" text-anchor="middle">TOUR</text></g>
         </svg>
+        <div class="tour-body">
+          <p class="tour-kicker"><span>Entr’acte</span> · A side quest</p>
+          <h2 class="tour-role">{onTour.role}</h2>
+          <p class="tour-where">{onTour.where} · {onTour.years}</p>
+          <p class="tour-note">{onTour.note}</p>
+        </div>
+        <img class="tour-logo" src="/images/logos/evolve.png" alt="Evolve Tours logo" width="72" height="72" loading="lazy" />
       </div>
     </section>
 
