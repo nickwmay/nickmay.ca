@@ -5,7 +5,7 @@ import {
 } from '../data/show';
 
 const acts = {
-  prologue: { id: 'prologue', cue: 'LX 2', label: 'Prologue', title: 'The Creative', sub: 'Theatre school, then a lifetime of creating and storytelling', scenes: prologue },
+  prologue: { id: 'prologue', cue: 'LX 2', label: 'Prologue', title: 'The Creative', sub: 'Born in Toronto. Raised by the theatre.', scenes: prologue },
   hospitality: { id: 'act-1', cue: 'LX 3', label: 'Act I', title: 'The Hospitality Operator', sub: 'From Commodore 64 crosswords to general manager', scenes: hospitality },
   tech: { id: 'act-2', cue: 'LX 5', label: 'Act II', title: 'The Tech Operator', sub: 'Product, technical & people operations, 2017–now', scenes: tech },
 };
@@ -67,7 +67,7 @@ const bulbs = Array.from({ length: 19 });
           <span class="cover-in" aria-hidden="true">in</span>
           <span class="cover-show" aria-hidden="true">The Jungle Gym</span>
         </h1>
-        <p class="cover-sub">A career in several acts. Theatre. Hospitality. Tech.<br />Running time: ongoing. No intermission (there is one).</p>
+        <p class="cover-sub">A career in several acts. Theatre. Hospitality. Tech.<br />Running time: ongoing.</p>
         <div class="bulbs" aria-hidden="true">{bulbs.map((_, i) => <i style={`--i:${i % 3}`}></i>)}</div>
         <a href="#whos-who" class="cover-cta">Take your seat ↓</a>
       </div>
@@ -105,7 +105,6 @@ const bulbs = Array.from({ length: 19 });
             </svg>
           </button>
           <figcaption class="bs-only">TALENT · HEADSHOT · NICK MAY</figcaption>
-          <p class="shades-hint foh-only" aria-hidden="true">psst… hover (or tap) me</p>
         </figure>
         <div class="bio">
           <p class="bio-lede">

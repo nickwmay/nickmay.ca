@@ -15,9 +15,11 @@ export type Scene = {
 };
 
 export const prologue: Scene[] = [
-  { years: 'Pre-2007', role: 'Theatre school', where: 'New York City', note: 'Trained for the stage. Learned that every great show runs on a great crew.' },
-  { years: '2007', role: 'Home to Toronto', where: 'Stage & screen', note: 'New city, new scene. Stopped waiting for the call and started making the work.' },
-  { years: '2014', role: 'Co-founds Theatre Topikós', where: 'With Jess Bryson', note: 'A queer theatre collective, still running in repertory.' },
+  { years: 'Scene 1', role: 'Born and raised in Toronto', where: 'Enter: one theatre nerd', note: '(Nobody is surprised by what happens next.)' },
+  { years: 'Scene 2', role: 'Finds the stage', where: 'High school musicals · Community theatre · Movie extra', note: '(Blink and you’ll miss him in the background of a film or two.)' },
+  { years: 'Scene 3', role: 'Moves to New York City', where: 'Theatre school', note: '(Packs light. Dreams big. Learns that every great show runs on a great crew.)' },
+  { years: 'Scene 4', role: 'Home to Toronto', where: 'Stage & screen, 2007', note: '(Stops waiting for the call and starts making the work.)' },
+  { years: 'Scene 5', role: 'Co-founds Theatre Topikós', where: 'With Jess Bryson, 2014', tag: 'Spoiler alert', note: 'A queer theatre collective, still running in repertory. (More on that later in the programme.)' },
 ];
 
 // The opening number: early jobs as a scrolling reel of badges. Click one to flip it.
