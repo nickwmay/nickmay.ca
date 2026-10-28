@@ -13,11 +13,13 @@ export type Scene = {
   note?: string;
   tag?: string;
   set?: string;
+  logo?: string;
+  logoClass?: string;
 };
 
 export const prologue: Scene[] = [
   { set: 'toronto', years: 'Scene 1', role: 'Born and raised in Toronto', where: 'Enter: one theatre nerd', note: '(Nobody is surprised by what happens next.)' },
-  { set: 'stage', years: 'Scene 2', role: 'Finds the stage', where: 'Grease in high school · Community theatre · Movie extra', note: '(That’s him in the back of the crowd. No, further back.)' },
+  { set: 'stage', years: 'Scene 2', role: 'Finds the stage', where: 'Grease · West Side Story · Community theatre', note: '(Plus a few blink-and-you’ll-miss-him gigs as a movie extra.)' },
   { set: 'nyc', years: 'Scene 3', role: 'Moves to New York City', where: 'AMDA, New York · 2003', note: '(Packs light. Dreams big. Learns that every great show runs on a great crew.)' },
   { set: 'home', years: 'Scene 4', role: 'Home to Toronto', where: '2007 · Stage, then hospitality, then tech', note: '(Stops waiting for the call, starts making the work, and quietly falls for spreadsheets.)' },
   { set: 'topikos', years: 'Scene 5', role: 'Co-founds Theatre Topikós', where: 'Fast forward to 2014 · with Jess Bryson', tag: 'Spoiler alert', note: 'A queer theatre collective, still running in repertory. (More on that later in the programme.)' },
@@ -44,9 +46,9 @@ export const earlyJobs = [
 ];
 
 export const hospitality: Scene[] = [
-  { years: '2014–16', role: 'General Manager', where: 'Hawthorne Food & Drink', tag: 'Social enterprise', note: 'A downtown restaurant backed by United Way Toronto that trained people coming out of homelessness or off social assistance for full-time careers in hospitality.' },
-  { years: '2016–17', role: 'Toronto Community Lead', where: 'Mealshare', tag: 'Non-profit social enterprise', note: 'Partner restaurants donate a meal to someone in need every time a Mealshare item is ordered. Buy a meal, give a meal.' },
-  { years: '2016–17', role: 'General Manager', where: 'Glad Day Bookshop', note: 'The oldest surviving LGBTQ bookstore in North America. Added a café and a bar.' },
+  { years: '2014–16', role: 'General Manager', where: 'Hawthorne Food & Drink', logo: '/images/logos/hawthorne.svg', logoClass: 'round', tag: 'Social enterprise', note: 'A downtown restaurant backed by United Way Toronto that trained people coming out of homelessness or off social assistance for full-time careers in hospitality.' },
+  { years: '2016–17', role: 'Toronto Community Lead', where: 'Mealshare', logo: '/images/logos/mealshare.jpg', tag: 'Non-profit social enterprise', note: 'Partner restaurants donate a meal to someone in need every time a Mealshare item is ordered. Buy a meal, give a meal.' },
+  { years: '2016–17', role: 'General Manager', where: 'Glad Day Bookshop', logo: '/images/logos/gladday.png', logoClass: 'padded', note: 'The oldest surviving LGBTQ bookstore in North America. Added a café and a bar.' },
 ];
 
 // Not hospitality, not tech: its own touring company.

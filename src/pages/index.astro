@@ -190,17 +190,19 @@ const bulbs = Array.from({ length: 19 });
                   <rect x="92" y="104" width="22" height="66" /><rect x="116" y="92" width="14" height="78" />
                   <path d="M146 170 V82 h-7 l5 -9 h14 l5 9 h-7 V170 Z" /><rect x="150" y="10" width="2.5" height="64" /><rect x="140" y="98" width="22" height="5" />
                   <path d="M166 170 V152 A42 26 0 0 1 250 152 V170 Z" />
-                  <rect x="254" y="96" width="18" height="74" /><rect x="274" y="76" width="20" height="94" /><rect x="296" y="104" width="34" height="66" />
+                  <rect x="254" y="96" width="18" height="74" /><rect x="274" y="76" width="20" height="94" /><rect x="290" y="56" width="48" height="114" />
                   <rect x="332" y="88" width="18" height="82" /><rect x="352" y="112" width="22" height="58" /><rect x="376" y="100" width="20" height="70" />
                 </g>
                 <g class="dome-ribs"><path d="M178 152 A30 20 0 0 1 238 152" /><path d="M190 154 A18 14 0 0 1 226 154" /><path d="M208 126 V170" /></g>
                 <g class="windows">{[[34,104],[34,118],[42,132],[76,92],[82,110],[94,112],[100,128],[276,84],[284,100],[276,118],[334,96],[340,114],[378,108],[384,124],[56,118],[58,136]].map(([x, y]) => <rect x={x} y={y} width="4" height="5" />)}</g>
+                <g class="windows">{[[294,64],[294,80],[294,96],[294,112],[330,64],[330,80],[330,96],[330,112]].map(([x, y]) => <rect x={x} y={y} width="4" height="6" />)}</g>
                 <g class="mirvish">
-                  <rect class="mv-board" x="304" y="60" width="18" height="78" rx="2" />
-                  {[...'MIRVISH'].map((ch, i) => <text class="mv-text" x="313" y={74 + i * 9.4} text-anchor="middle">{ch}</text>)}
-                  {Array.from({ length: 9 }, (_, i) => <circle class="mbulb" cx="301" cy={63 + i * 9} r="1.6" style={`--i:${i % 3}`} />)}
-                  {Array.from({ length: 9 }, (_, i) => <circle class="mbulb" cx="325" cy={63 + i * 9} r="1.6" style={`--i:${(i + 1) % 3}`} />)}
-                  <rect class="mv-marquee" x="290" y="140" width="46" height="9" /><text class="mv-small" x="313" y="147" text-anchor="middle">ED MIRVISH</text>
+                  <rect class="mv-board" x="305" y="60" width="18" height="80" rx="2" />
+                  {[...'MIRVISH'].map((ch, i) => <text class="mv-text" x="314" y={74 + i * 9.6} text-anchor="middle">{ch}</text>)}
+                  {Array.from({ length: 9 }, (_, i) => <circle class="mbulb" cx="302" cy={63 + i * 9.2} r="1.6" style={`--i:${i % 3}`} />)}
+                  {Array.from({ length: 9 }, (_, i) => <circle class="mbulb" cx="326" cy={63 + i * 9.2} r="1.6" style={`--i:${(i + 1) % 3}`} />)}
+                  <rect class="mv-marquee" x="288" y="142" width="52" height="12" rx="1" /><text class="mv-small" x="314" y="150.5" text-anchor="middle">ED MIRVISH</text>
+                  {Array.from({ length: 7 }, (_, i) => <circle class="mbulb" cx={291 + i * 7.7} cy="157" r="1.4" style={`--i:${i % 3}`} />)}
                 </g>
               </g>)}
               {sc.set === 'stage' && (<g>
@@ -212,20 +214,17 @@ const bulbs = Array.from({ length: 19 });
                 </g>
                 <circle class="sil" cx="80" cy="112" r="9" /><path class="sil" d="M68 150 Q70 124 80 122 Q90 124 92 150 Z" />
                 <circle class="sil" cx="122" cy="114" r="8" /><path class="sil" d="M111 150 Q113 126 122 124 Q131 126 133 150 Z" />
-                <g class="aframe" transform="translate(176 96)"><path class="af-legs" d="M4 54 L22 0 L40 54" /><rect class="af-board" x="6" y="8" width="32" height="34" rx="2" /><text class="af-text" x="22" y="20" text-anchor="middle">COMMUNITY</text><text class="af-text" x="22" y="28" text-anchor="middle">THEATRE</text><text class="af-text af-red" x="22" y="37" text-anchor="middle">TONIGHT</text></g>
-                <g class="movie">
-                  <text class="movie-kicker" x="230" y="20">NOW SHOWING</text>
-                  <rect class="screen" x="228" y="26" width="134" height="98" rx="2" />
-                  {[[7, 3, 52, 16, 247], [6, 4.4, 72, 20, 245], [5, 6, 98, 25, 245]].map(([n, r, y, gap, x0]) => Array.from({ length: n }, (_, i) => (
-                    <g class="extra"><circle cx={x0 + i * gap} cy={y} r={r} /><rect x={x0 + i * gap - r * 1.5} y={y + r * 1.1} width={r * 3} height={r * 2} rx={r} /></g>
-                  )))}
-                  <circle class="nick-dot" cx="311" cy="52" r="3.4" />
-                  <path class="arrow" d="M346 44 Q340 50 318 52" /><path class="arrow-head" d="M313 52 L320 47 L320 57 Z" />
-                  <text class="arrow-label" x="357" y="42" text-anchor="end">Nick</text>
+                <g class="aframe" transform="translate(168 94)"><path class="af-legs" d="M4 56 L26 0 L48 56" /><rect class="af-board" x="2" y="8" width="48" height="36" rx="2" /><text class="af-text" x="26" y="20" text-anchor="middle">COMMUNITY</text><text class="af-text" x="26" y="29" text-anchor="middle">THEATRE</text><text class="af-text af-red" x="26" y="38" text-anchor="middle">TONIGHT</text></g>
+                <g class="wss">
+                  <text class="movie-kicker" x="298" y="18" text-anchor="middle">NOW PLAYING</text>
+                  {Array.from({ length: 12 }, (_, i) => <circle class="mbulb" cx={244 + i * 9.8} cy="24" r="1.8" style={`--i:${i % 3}`} />)}
+                  <rect class="poster-frame" x="240" y="28" width="116" height="116" rx="2" />
+                  <image href="/images/west-side-story.jpg" x="246" y="34" width="104" height="104" preserveAspectRatio="xMidYMid slice" />
                 </g>
                 {[40, 70, 100, 130, 160].map((x) => <circle class="footlight" cx={x} cy="152" r="4" />)}
               </g>)}
               {sc.set === 'nyc' && (<g>
+                <g class="beams"><path class="beam beam-a" d="M120 170 L84 0 L104 0 Z" /><path class="beam beam-b" d="M260 170 L292 0 L312 0 Z" /></g>
                 <g class="sil">
                   <rect x="10" y="100" width="36" height="70" /><rect x="50" y="70" width="28" height="100" /><rect x="82" y="110" width="30" height="60" />
                   <path d="M128 170 V70 h6 V52 h6 V36 h4 V14 h2 V36 h4 V52 h6 V70 h6 V170 Z" />
@@ -233,6 +232,10 @@ const bulbs = Array.from({ length: 19 });
                   <rect x="278" y="82" width="26" height="88" /><rect x="308" y="116" width="34" height="54" /><rect x="346" y="96" width="44" height="74" />
                   <rect x="286" y="62" width="4" height="20" /><rect x="328" y="62" width="4" height="54" />
                 </g>
+                <g class="windows nyc-win">{[[14,108],[22,122],[34,110],[56,78],[64,96],[56,120],[86,118],[96,132],[176,96],[186,112],[196,128],[248,112],[258,126],[282,92],[292,108],[312,124],[350,104],[362,118],[374,132]].map(([x, y]) => <rect x={x} y={y} width="4" height="5" />)}</g>
+                <g class="bway"><rect class="bway-board" x="57" y="76" width="14" height="78" rx="2" />{[...'BROADWAY'].map((ch, i) => <text class="bway-text" x="64" y={86 + i * 9} text-anchor="middle">{ch}</text>)}</g>
+                <rect class="billboard bb-pink" x="175" y="92" width="28" height="18" rx="1" /><rect class="billboard bb-cyan" x="247" y="108" width="24" height="14" rx="1" /><rect class="billboard bb-gold" x="349" y="100" width="22" height="16" rx="1" />
+                <g class="street-marquee"><rect x="150" y="150" width="100" height="14" rx="2" /><text x="200" y="160" text-anchor="middle">TONIGHT ON BROADWAY</text>{Array.from({ length: 14 }, (_, i) => <circle class="mbulb" cx={153 + i * 7.2} cy="148" r="1.6" style={`--i:${i % 3}`} />)}</g>
                 <g class="amda"><rect class="amda-board" x="280" y="30" width="56" height="34" rx="2" /><text class="amda-text" x="308" y="51" text-anchor="middle">AMDA</text><rect class="amda-bar" x="284" y="54" width="48" height="7" /><text class="amda-sub" x="308" y="59.6" text-anchor="middle">NEW YORK CITY</text></g>
                 <g transform="translate(0 30)"><g class="plane"><path class="trail" d="M-70 0 H-14" /><path class="plane-body" d="M-16 -2 H14 Q22 0 14 2 H-16 Z M-4 -2 L-10 -12 H-5 L4 -2 Z M-4 2 L-10 12 H-5 L4 2 Z M-14 -2 L-18 -8 H-14 L-10 -2 Z" /></g></g>
               </g>)}
@@ -251,7 +254,7 @@ const bulbs = Array.from({ length: 19 });
                 {Array.from({ length: 20 }, (_, i) => <circle class="mbulb" cx={70 + i * 13.7} cy="118" r="3" style={`--i:${(i + 1) % 3}`} />)}
                 <rect class="sil" x="120" y="126" width="8" height="44" /><rect class="sil" x="272" y="126" width="8" height="44" />
                 <text class="ff" x="34" y="26">▶▶ FAST FORWARD · A FEW YEARS LATER</text>
-                <g class="stamp" transform="translate(262 138) rotate(-12)"><rect x="-74" y="-17" width="148" height="34" rx="4" /><text x="0" y="7" text-anchor="middle">SPOILER ALERT!</text></g>
+                <g class="stamp" transform="translate(262 138) rotate(-12)"><rect x="-86" y="-17" width="172" height="34" rx="4" /><text x="0" y="6" text-anchor="middle" textLength="150" lengthAdjust="spacingAndGlyphs">SPOILER ALERT!</text></g>
               </g>)}
             </svg>
           ))}
@@ -329,6 +332,7 @@ const bulbs = Array.from({ length: 19 });
                 {s.tag && <p class="scene-tag">{s.tag}</p>}
                 {s.note && <p class="scene-note">{s.note}</p>}
               </div>
+              {s.logo && <img class:list={['scene-logo', s.logoClass]} src={s.logo} alt={`${s.where} logo`} loading="lazy" />}
             </li>
           ))}
         </ol>
@@ -383,6 +387,7 @@ const bulbs = Array.from({ length: 19 });
                 {s.tag && <p class="scene-tag">{s.tag}</p>}
                 {s.note && <p class="scene-note">{s.note}</p>}
               </div>
+              {s.logo && <img class:list={['scene-logo', s.logoClass]} src={s.logo} alt={`${s.where} logo`} loading="lazy" />}
             </li>
           ))}
         </ol>

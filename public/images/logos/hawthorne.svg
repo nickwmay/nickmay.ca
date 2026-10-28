@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Redrawn from a photo of the Hawthorne Food & Drink sign -->
+  <circle cx="128" cy="128" r="124" fill="#fbfaf6" stroke="#2f3f4d" stroke-width="4"/>
+  <g fill="none" stroke="#2f3f4d" stroke-width="2" stroke-linecap="round">
+    <path d="M128 168 V132"/>
+    <path d="M128 132 L92 92 M128 132 L108 82 M128 132 L126 74 M128 132 L146 80 M128 132 L166 90 M128 132 L180 104 M128 132 L78 108"/>
+    <path d="M118 150 C 96 140, 82 146, 72 160 C 92 162, 106 158, 118 150 Z M86 156 L112 151"/>
+    <path d="M138 146 C 160 134, 176 140, 186 152 C 166 156, 150 154, 138 146 Z M172 149 L144 147"/>
+  </g>
+  <g fill="#d8434c" stroke="#9e2a31" stroke-width="1.5">
+    <circle cx="78" cy="106" r="11"/><circle cx="92" cy="90" r="12"/><circle cx="108" cy="80" r="12"/>
+    <circle cx="126" cy="72" r="13"/><circle cx="146" cy="78" r="12"/><circle cx="166" cy="88" r="12"/><circle cx="180" cy="104" r="11"/>
+  </g>
+  <g fill="#fff" opacity=".55">
+    <circle cx="74" cy="102" r="3"/><circle cx="88" cy="86" r="3"/><circle cx="104" cy="76" r="3"/><circle cx="122" cy="67" r="3.4"/>
+    <circle cx="142" cy="74" r="3"/><circle cx="162" cy="84" r="3"/><circle cx="176" cy="100" r="3"/>
+  </g>
+  <text x="128" y="196" text-anchor="middle" font-family="Rockwell, 'Roboto Slab', 'Courier New', Georgia, serif" font-weight="700" font-size="24" letter-spacing="0.5" fill="#2f3f4d">HAWTHORNE</text>
+  <text x="128" y="216" text-anchor="middle" font-family="Georgia, serif" font-size="10" letter-spacing="6" fill="#2f3f4d">FOOD · DRINK</text>
+</svg>
