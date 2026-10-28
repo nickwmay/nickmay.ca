@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import {
-  contact, prologue, hospitality, onTour, tech, companies, shopifyBag, throughline, speaking, speakingTopics, board, potatoPuns, repertory, theatreStats, beliefs, inDevelopment,
+  contact, prologue, hospitality, onTour, tech, companies, shopifyBag, throughline, speaking, speakingTopics, board, potatoPuns, coachingQuestions, repertory, theatreStats, beliefs, inDevelopment,
 } from '../data/show';
 
 const acts = {
@@ -30,18 +30,9 @@ const bulbs = Array.from({ length: 19 });
 
   <header class="marquee">
     <a href="#cover" class="monogram" aria-label="Nick May, back to top">
-      <svg viewBox="0 0 48 48" width="42" height="42" aria-hidden="true">
-        <circle class="mg-ring" cx="24" cy="24" r="22.5" />
-        <circle class="mg-ring mg-ring-in" cx="24" cy="24" r="20" />
-        <g class="mg-glyph">
-          <path class="mg-hair" d="M12.5 15.5 V32.5" />
-          <path class="mg-thick" d="M12.5 15.5 L24 32.5" />
-          <path class="mg-hair" d="M24 15.5 V32.5" />
-          <path class="mg-thick" d="M24 15.5 L29.75 30" />
-          <path class="mg-hair" d="M29.75 30 L35.5 15.5" />
-          <path class="mg-thick mg-stem" d="M35.5 15.5 V32.5" />
-          <path class="mg-serif" d="M10.5 32.5 H14.5 M10.5 15.5 H13 M22 32.5 H26 M34 15.5 H37.5 M33.5 32.5 H37.5" />
-        </g>
+      <svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true">
+        <circle class="mg-ring" cx="50" cy="50" r="35" pathLength="100" />
+        <polyline class="mg-line" points="7,68 7,32 36,68 36,32 64,64 93,32 93,68" pathLength="100" />
       </svg>
       <span class="monogram-word">Nick&nbsp;May</span>
     </a>
@@ -112,7 +103,6 @@ const bulbs = Array.from({ length: 19 });
               </g>
               <g fill="#fff"><rect x="4" y="1" width="1" height="1" /><rect x="3" y="2" width="1" height="1" /><rect x="17" y="1" width="1" height="1" /><rect x="16" y="2" width="1" height="1" /></g>
             </svg>
-            <span class="deal" aria-hidden="true">DEAL WITH IT</span>
           </button>
           <figcaption class="bs-only">TALENT · HEADSHOT · NICK MAY</figcaption>
           <p class="shades-hint foh-only" aria-hidden="true">psst… hover (or tap) me</p>
@@ -365,13 +355,34 @@ const bulbs = Array.from({ length: 19 });
       <p class="act-sub">New work in the rehearsal hall. Not ready for previews yet.</p>
       <div class="dev-cards">
         {inDevelopment.map((d) => (
-          <article class:list={['dev-card', 'reveal', { 'is-potato': d.potato }]}>
+          <article class:list={['dev-card', 'reveal', { 'is-potato': d.potato, 'is-chair': d.chair }]}>
             <p class="dev-status">{d.status}</p>
             <h3>{d.title}</h3>
             <p>{d.blurb}</p>
+            {d.chair && (
+              <div class="prop-stage">
+                <button class="prop chair" type="button" aria-label="Ask the director's chair a coaching question" data-lines={JSON.stringify(coachingQuestions)}>
+                  <svg viewBox="0 0 120 110" width="120" height="110" aria-hidden="true">
+                    <ellipse class="prop-shadow" cx="60" cy="104" rx="42" ry="5" />
+                    <g class="chair-legs">
+                      <path d="M28 62 L92 102" /><path d="M92 62 L28 102" />
+                      <path d="M24 102 H40" /><path d="M80 102 H96" />
+                    </g>
+                    <rect class="chair-wood" x="24" y="10" width="6" height="56" rx="2" />
+                    <rect class="chair-wood" x="90" y="10" width="6" height="56" rx="2" />
+                    <rect class="chair-canvas" x="26" y="14" width="68" height="24" rx="2" />
+                    <text class="chair-text" x="60" y="31" text-anchor="middle">COACH</text>
+                    <rect class="chair-wood" x="18" y="46" width="22" height="5" rx="2" />
+                    <rect class="chair-wood" x="80" y="46" width="22" height="5" rx="2" />
+                    <rect class="chair-canvas" x="28" y="56" width="64" height="8" rx="2" />
+                  </svg>
+                </button>
+                <p class="prop-line" aria-live="polite">{coachingQuestions[0]}</p>
+              </div>
+            )}
             {d.potato && (
-              <div class="spud-stage">
-                <button class="spud" type="button" aria-label="Poke the potato for a pun" data-puns={JSON.stringify(potatoPuns)}>
+              <div class="prop-stage">
+                <button class="prop spud" type="button" aria-label="Poke the potato for a pun" data-lines={JSON.stringify(potatoPuns)}>
                   <svg viewBox="0 0 120 100" width="120" height="100" aria-hidden="true">
                     <ellipse class="spud-shadow" cx="60" cy="94" rx="40" ry="5" />
                     <path class="spud-body" d="M18 52 C14 28 38 10 64 12 C92 14 110 30 106 54 C102 78 82 90 58 88 C34 86 21 72 18 52 Z" />
@@ -383,7 +394,7 @@ const bulbs = Array.from({ length: 19 });
                     <path class="spud-mouth" d="M56 64 Q64 71 72 63" />
                   </svg>
                 </button>
-                <p class="spud-pun" aria-live="polite">{potatoPuns[0]}</p>
+                <p class="prop-line" aria-live="polite">{potatoPuns[0]}</p>
               </div>
             )}
           </article>
@@ -477,15 +488,15 @@ const bulbs = Array.from({ length: 19 });
     }, { rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-    // Poke the potato.
-    document.querySelectorAll<HTMLButtonElement>('.spud').forEach((spud) => {
-      const puns: string[] = JSON.parse(spud.dataset.puns ?? '[]');
-      const out = spud.parentElement!.querySelector('.spud-pun')!;
+    // Poke the props: each click shows the next line.
+    document.querySelectorAll<HTMLButtonElement>('.prop').forEach((prop) => {
+      const lines: string[] = JSON.parse(prop.dataset.lines ?? '[]');
+      const out = prop.parentElement!.querySelector('.prop-line')!;
       let i = 0;
-      spud.addEventListener('click', () => {
-        i = (i + 1) % puns.length;
-        out.textContent = puns[i];
-        spud.classList.remove('boing'); void spud.offsetWidth; spud.classList.add('boing');
+      prop.addEventListener('click', () => {
+        i = (i + 1) % lines.length;
+        out.textContent = lines[i];
+        prop.classList.remove('boing'); void prop.offsetWidth; prop.classList.add('boing');
       });
     });
     // Its eyes follow you around the room.

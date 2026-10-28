@@ -107,6 +107,15 @@ export const theatreStats = [
   { value: 3, label: 'awards for POZ' },
 ];
 
+export const coachingQuestions = [
+  'What would you try if you knew you couldn’t fail?',
+  'What’s the real challenge here, for you?',
+  'What’s already working that we can build on?',
+  'What do you need to let go of?',
+  'What does “good” look like a year from now?',
+  'What’s your next small step?',
+];
+
 export const potatoPuns = [
   'Tuber or not tuber, that is the question.',
   'Mash-terpiece in progress.',
@@ -129,6 +138,6 @@ export const beliefs = [
 ];
 
 export const inDevelopment = [
-  { title: 'Coaching', status: 'In workshop', blurb: 'Certification in progress. Mentors shaped every step of this career, so this is the next one.' },
+  { title: 'Coaching', status: 'In workshop', chair: true, blurb: 'Certification in progress. Mentors shaped every step of this career, so this is the next one.' },
   { title: 'Tuber or Not Tuber', status: 'In rehearsal', potato: true, blurb: 'An app about one of Nick’s favourite things: potatoes. Mashed, roasted, hashed, scalloped. Further details are under wraps (in foil).' },
 ];
