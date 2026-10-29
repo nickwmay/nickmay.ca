@@ -478,7 +478,7 @@ const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.local
       <ul class="bill bill-upcoming">
         {upcomingTalks.map((e, i) => (
           <li class="bill-item upcoming reveal" style={`--d:${i * 120}ms`} data-on={e.on}>
-            {e.img && <img src={e.img} alt={`${e.event} speaker card`} loading="lazy" width="96" height="120" />}
+            {e.img && <img class:list={{ wide: e.imgWide }} src={e.img} alt={`${e.event} speaker card`} loading="lazy" width={e.imgWide ? 168 : 96} height={e.imgWide ? 88 : 120} />}
             <div class="bill-body">
               <p class="bill-date"><span class="live-dot" aria-hidden="true"></span>{e.date}</p>
               <p class="bill-title">“{e.title}”</p>
@@ -491,7 +491,7 @@ const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.local
       <ul class="bill past bill-past">
         {pastTalks.map((e) => (
           <li class="bill-item reveal">
-            {e.img && <img src={e.img} alt={`${e.event} speaker card`} loading="lazy" width="96" height="120" />}
+            {e.img && <img class:list={{ wide: e.imgWide }} src={e.img} alt={`${e.event} speaker card`} loading="lazy" width={e.imgWide ? 168 : 96} height={e.imgWide ? 88 : 120} />}
             <div class="bill-body">
               <p class="bill-date">{e.date}</p>
               <p class="bill-title">“{e.title}”</p>

@@ -1286,3 +1286,7 @@ html[data-mode='backstage'] .stint-tag { filter: grayscale(.7); }
   .beam, .rig-card { opacity: 1; transform: none; }
 }
 
+
+/* Landscape speaker cards keep their proportions */
+.bill-item img.wide { width: 168px; height: 88px; }
+@media (max-width: 760px) { .bill-item img.wide { width: 112px; height: 59px; } }

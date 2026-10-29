@@ -91,11 +91,12 @@ export type Engagement = {
   where: string;
   url?: string;
   img?: string;
+  imgWide?: boolean; // landscape speaker card
   on: string; // ISO date of the talk; it moves to Previously the day after
 };
 
 export const speaking: Engagement[] = [
-  { date: 'Nov 11, 2026 · 2:55pm', event: 'HRFest Canada', title: 'AI Ate the Training Department: What L&D Becomes Next', where: 'Rebel, Toronto', url: 'https://hrfest.ca', on: '2026-11-11' },
+  { date: 'Nov 11, 2026 · 2:55pm', event: 'HRFest Canada', title: 'AI Ate the Training Department: What L&D Becomes Next', where: 'Rebel, Toronto', url: 'https://hrfest.ca', img: '/images/hrfest-2026.jpg', imgWide: true, on: '2026-11-11' },
   { date: 'Nov 18, 2026', event: 'QT Qonference 2026', title: 'Who Gets to Lead the Future of Work?', where: 'Evergreen Brick Works, Toronto', url: 'https://queertech.org', img: '/images/qt-qonference-2026.jpg', on: '2026-11-18' },
   { date: '2026', event: 'HR in Tech Crawl', title: 'Remote, Hybrid, or Bust: Recruiting for the Future of Work', where: 'Toronto', on: '2026-06-01' }, // exact day unknown; only used for sorting
 ];
