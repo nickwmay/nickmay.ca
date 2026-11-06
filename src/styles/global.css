@@ -383,6 +383,9 @@ html[data-mode='backstage'] .scene-note::before { content: '// '; color: var(--b
 .intermission > * { max-width: 1120px; margin-left: auto; margin-right: auto; }
 .intermission .eyebrow { color: #e9c97b; }
 .intermission .act-sub { color: #d9c7a5; }
+.lobby-more { margin-top: 40px; color: #d9c7a5; font: italic 400 18px/1.4 var(--display); }
+.lobby-more a { color: #e9c97b; text-underline-offset: 3px; }
+.lobby-more a:hover { color: #f3ead7; }
 .tickets { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
 .ticket {
   --tilt: 0deg;

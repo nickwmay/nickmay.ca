@@ -4,6 +4,7 @@ export const contact = {
   email: 'nick@nickmay.ca',
   linkedin: 'https://www.linkedin.com/in/nickwmay',
   topikos: 'https://theatretopikos.com',
+  substack: 'https://thejunglegym.substack.com',
 };
 
 export type Scene = {

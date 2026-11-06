@@ -515,6 +515,7 @@ const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.local
           </button>
         ))}
       </div>
+      <p class="lobby-more">More notes like these in <a href={contact.substack}>The Jungle Gym</a>, Nick’s newsletter. <span aria-hidden="true">→</span></p>
     </section>
 
     <!-- IN DEVELOPMENT -->
@@ -577,6 +578,7 @@ const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.local
       <ul class="door-links">
         <li><a href={`mailto:${contact.email}`}><span>Email</span>{contact.email}</a></li>
         <li><a href={contact.linkedin}><span>LinkedIn</span>in/nickwmay</a></li>
+        <li><a href={contact.substack}><span>Writing</span>The Jungle Gym</a></li>
         <li><a href={contact.topikos}><span>Theatre</span>theatretopikos.com</a></li>
       </ul>
     </section>

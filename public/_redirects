@@ -1,0 +1,4 @@
+# Short links. Cloudflare Pages reads this file at deploy time.
+# 302 (temporary) so browsers don't cache it forever if the Substack address changes.
+/notes      https://thejunglegym.substack.com         302
+/notes/*    https://thejunglegym.substack.com/:splat  302
