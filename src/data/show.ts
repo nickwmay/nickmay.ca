@@ -165,3 +165,26 @@ export const inDevelopment = [
   { title: 'Coaching', status: 'In workshop', chair: true, blurb: 'Certification in progress. Mentors shaped every step of this career, so this is the next one.' },
   { title: 'Tuber or Not Tuber', status: 'In rehearsal', potato: true, blurb: 'An app about one of Nick’s favourite things: potatoes. Mashed, roasted, hashed, scalloped. Further details are under wraps (in foil).' },
 ];
+
+// The Second Stage: side projects that are live. Posters are the sites' own share images.
+export type SideProject = { title: string; kicker: string; blurb: string; url: string; img: string; alt: string; notes: string[] };
+export const secondStage: SideProject[] = [
+  {
+    title: 'Queer History Daily',
+    kicker: 'An almanac',
+    blurb: 'A desk calendar of LGBTQ+ history: a new page every day, from Stonewall to the Toronto bathhouse raids, every entry linked to its source.',
+    url: 'https://queer-history-daily.lovable.app',
+    img: '/images/second-stage/queer-history-daily.jpg',
+    alt: 'Queer History Daily poster: a fan of desk-calendar pages, with 28 June 1969 on top',
+    notes: ['437 entries', '336 days of the year'],
+  },
+  {
+    title: 'Polari Pal',
+    kicker: 'A pocket guide',
+    blurb: 'Learn Polari, the secret slang British gay men used to speak freely in plain sight. A sourced dictionary, flashcards and a quiz. Bona to vada your eek.',
+    url: 'https://polari-pal.lovable.app',
+    img: '/images/second-stage/polari-pal.jpg',
+    alt: 'Polari Pal poster: an oxblood pocket guide to Polari beside the phrase Bona to vada your eek',
+    notes: ['129 words', 'Flashcards & quiz'],
+  },
+];
