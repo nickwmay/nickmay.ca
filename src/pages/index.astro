@@ -169,9 +169,9 @@ const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.local
           ['#on-tour', 'Entr’acte', 'The Touring Company'],
           ['#act-2', 'Act II', 'The Tech Operator'],
           ['#repertory', 'In Repertory', 'The Director / Producer'],
-          ['#second-stage', 'Second Stage', 'Side Projects'],
           ['#speaking', 'Special Engagement', 'On the Bill'],
           ['#intermission', 'Intermission', 'Notes from the Lobby'],
+          ['#second-stage', 'Second Stage', 'Side Projects'],
           ['#in-development', 'Act III', 'In Development'],
           ['#stage-door', 'Curtain Call', 'The Stage Door'],
         ].map(([href, label, title], i) => (
@@ -460,24 +460,6 @@ const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.local
       </a>
     </section>
 
-    <!-- SECOND STAGE -->
-    <section id="second-stage" class="section second-stage" data-cue="LX 6.2 · SECOND STAGE">
-      <h2 class="section-title reveal"><span class="eyebrow">The Second Stage</span><span class="title-text">Side Projects, Now Playing</span></h2>
-      <p class="act-sub">Smaller rooms, same obsessions: queer history, and the language people used to survive it. Built for fun, sourced with care.</p>
-      <div class="s2-grid">
-        {secondStage.map((p, i) => (
-          <a class="s2-card reveal" href={p.url} style={`--d:${i * 90}ms`}>
-            <span class="s2-poster"><img src={p.img} alt={p.alt} loading="lazy" width="1200" height="630" /></span>
-            <span class="s2-kicker">{p.kicker}</span>
-            <span class="s2-title">{p.title}</span>
-            <span class="s2-blurb">{p.blurb}</span>
-            <span class="s2-notes">{p.notes.join(' · ')}</span>
-            <span class="s2-cta">Now playing <span aria-hidden="true">↗</span></span>
-          </a>
-        ))}
-      </div>
-    </section>
-
     <!-- SPEAKING -->
     <section id="speaking" class="section speaking" data-cue="LX 6.5 · SPECIAL">
       <h2 class="section-title reveal"><span class="eyebrow">A Special Engagement</span><span class="title-text">On the Bill</span></h2>
@@ -535,6 +517,24 @@ const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.local
         ))}
       </div>
       <p class="lobby-more">More notes like these in <a href={contact.substack}>The Jungle Gym</a>, Nick’s newsletter. <span aria-hidden="true">→</span></p>
+    </section>
+
+    <!-- SECOND STAGE -->
+    <section id="second-stage" class="section second-stage" data-cue="LX 6.8 · SECOND STAGE">
+      <h2 class="section-title reveal"><span class="eyebrow">The Second Stage</span><span class="title-text">Side Projects, Now Playing</span></h2>
+      <p class="act-sub">Smaller rooms, same obsessions: queer history, and the language people used to survive it. Built for fun, sourced with care.</p>
+      <div class="s2-grid">
+        {secondStage.map((p, i) => (
+          <a class="s2-card reveal" href={p.url} style={`--d:${i * 90}ms`}>
+            <span class="s2-poster"><img src={p.img} alt={p.alt} loading="lazy" width="1200" height="630" /></span>
+            <span class="s2-kicker">{p.kicker}</span>
+            <span class="s2-title">{p.title}</span>
+            <span class="s2-blurb">{p.blurb}</span>
+            <span class="s2-notes">{p.notes.join(' · ')}</span>
+            <span class="s2-cta">Now playing <span aria-hidden="true">↗</span></span>
+          </a>
+        ))}
+      </div>
     </section>
 
     <!-- IN DEVELOPMENT -->
