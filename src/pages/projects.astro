@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Prop from '../components/Prop.astro';
+import { contact, secondStage, inDevelopment } from '../data/show';
+---
+
+<Base
+  title="Side Projects · Nick May"
+  description="The Second Stage: Nick May's side projects. Queer history and the language people used to survive it, plus new work in rehearsal."
+>
+  <SiteHeader current="projects" />
+
+  <main class="projects-page">
+    <section class="section s2-hero" data-cue="LX 1 · SECOND STAGE">
+      <a class="s2-back" href="/#side-projects">← Back to the main stage</a>
+      <h1 class="section-title reveal"><span class="eyebrow">The Second Stage</span><span class="title-text">Side Projects</span></h1>
+      <p class="act-sub">
+        The smaller venue down the hall, where the experimental work plays.
+        Some of it is open to the public. Some of it is still in rehearsal.
+      </p>
+    </section>
+
+    <!-- NOW PLAYING -->
+    <section id="now-playing" class="section second-stage" data-cue="LX 2 · NOW PLAYING">
+      <h2 class="section-title reveal"><span class="eyebrow">Now Playing</span><span class="title-text">Open to the Public</span></h2>
+      <p class="act-sub">Smaller rooms, same obsessions: queer history, and the language people used to survive it. Built for fun, sourced with care.</p>
+      <div class="s2-grid">
+        {secondStage.map((p, i) => (
+          <a class="s2-card reveal" href={p.url} style={`--d:${i * 90}ms`}>
+            <span class="s2-poster"><img src={p.img} alt={p.alt} loading="lazy" width="1200" height="630" /></span>
+            <span class="s2-kicker">{p.kicker}</span>
+            <span class="s2-title">{p.title}</span>
+            <span class="s2-blurb">{p.blurb}</span>
+            <span class="s2-notes">{p.notes.join(' · ')}</span>
+            <span class="s2-cta">Now playing <span aria-hidden="true">↗</span></span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- IN THE REHEARSAL HALL -->
+    <section id="in-rehearsal" class="section in-dev rehearsal-hall" data-cue="LX 3 · WORK LIGHT">
+      <h2 class="section-title reveal"><span class="eyebrow">In the Rehearsal Hall</span><span class="title-text">Not Ready for Previews</span></h2>
+      <p class="act-sub">Work lights on, scripts in hand. You’re welcome to peek through the door.</p>
+      <div class="dev-cards">
+        {inDevelopment.map((d) => (
+          <article class:list={['dev-card', 'reveal', { 'is-potato': d.potato, 'is-chair': d.chair }]}>
+            <p class="dev-status">{d.status}</p>
+            <h3>{d.title}</h3>
+            <p>{d.blurb}</p>
+            <Prop kind={d.chair ? 'chair' : 'potato'} />
+            <a class="dev-cta" href={`mailto:${contact.email}?subject=${encodeURIComponent(d.subject)}`}>{d.cta} <span aria-hidden="true">→</span></a>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</Base>

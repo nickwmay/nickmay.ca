@@ -1,0 +1,76 @@
+---
+// The marquee header and the Front of House / Backstage switch, shared by every page.
+interface Props {
+  home?: boolean;
+  current?: 'projects';
+}
+const { home = false, current } = Astro.props;
+const at = (hash: string) => (home ? hash : `/${hash}`);
+---
+
+<div class="blackout" aria-hidden="true"><span class="blackout-cue">STANDBY</span></div>
+
+<header class="marquee">
+  <a href={home ? '#cover' : '/'} class="monogram" aria-label={home ? 'Nick May, back to top' : 'Nick May, back to the main stage'}>
+    <svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true">
+      <circle class="mg-ring" cx="50" cy="50" r="35" pathLength="100" />
+      <polyline class="mg-line" points="7,68 7,32 36,68 36,32 64,64 93,32 93,68" pathLength="100" />
+    </svg>
+    <span class="monogram-word">Nick&nbsp;May</span>
+  </a>
+  <nav class="marquee-nav" aria-label="Sections">
+    <a href={at('#whos-who')}>Who’s Who</a>
+    <a href={at('#speaking')}>Speaking</a>
+    <a href={at('#repertory')}>Theatre</a>
+    <a href="/projects" aria-current={current === 'projects' ? 'page' : undefined}>Side Projects</a>
+    <a href={at('#stage-door')}>Contact</a>
+  </nav>
+  <button class="mode-switch" type="button" aria-pressed="false" title="Switch view (B)">
+    <span class="mode-opt mode-foh">Front of House</span>
+    <span class="mode-opt mode-bs">Backstage</span>
+  </button>
+</header>
+
+<script>
+  const root = document.documentElement;
+  const btn = document.querySelector<HTMLButtonElement>('.mode-switch')!;
+  const blackout = document.querySelector<HTMLElement>('.blackout')!;
+  const cueLabel = blackout.querySelector('.blackout-cue')!;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const sync = () => btn.setAttribute('aria-pressed', String(root.dataset.mode === 'backstage'));
+  sync();
+
+  function setMode(mode: 'foh' | 'backstage') {
+    const apply = () => {
+      root.dataset.mode = mode;
+      sync();
+      // Pages listen for this (the homepage retypes its terminal).
+      document.dispatchEvent(new CustomEvent('nm:mode', { detail: mode }));
+      try { localStorage.setItem('nm-mode', mode); } catch {}
+    };
+    if (reduced) return apply();
+    cueLabel.textContent = mode === 'backstage' ? 'LX BLACKOUT · GO' : 'HOUSE TO HALF · GO';
+    blackout.classList.add('on');
+    setTimeout(() => { apply(); blackout.classList.remove('on'); }, 450);
+  }
+  const toggle = () => setMode(root.dataset.mode === 'backstage' ? 'foh' : 'backstage');
+
+  btn.addEventListener('click', toggle);
+  addEventListener('keydown', (e) => {
+    const t = e.target as HTMLElement;
+    if (e.metaKey || e.ctrlKey || e.altKey || /INPUT|TEXTAREA/.test(t.tagName)) return;
+    if (e.key.toLowerCase() === 'b') toggle();
+  });
+
+  // Things fade up as they enter, like lights on a cue. Pages can listen for 'nm:lit'.
+  const io = new IntersectionObserver((entries) => {
+    for (const en of entries) {
+      if (!en.isIntersecting) continue;
+      en.target.classList.add('lit');
+      en.target.dispatchEvent(new CustomEvent('nm:lit', { bubbles: true }));
+      io.unobserve(en.target);
+    }
+  }, { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+</script>

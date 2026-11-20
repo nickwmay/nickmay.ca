@@ -1,0 +1,9 @@
+---
+import { secondStage } from '../data/show';
+---
+
+<footer class="footer">
+  <p class="also-playing">Also playing: {secondStage.map((p, i) => (<>{i > 0 && ' · '}<a href={p.url}>{p.title}</a></>))}</p>
+  <p class="foh-only">Please silence your phones. No flash photography. © {new Date().getFullYear()} Nick May.</p>
+  <p class="bs-only">// built with Astro · hand-coded in Toronto · strike set after every deploy</p>
+</footer>

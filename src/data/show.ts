@@ -162,8 +162,8 @@ export const beliefs = [
 ];
 
 export const inDevelopment = [
-  { title: 'Coaching', status: 'In workshop', chair: true, blurb: 'Certification in progress. Mentors shaped every step of this career, so this is the next one.' },
-  { title: 'Tuber or Not Tuber', status: 'In rehearsal', potato: true, blurb: 'An app about one of Nick’s favourite things: potatoes. Mashed, roasted, hashed, scalloped. Further details are under wraps (in foil).' },
+  { title: 'Coaching', status: 'In workshop', chair: true, cta: 'Curious about coaching? Let’s talk', subject: 'Coaching', blurb: 'Certification in progress. Mentors shaped every step of this career, so this is the next one.' },
+  { title: 'Tuber or Not Tuber', status: 'In rehearsal', potato: true, cta: 'Want a first look? Get on the list', subject: 'Tuber or Not Tuber', blurb: 'An app about one of Nick’s favourite things: potatoes. Mashed, roasted, hashed, scalloped. Further details are under wraps (in foil).' },
 ];
 
 // The Second Stage: side projects that are live. Posters are the sites' own share images.
