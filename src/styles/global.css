@@ -12,7 +12,7 @@
   --rule: #cdbd9c;
   --accent: var(--velvet);
 
-  --display: 'Fraunces', Georgia, serif;
+  --display: 'Newsreader', Georgia, serif;
   --body: 'Instrument Sans', system-ui, sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, monospace;
 
@@ -188,8 +188,8 @@ html[data-mode='backstage'] .mode-bs { background: var(--ink); color: var(--pape
 .cover-name {
   display: block;
   font: 800 clamp(64px, 14vw, 180px)/0.88 var(--display);
-  letter-spacing: -.035em;
-  font-variation-settings: 'opsz' 144;
+  letter-spacing: -.02em;
+  font-variation-settings: 'opsz' 72;
 }
 .cover-in {
   display: block;
@@ -253,7 +253,7 @@ html[data-mode='backstage'] .cover-kicker { color: var(--brass); letter-spacing:
 .section-title {
   margin: 0 0 12px;
   font: 700 clamp(40px, 7vw, 84px)/0.95 var(--display);
-  letter-spacing: -.025em;
+  letter-spacing: -.015em;
 }
 .eyebrow {
   display: block;
@@ -412,7 +412,7 @@ html[data-mode='backstage'] .scene-note::before { content: '// '; color: var(--b
   border-right: 2px dashed rgba(62, 10, 18, .35);
 }
 .ticket-no { font: 700 10px/1 var(--mono); letter-spacing: .16em; padding-right: 48px; }
-.ticket-text { font: italic 600 21px/1.2 'Fraunces', Georgia, serif; padding-right: 48px; }
+.ticket-text { font: italic 600 21px/1.2 'Newsreader', Georgia, serif; padding-right: 48px; }
 
 html[data-mode='backstage'] .intermission { background: #070807; }
 html[data-mode='backstage'] .ticket { background: #1d1f1d; color: var(--ink); border-left: 4px solid var(--brass); }
@@ -893,7 +893,7 @@ html[data-mode='backstage'] .chair-text { fill: var(--accent); }
   transform: rotateY(180deg);
   padding: 14px; text-align: center;
   background: var(--ink); color: var(--paper);
-  font: italic 600 16px/1.25 'Fraunces', Georgia, serif;
+  font: italic 600 16px/1.25 'Newsreader', Georgia, serif;
 }
 .badge.flipped .badge-front { transform: rotateY(-180deg); }
 .badge.flipped .badge-back { transform: rotateY(0); }
@@ -903,11 +903,11 @@ html[data-mode='backstage'] .chair-text { fill: var(--accent); }
 .badge-oddjobs .badge-front { background: #fff; border: 2px solid #d62f2f; justify-content: flex-start; gap: 0; }
 .hello { width: 100%; padding: 8px 0 6px; background: #d62f2f; color: #fff; font: 900 18px/1 'Instrument Sans', sans-serif; letter-spacing: .06em; text-align: center; }
 .hello small { display: block; font-size: 10px; font-weight: 600; letter-spacing: .08em; margin-top: 2px; }
-.hello-name { flex: 1; display: grid; place-items: center; font: italic 700 24px/1 'Fraunces', serif; color: #1d1714; transform: rotate(-4deg); }
+.hello-name { flex: 1; display: grid; place-items: center; font: italic 700 24px/1 'Newsreader', serif; color: #1d1714; transform: rotate(-4deg); }
 
 /* Paper route: newsprint */
 .badge-paper .badge-front { background: #f4efe3; color: #1d1714; border: 1px solid #c9bfa8; }
-.masthead { font: 900 italic 17px/1 'Fraunces', serif; border-bottom: 2px solid #1d1714; padding-bottom: 3px; }
+.masthead { font: 800 italic 17px/1 'Newsreader', serif; border-bottom: 2px solid #1d1714; padding-bottom: 3px; }
 .paper-cols { width: 70%; height: 22px; background: repeating-linear-gradient(90deg, #b9ae97 0 28%, transparent 28% 36%); opacity: .6;
   -webkit-mask: repeating-linear-gradient(0deg, #000 0 2px, transparent 2px 5px); mask: repeating-linear-gradient(0deg, #000 0 2px, transparent 2px 5px); }
 
@@ -920,12 +920,12 @@ html[data-mode='backstage'] .chair-text { fill: var(--accent); }
 .badge-serving .badge-front { background: #fffef7; color: #1d1714; border-top: 10px solid #3a7d44; justify-content: flex-start; padding-top: 10px; }
 .pad-head { font: 700 11px/1 'JetBrains Mono', monospace; color: #3a7d44; }
 .pad-lines { width: 78%; height: 30px; background: repeating-linear-gradient(0deg, transparent 0 9px, #d7d0bd 9px 10px); }
-.pad-lines + .badge-label { font: italic 600 15px/1 'Fraunces', serif; }
+.pad-lines + .badge-label { font: italic 600 15px/1 'Newsreader', serif; }
 
 /* Restaurants: chalkboard */
 .badge-restaurants .badge-front { background: #2b3a33; color: #f1efe6; border: 5px solid #8a5a30; }
-.chalk-head { font: italic 700 14px/1 'Fraunces', serif; opacity: .75; text-decoration: underline wavy rgba(241,239,230,.5); text-underline-offset: 4px; }
-.badge-restaurants .badge-label { font: 600 16px/1.15 'Fraunces', serif; text-align: center; padding: 0 10px; }
+.chalk-head { font: italic 700 14px/1 'Newsreader', serif; opacity: .75; text-decoration: underline wavy rgba(241,239,230,.5); text-underline-offset: 4px; }
+.badge-restaurants .badge-label { font: 600 16px/1.15 'Newsreader', serif; text-align: center; padding: 0 10px; }
 
 /* Hotels: room key card */
 .badge-hotels .badge-front { background: linear-gradient(135deg, #e9e6df, #b9b3a6); color: #1d1714; align-items: flex-start; padding: 12px 14px; justify-content: flex-start; }
@@ -983,7 +983,7 @@ html[data-mode='backstage'] .badge-back { filter: none; background: #1d1f1d; col
 
 .badge-writer .badge-front { background: #fbfaf5; color: #1d1714; border-left: 4px solid #c94a4a; align-items: flex-start; padding: 12px 14px; justify-content: space-between; }
 .typed { font: 400 11px/1.4 'JetBrains Mono', monospace; text-align: left; }
-.badge-writer .badge-label { font: italic 700 15px/1 'Fraunces', serif; }
+.badge-writer .badge-label { font: italic 700 15px/1 'Newsreader', serif; }
 
 .badge-pm .badge-front { background: #e9e1cf; color: #1d1714; border-top: 12px solid #8a5a30; padding: 8px 14px; align-items: flex-start; justify-content: flex-start; gap: 4px; }
 .checklist { display: flex; flex-direction: column; gap: 2px; font: 600 11px/1.3 'JetBrains Mono', monospace; text-align: left; }
@@ -1053,7 +1053,7 @@ html[data-mode='backstage'] .board-logo { box-shadow: none; border: 1px dashed v
 .suitcase text { font: 700 12px 'JetBrains Mono', monospace; fill: #f3ead7; }
 .marquee-box { fill: #7a1424; stroke: #e9c97b; stroke-width: 3; }
 .marquee-kicker { font: 600 11px 'Instrument Sans', sans-serif; letter-spacing: 3px; fill: #e9c97b; }
-.marquee-name { font: italic 800 26px 'Fraunces', serif; fill: #f7ecd6; }
+.marquee-name { font: italic 800 26px 'Newsreader', serif; fill: #f7ecd6; }
 .mbulb { fill: #ffe2a0; animation: chase 1.2s steps(1) infinite; animation-delay: calc(var(--i) * .4s); }
 .mini-spot { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 40% 60% at 50% 70%, rgba(255,240,200,.18), transparent 70%); mix-blend-mode: screen; }
 .mini-curtain {
@@ -1366,7 +1366,7 @@ html[data-mode='backstage'] .s2t-cta { background: var(--accent); color: #000; }
 .s2-back { display: inline-block; margin-bottom: 28px; font-size: 14px; letter-spacing: .04em; color: var(--ink-soft); text-decoration: none; }
 .s2-back:hover { color: var(--accent); }
 .s2-masthead { display: grid; grid-template-columns: auto 1fr; align-items: end; gap: 12px 40px; padding-bottom: 22px; border-bottom: 3px double var(--ink); }
-.s2-h1 { margin: 0; font: 700 clamp(44px, 6vw, 72px)/.95 var(--display); letter-spacing: -.025em; }
+.s2-h1 { margin: 0; font: 700 clamp(44px, 6vw, 72px)/.95 var(--display); letter-spacing: -.015em; }
 .s2-intro { margin: 0 0 6px; max-width: 34ch; justify-self: end; text-align: right; font: italic 400 19px/1.45 var(--display); color: var(--ink-soft); }
 .s2-programme { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--rule); }
 .s2-programme a { display: flex; align-items: baseline; gap: 12px; padding: 16px 0; font: 600 14px/1.2 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--ink); text-decoration: none; transition: color .2s; }
