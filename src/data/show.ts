@@ -93,13 +93,18 @@ export type Engagement = {
   url?: string;
   img?: string;
   imgWide?: boolean; // landscape speaker card
+  stills?: { src: string; alt: string; w: number; h: number }[]; // photos from the day, shown as thumbnails
   on: string; // ISO date of the talk; it moves to Previously the day after
 };
 
 export const speaking: Engagement[] = [
   { date: 'Nov 11, 2026 · 2:55pm', event: 'HRFest Canada', title: 'AI Ate the Training Department: What L&D Becomes Next', where: 'Rebel, Toronto', url: 'https://hrfest.ca', img: '/images/hrfest-2026.jpg', imgWide: true, on: '2026-11-11' },
   { date: 'Nov 18, 2026', event: 'QT Qonference 2026', title: 'Who Gets to Lead the Future of Work?', where: 'Evergreen Brick Works, Toronto', url: 'https://queertech.org', img: '/images/qt-qonference-2026.jpg', on: '2026-11-18' },
-  { date: '2026', event: 'HR in Tech Crawl', title: 'Remote, Hybrid, or Bust: Recruiting for the Future of Work', where: 'Toronto', on: '2026-06-01' }, // exact day unknown; only used for sorting
+  { date: '2026', event: 'HR in Tech Crawl', title: 'Remote, Hybrid, or Bust: Recruiting for the Future of Work', where: 'Toronto', on: '2026-06-01',
+    stills: [
+      { src: '/images/speaking-mic.jpg', alt: 'Nick speaking on a panel at HR in Tech Crawl', w: 1400, h: 1073 },
+      { src: '/images/speaking-panel.jpg', alt: 'Nick laughing with fellow panelists on stage at HR in Tech Crawl', w: 829, h: 900 },
+    ] }, // exact day unknown; only used for sorting
 ];
 
 export const speakingTopics = ['AI, HR & the future of work', 'People systems & ops', 'Product operations', 'Queer leadership', 'Career pivots'];

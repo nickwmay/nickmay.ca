@@ -47,6 +47,13 @@ const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.local
               <p class="bill-date"><span class="live-dot" aria-hidden="true"></span>{e.date}</p>
               <p class="bill-title">“{e.title}”</p>
               <p class="bill-event">{e.url ? <a href={e.url}>{e.event}</a> : e.event} · {e.where}</p>
+              {e.stills && (
+                <div class="bill-stills">
+                  {e.stills.map((p) => (
+                    <a class="still" href={p.src} data-alt={p.alt}><img src={p.src} alt={p.alt} loading="lazy" width={p.w} height={p.h} /></a>
+                  ))}
+                </div>
+              )}
             </div>
           </li>
         ))}
@@ -60,12 +67,24 @@ const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.local
               <p class="bill-date">{e.date}</p>
               <p class="bill-title">“{e.title}”</p>
               <p class="bill-event">{e.url ? <a href={e.url}>{e.event}</a> : e.event} · {e.where}</p>
+              {e.stills && (
+                <div class="bill-stills">
+                  {e.stills.map((p) => (
+                    <a class="still" href={p.src} data-alt={p.alt}><img src={p.src} alt={p.alt} loading="lazy" width={p.w} height={p.h} /></a>
+                  ))}
+                </div>
+              )}
             </div>
           </li>
         ))}
       </ul>
     </section>
   </main>
+
+  <dialog class="still-box" aria-label="Photo">
+    <form method="dialog"><button class="still-close" aria-label="Close photo">×</button></form>
+    <img alt="" />
+  </dialog>
 
   <SiteFooter />
 </Base>
@@ -83,4 +102,17 @@ const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.local
   });
   const head = document.getElementById('bill-upcoming-head');
   if (head) head.hidden = !document.querySelector('.bill-upcoming .bill-item');
+
+  // Thumbnails open full size in a lightbox; without JS they're plain links to the photo.
+  const box = document.querySelector<HTMLDialogElement>('.still-box')!;
+  const big = box.querySelector('img')!;
+  document.querySelectorAll<HTMLAnchorElement>('.still').forEach((a) => {
+    a.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      big.src = a.href;
+      big.alt = a.dataset.alt ?? '';
+      box.showModal();
+    });
+  });
+  box.addEventListener('click', (ev) => { if (ev.target === box) box.close(); });
 </script>
