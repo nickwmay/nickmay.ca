@@ -313,6 +313,12 @@ const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map(
             <p class="reel-hint">Tap a badge to flip it <button class="motion-btn" type="button" data-motion="reel" aria-pressed="false"><span class="mb-icon" aria-hidden="true"></span><span class="mb-label">Pause</span></button></p>
           </div>
         )}
+        <button class="unfurl-btn unfurl-wide" type="button" aria-expanded="false" aria-controls="act1-roles">
+          <span class="ub-kicker">The general manager years · {a.scenes.length} roles</span>
+          <span class="ub-label"><span class="ub-open">Read the full run</span><span class="ub-close">Fold it back up</span></span>
+          <span class="ub-arrow" aria-hidden="true">↓</span>
+        </button>
+        <div class="unfurl" id="act1-roles" inert>
         <ol class="scenes">
           {a.scenes.map((s, i) => (
             <li class="scene reveal">
@@ -328,6 +334,7 @@ const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map(
             </li>
           ))}
         </ol>
+        </div>
       </section>
     ))}
 
@@ -522,19 +529,22 @@ const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map(
 
     // The Creative: a little stage with scene changes.
     const mini = document.querySelector<HTMLElement>('.mini');
-    // It starts behind the curtain: one click unfurls the stage and the curtains part.
-    const unfurlBtn = document.querySelector<HTMLButtonElement>('.unfurl-btn');
-    const unfurl = document.querySelector<HTMLElement>('.unfurl');
-    unfurlBtn?.addEventListener('click', () => {
-      const open = unfurlBtn.getAttribute('aria-expanded') !== 'true';
-      unfurlBtn.setAttribute('aria-expanded', String(open));
-      unfurl!.classList.toggle('open', open);
-      unfurl!.inert = !open;
-      if (open) {
-        mini?.querySelector<HTMLButtonElement>('.mini-cue')?.click(); // always open on Scene 1
-        setTimeout(() => mini?.classList.remove('closing'), reduced ? 0 : 450);
-      }
-      else mini?.classList.add('closing');
+    // Curtain bars: one click unfurls what's behind them. The Prologue's stage also parts its curtains.
+    document.querySelectorAll<HTMLButtonElement>('.unfurl-btn').forEach((btn) => {
+      const panel = document.getElementById(btn.getAttribute('aria-controls') ?? '');
+      if (!panel) return;
+      const stage = panel.querySelector<HTMLElement>('.mini');
+      btn.addEventListener('click', () => {
+        const open = btn.getAttribute('aria-expanded') !== 'true';
+        btn.setAttribute('aria-expanded', String(open));
+        panel.classList.toggle('open', open);
+        panel.inert = !open;
+        if (!stage) return;
+        if (open) {
+          stage.querySelector<HTMLButtonElement>('.mini-cue')?.click(); // always open on Scene 1
+          setTimeout(() => stage.classList.remove('closing'), reduced ? 0 : 450);
+        } else stage.classList.add('closing');
+      });
     });
     if (mini) {
       const sets = mini.querySelectorAll('.set');

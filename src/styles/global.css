@@ -1524,3 +1524,5 @@ html[data-mode='backstage'] .ub-arrow { border-color: var(--accent); color: var(
 html[data-mode='backstage'] .unfurl-btn:hover .ub-arrow { background: var(--accent); color: #000; }
 @media (max-width: 760px) { .unfurl-btn { padding: 14px 16px; } }
 .unfurl-btn { max-width: 860px; margin: 0 auto; display: grid; }
+.unfurl-wide { max-width: none; }
+.unfurl .scenes { padding-top: 8px; }
