@@ -43,6 +43,7 @@ export const earlyJobs = [
   { key: 'pm', label: 'Freelance Project Manager', lesson: 'Nothing’s done until it ships.' },
   { key: 'restaurants', label: 'Managing Restaurants', lesson: 'Run the floor. Run the numbers.' },
   { key: 'hotels', label: 'Hotels', lesson: 'Hospitality never clocks out.' },
+  { key: 'tour', label: 'International Tour Director', lesson: 'Evolve Tours, 2016–17. Running the show, just with a passport.' },
   { key: 'oddjobs', label: 'Odd Jobs', lesson: 'Say yes. Figure it out.' },
 ];
 

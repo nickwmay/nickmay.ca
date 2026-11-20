@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import {
-  contact, prologue, earlyJobs, mcdArches, hospitality, onTour, tech, companies, shopifyBag, throughline, speaking, speakingTopics, board, repertory, beliefs, inDevelopment, secondStage,
+  contact, prologue, earlyJobs, mcdArches, hospitality, tech, companies, shopifyBag, throughline, speaking, speakingTopics, board, repertory, beliefs, inDevelopment, secondStage,
 } from '../data/show';
 
 const acts = {
@@ -145,7 +145,6 @@ const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map(
         {[
           ['#prologue', 'Prologue', 'The Creative'],
           ['#act-1', 'Act I', 'Odd Jobs to Operator'],
-          ['#on-tour', 'Entr’acte', 'The Touring Company'],
           ['#act-2', 'Act II', 'The Tech Operator'],
           ['#repertory', 'In Repertory', 'The Director / Producer'],
           ['#speaking', 'Special Engagement', 'On the Bill'],
@@ -301,6 +300,7 @@ const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map(
                         {j.key === 'pm' && (<><span class="checklist"><i>Scope</i><i>Schedule</i><i>Ship</i></span><span class="badge-label">{j.label}</span></>)}
                         {j.key === 'serving' && (<><span class="pad-head">Table 7 · 2 guests</span><span class="pad-lines"></span><span class="badge-label">{j.label}</span></>)}
                         {j.key === 'restaurants' && (<><span class="chalk-head">Tonight</span><span class="badge-label">{j.label}</span></>)}
+                        {j.key === 'tour' && (<><span class="pp-mark">Passport</span><span class="badge-label">{j.label}</span><span class="tour-stamp">Evolve<br />Tours</span></>)}
                         {j.key === 'hotels' && (<><span class="key-room">Room 1204</span><span class="key-stripe"></span><span class="badge-label">{j.label}</span></>)}
                       </span>
                       <span class="badge-face badge-back">{j.lesson}</span>
@@ -336,25 +336,6 @@ const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map(
         </div>
       </section>
     ))}
-
-    <!-- ENTR'ACTE: ON TOUR -->
-    <section id="on-tour" class="section on-tour" data-cue="LX 4 · TOUR">
-      <div class="tour-card reveal">
-        <svg class="passport" viewBox="0 0 64 88" aria-hidden="true">
-          <rect x="2" y="2" width="60" height="84" rx="5" class="pp-cover" />
-          <circle cx="32" cy="38" r="12" class="pp-crest" /><path d="M24 38 H40 M32 28 V48 M26 31 Q32 38 26 45 M38 31 Q32 38 38 45" class="pp-crest-lines" />
-          <text x="32" y="66" text-anchor="middle" class="pp-word">PASSPORT</text>
-          <g class="pp-stamp"><circle cx="48" cy="72" r="10" /><text x="48" y="74.5" text-anchor="middle">TOUR</text></g>
-        </svg>
-        <div class="tour-body">
-          <p class="tour-kicker"><span>Entr’acte</span> · A side quest</p>
-          <h2 class="tour-role">{onTour.role}</h2>
-          <p class="tour-where">{onTour.where} · {onTour.years}</p>
-          <p class="tour-note">{onTour.note}</p>
-        </div>
-        <img class="tour-logo" src="/images/logos/evolve.png" alt="Evolve Tours logo" width="72" height="72" loading="lazy" />
-      </div>
-    </section>
 
     <!-- ACT II: the lighting rig -->
     <section id="act-2" class="section act rig-section" data-cue={`${acts.tech.cue} · GO`}>

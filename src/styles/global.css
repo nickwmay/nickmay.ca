@@ -866,7 +866,7 @@ html[data-mode='backstage'] .chair-text { fill: var(--accent); }
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
           mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
-.reel-row { list-style: none; margin: 0; padding: 0; display: flex; gap: 18px; width: max-content; animation: reel 80s linear infinite; }
+.reel-row { list-style: none; margin: 0; padding: 0; display: flex; gap: 18px; width: max-content; animation: reel 60s linear infinite; }
 .reel-window:hover .reel-row, .reel-window:focus-within .reel-row { animation-play-state: paused; }
 @keyframes reel { to { transform: translateX(calc(-50% - 9px)); } }
 .reel-hint { margin: 6px var(--gutter) 0; font: italic 14px/1 var(--display); color: var(--ink-soft); }
@@ -941,7 +941,7 @@ html[data-mode='backstage'] .badge-back { filter: none; background: #1d1f1d; col
   .reel-window { overflow-x: auto; }
   .reel-row li[aria-hidden='true'] { display: none; }
 }
-@media (max-width: 600px) { .badge { width: 150px; height: 96px; } .reel-row { animation-duration: 70s; } }
+@media (max-width: 600px) { .badge { width: 150px; height: 96px; } .reel-row { animation-duration: 52s; } }
 
 /* Reel: more badges */
 .badge-back { font-size: 15px; }
@@ -1551,3 +1551,9 @@ html[data-mode='backstage'] .lobby-strip .ticket-text { font-size: 12px; }
   .lobby-strip .ticket { flex: 0 0 72%; scroll-snap-align: start; }
 }
 html[data-mode='backstage'] .lobby-strip .section-title { font-size: clamp(20px, 2vw, 24px); }
+
+/* Odd jobs badge: the Evolve Tours passport */
+.badge-tour .badge-front { background: #1f3a6b; color: #f3ead7; align-items: flex-start; justify-content: flex-end; padding: 12px 14px; }
+.pp-mark { position: absolute; top: 12px; left: 14px; font: 700 9px/1 var(--body); letter-spacing: .24em; text-transform: uppercase; color: #e9c97b; }
+.badge-tour .badge-label { max-width: 110px; text-align: left; }
+.tour-stamp { position: absolute; top: 14px; right: 12px; display: grid; place-items: center; width: 50px; height: 50px; border: 2px solid #e0703f; border-radius: 50%; font: 800 8px/1.1 var(--body); letter-spacing: .06em; text-transform: uppercase; text-align: center; color: #e0703f; transform: rotate(-14deg); }
