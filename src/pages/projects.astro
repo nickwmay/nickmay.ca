@@ -15,17 +15,22 @@ import { contact, secondStage, inDevelopment } from '../data/show';
   <main class="projects-page">
     <section class="section s2-hero" data-cue="LX 1 · SECOND STAGE">
       <a class="s2-back" href="/#side-projects">← Back to the main stage</a>
-      <h1 class="section-title reveal"><span class="eyebrow">The Second Stage</span><span class="title-text">Side Projects</span></h1>
-      <p class="act-sub">
-        The smaller venue down the hall, where the experimental work plays.
-        Some of it is open to the public. Some of it is still in rehearsal.
-      </p>
+      <div class="s2-masthead reveal">
+        <h1 class="s2-h1"><span class="eyebrow">The Second Stage</span>Side Projects</h1>
+        <p class="s2-intro">The smaller venue down the hall, where the experimental work plays.</p>
+      </div>
+      <nav class="s2-programme" aria-label="On this page">
+        <a href="#now-playing"><span class="s2-pnum">I</span> Now Playing <span class="s2-pcount">{secondStage.length} open to the public</span></a>
+        <a href="#in-rehearsal"><span class="s2-pnum">II</span> In Rehearsal <span class="s2-pcount">{inDevelopment.length} not ready for previews</span></a>
+      </nav>
     </section>
 
     <!-- NOW PLAYING -->
     <section id="now-playing" class="section second-stage" data-cue="LX 2 · NOW PLAYING">
-      <h2 class="section-title reveal"><span class="eyebrow">Now Playing</span><span class="title-text">Open to the Public</span></h2>
-      <p class="act-sub">Smaller rooms, same obsessions: queer history, and the language people used to survive it. Built for fun, sourced with care.</p>
+      <header class="s2-head reveal">
+        <h2><span class="s2-pnum">I</span> Now Playing</h2>
+        <p>Queer history, and the language people used to survive it. Built for fun, sourced with care.</p>
+      </header>
       <div class="s2-grid">
         {secondStage.map((p, i) => (
           <a class="s2-card reveal" href={p.url} style={`--d:${i * 90}ms`}>
@@ -42,8 +47,10 @@ import { contact, secondStage, inDevelopment } from '../data/show';
 
     <!-- IN THE REHEARSAL HALL -->
     <section id="in-rehearsal" class="section in-dev rehearsal-hall" data-cue="LX 3 · WORK LIGHT">
-      <h2 class="section-title reveal"><span class="eyebrow">In the Rehearsal Hall</span><span class="title-text">Not Ready for Previews</span></h2>
-      <p class="act-sub">Work lights on, scripts in hand. You’re welcome to peek through the door.</p>
+      <header class="s2-head reveal">
+        <h2><span class="s2-pnum">II</span> In Rehearsal</h2>
+        <p>Work lights on, scripts in hand. You’re welcome to peek through the door.</p>
+      </header>
       <div class="dev-cards">
         {inDevelopment.map((d) => (
           <article class:list={['dev-card', 'reveal', { 'is-potato': d.potato, 'is-chair': d.chair }]}>
