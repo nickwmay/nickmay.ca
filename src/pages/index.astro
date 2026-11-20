@@ -162,7 +162,14 @@ const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map(
     <section id="prologue" class="section prologue" data-cue="LX 2 · GO">
       <h2 class="section-title reveal"><span class="eyebrow">{acts.prologue.label}</span><span class="title-text">{acts.prologue.title}</span></h2>
       <p class="act-sub">{acts.prologue.sub}</p>
-      <div class="mini" data-scene="0">
+      <button class="unfurl-btn" type="button" aria-expanded="false" aria-controls="prologue-stage">
+        <span class="ub-kicker">The early days · in {prologue.length} scenes</span>
+        <span class="ub-label"><span class="ub-open">Raise the curtain</span><span class="ub-close">Lower the curtain</span></span>
+        <span class="ub-arrow" aria-hidden="true">↓</span>
+      </button>
+      <noscript><style>.unfurl { grid-template-rows: 1fr !important; } .unfurl > * { visibility: visible !important; } .unfurl-btn { display: none; }</style></noscript>
+      <div class="unfurl" id="prologue-stage" inert>
+      <div class="mini closing" data-scene="0">
         <div class="mini-stage" aria-hidden="true">
           <div class="mini-sky"></div>
           {prologue.map((sc, i) => (
@@ -264,6 +271,7 @@ const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map(
             </button>
           ))}
         </div>
+      </div>
       </div>
     </section>
 
@@ -514,6 +522,20 @@ const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map(
 
     // The Creative: a little stage with scene changes.
     const mini = document.querySelector<HTMLElement>('.mini');
+    // It starts behind the curtain: one click unfurls the stage and the curtains part.
+    const unfurlBtn = document.querySelector<HTMLButtonElement>('.unfurl-btn');
+    const unfurl = document.querySelector<HTMLElement>('.unfurl');
+    unfurlBtn?.addEventListener('click', () => {
+      const open = unfurlBtn.getAttribute('aria-expanded') !== 'true';
+      unfurlBtn.setAttribute('aria-expanded', String(open));
+      unfurl!.classList.toggle('open', open);
+      unfurl!.inert = !open;
+      if (open) {
+        mini?.querySelector<HTMLButtonElement>('.mini-cue')?.click(); // always open on Scene 1
+        setTimeout(() => mini?.classList.remove('closing'), reduced ? 0 : 450);
+      }
+      else mini?.classList.add('closing');
+    });
     if (mini) {
       const sets = mini.querySelectorAll('.set');
       const caps = mini.querySelectorAll('.cap');
