@@ -1241,7 +1241,7 @@ html[data-mode='backstage'] .tour-logo { filter: grayscale(1) invert(1); box-sha
 @media (prefers-reduced-motion: reduce) { .motion-btn { display: none; } }
 
 /* ── Act II: the lighting rig ── */
-.rig-wrap { overflow-x: auto; scroll-snap-type: x proximity; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter) 12px; }
+.rig-wrap { overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter); margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter) 12px; }
 .rig { --col: minmax(132px, 1fr); position: relative; min-width: calc(var(--n) * 140px); }
 .rig-stints, .rig-lights { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), var(--col)); column-gap: 12px; }
 
@@ -1450,3 +1450,41 @@ html[data-mode='backstage'] .bill-item .bill-stills img { filter: grayscale(1); 
 /* Back-to-back teaser cards share one block instead of two full sections */
 .s2-teaser:has(+ .s2-teaser) { border-bottom: 0; padding-bottom: 10px; }
 .s2-teaser + .s2-teaser { padding-top: 10px; }
+
+/* Running order, v3: a single programme strip. Title on the left, numbered acts flowing inline. */
+.running-order { display: grid; grid-template-columns: auto 1fr; align-items: baseline; gap: 10px 40px; padding-top: 28px; padding-bottom: 28px; }
+.running-order .section-title { margin: 0; font-size: clamp(22px, 2.2vw, 26px); white-space: nowrap; }
+.running-order .section-title .eyebrow { margin-bottom: 6px; font-size: 10px; }
+.ro-list { display: flex; flex-wrap: wrap; gap: 4px 0; margin: 0; padding: 0; border: 0; counter-reset: ro; }
+.ro-list li { counter-increment: ro; }
+.ro-list li + li::before { content: '·'; margin: 0 12px; color: var(--rule); }
+.ro-list li { display: inline-flex; align-items: baseline; }
+.ro-list a { display: inline-flex; align-items: baseline; gap: 6px; padding: 2px 0; border: 0; }
+.ro-list a::before { content: counter(ro, upper-roman); font: 600 10px/1 var(--body); letter-spacing: .12em; color: var(--accent); }
+.ro-label { display: none; }
+.ro-title { font-size: 17px; text-align: left; }
+.ro-list a:hover .ro-title { transform: none; color: var(--accent); }
+@media (max-width: 760px) {
+  .running-order { grid-template-columns: 1fr; padding-top: 24px; padding-bottom: 24px; }
+  .ro-list { display: flex; }
+  .ro-list a { display: inline-flex; padding: 2px 0; }
+  .ro-title { font-size: 15px; text-align: left; }
+  .ro-list li + li::before { margin: 0 8px; }
+  .ro-list a:hover .ro-title { transform: none; }
+}
+/* v3 fixes: let the numerals do the separating, so wrapped lines never start with a stray dot */
+.ro-list { gap: 6px 22px; }
+.ro-list li + li::before { content: none; }
+html[data-mode='backstage'] .running-order .section-title { font-size: clamp(20px, 2vw, 24px); }
+@media (max-width: 760px) {
+  /* Phones: one swipeable line of acts, fading out at the right edge */
+  .ro-list { display: flex; flex-wrap: nowrap; gap: 0 18px; margin: 0 calc(-1 * var(--gutter)); padding: 4px var(--gutter) 8px; overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter); scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+  .ro-list::-webkit-scrollbar { display: none; }
+  .ro-list li { flex: none; scroll-snap-align: start; }
+  .ro-title { white-space: nowrap; }
+  .running-order .section-title { white-space: normal; }
+}
+@media (min-width: 761px) {
+  .ro-list { display: grid; grid-template-columns: repeat(3, max-content); grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: 8px 32px; }
+  .ro-title { font-size: 16px; }
+}
