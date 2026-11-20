@@ -149,7 +149,6 @@ const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map(
           ['#act-2', 'Act II', 'The Tech Operator'],
           ['#repertory', 'In Repertory', 'The Director / Producer'],
           ['#speaking', 'Special Engagement', 'On the Bill'],
-          ['#intermission', 'Intermission', 'Notes from the Lobby'],
           ['#side-projects', 'The Second Stage', 'Side Projects'],
           ['#stage-door', 'Curtain Call', 'The Stage Door'],
         ].map(([href, label, title], i) => (
@@ -441,20 +440,6 @@ const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map(
     </section>
 
     <!-- INTERMISSION -->
-    <section id="intermission" class="section intermission" data-cue="HOUSE LIGHTS UP">
-      <h2 class="section-title reveal"><span class="eyebrow">Intermission · 15 minutes</span><span class="title-text">Notes from the Lobby</span></h2>
-      <p class="act-sub">Things Nick believes, mostly learned the hard way. Tap one to tear off the stub.</p>
-      <div class="tickets">
-        {beliefs.map((b, i) => (
-          <button class="ticket reveal" type="button" style={`--tilt:${(i % 3) - 1}deg;--d:${(i % 4) * 80}ms`}>
-            <span class="ticket-no">ADMIT ONE · No. {String(i + 1).padStart(3, '0')}</span>
-            <span class="ticket-text">{b}</span>
-            <span class="ticket-stub" aria-hidden="true">{String(i + 1).padStart(3, '0')}</span>
-          </button>
-        ))}
-      </div>
-      <p class="lobby-more">More notes like these in <a href={contact.substack}>The Jungle Gym</a>, Nick’s newsletter. <span aria-hidden="true">→</span></p>
-    </section>
 
     <!-- THE SECOND STAGE: teaser for the side-projects page -->
     <section id="side-projects" class="section s2-teaser" data-cue="LX 7 · SECOND STAGE">
@@ -482,6 +467,23 @@ const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map(
         <li><a href={contact.substack}><span>Writing</span>The Jungle Gym</a></li>
         <li><a href={contact.topikos}><span>Theatre</span>theatretopikos.com</a></li>
       </ul>
+    </section>
+
+    <section id="intermission" class="section intermission lobby-strip" data-cue="HOUSE LIGHTS UP">
+      <div class="lobby-head">
+        <h2 class="section-title reveal"><span class="eyebrow">On your way out</span><span class="title-text">Notes from the Lobby</span></h2>
+        <p class="act-sub">Things Nick believes, mostly learned the hard way. Tap one to tear off the stub.</p>
+      </div>
+      <div class="tickets">
+        {beliefs.map((b, i) => (
+          <button class="ticket reveal" type="button" style={`--tilt:${(i % 3) - 1}deg;--d:${(i % 4) * 80}ms`}>
+            <span class="ticket-no">ADMIT ONE · No. {String(i + 1).padStart(3, '0')}</span>
+            <span class="ticket-text">{b}</span>
+            <span class="ticket-stub" aria-hidden="true">{String(i + 1).padStart(3, '0')}</span>
+          </button>
+        ))}
+      </div>
+      <p class="lobby-more">More notes like these in <a href={contact.substack}>The Jungle Gym</a>, Nick’s newsletter. <span aria-hidden="true">→</span></p>
     </section>
   </main>
 

@@ -1526,3 +1526,28 @@ html[data-mode='backstage'] .unfurl-btn:hover .ub-arrow { background: var(--acce
 .unfurl-btn { max-width: 860px; margin: 0 auto; display: grid; }
 .unfurl-wide { max-width: none; }
 .unfurl .scenes { padding-top: 8px; }
+
+/* Notes from the Lobby, moved down by the exit: smaller tickets in a band above the footer */
+.lobby-strip { padding-top: 36px; padding-bottom: 36px; }
+.lobby-head { display: grid; grid-template-columns: auto 1fr; align-items: end; gap: 6px 40px; margin-bottom: 20px; }
+.lobby-strip .section-title { margin: 0; font-size: clamp(24px, 2.6vw, 30px); }
+.lobby-strip .section-title .eyebrow { margin-bottom: 6px; font-size: 10px; }
+.lobby-strip .act-sub { margin: 0; font-size: 15px; justify-self: end; text-align: right; }
+.lobby-strip .tickets { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.lobby-strip .ticket { min-height: 0; gap: 6px; padding: 12px 14px; }
+.lobby-strip .ticket::after { right: 34px; top: 8px; bottom: 8px; }
+.lobby-strip .ticket-stub { width: 34px; font-size: 9px; }
+.lobby-strip .ticket-no { font-size: 9px; padding-right: 36px; }
+.lobby-strip .ticket-text { font-size: 15px; padding-right: 36px; }
+.lobby-strip .lobby-more { margin-top: 18px; font-size: 15px; }
+html[data-mode='backstage'] .lobby-strip .ticket-text { font-size: 12px; }
+@media (max-width: 900px) { .lobby-strip .tickets { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) {
+  .lobby-head { grid-template-columns: 1fr; }
+  .lobby-strip .act-sub { justify-self: start; text-align: left; font-size: 14px; }
+  /* Phones: a swipeable row of tickets */
+  .lobby-strip .tickets { display: flex; overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter); margin: 0 calc(-1 * var(--gutter)); padding: 6px var(--gutter) 10px; scrollbar-width: none; }
+  .lobby-strip .tickets::-webkit-scrollbar { display: none; }
+  .lobby-strip .ticket { flex: 0 0 72%; scroll-snap-align: start; }
+}
+html[data-mode='backstage'] .lobby-strip .section-title { font-size: clamp(20px, 2vw, 24px); }
