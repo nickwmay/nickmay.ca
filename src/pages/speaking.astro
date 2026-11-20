@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { contact, speaking, speakingTopics } from '../data/show';
+
+// Talks sort themselves by date at build time; a script below re-checks in the browser.
+const today = new Date().toISOString().slice(0, 10);
+const upcomingTalks = speaking.filter((e) => e.on >= today).sort((a, b) => a.on.localeCompare(b.on));
+const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.localeCompare(a.on));
+---
+
+<Base
+  title="Speaking · Nick May"
+  description="Nick May on stage: panels, keynotes and fireside chats on AI, HR and the future of work, people systems, product ops and queer leadership."
+>
+  <SiteHeader current="speaking" />
+
+  <main class="speaking-page">
+    <section class="section s2-hero" data-cue="LX 1 · SPECIAL">
+      <a class="s2-back" href="/#speaking">← Back to the main stage</a>
+      <div class="s2-masthead reveal">
+        <h1 class="s2-h1"><span class="eyebrow">A Special Engagement</span>On the Bill</h1>
+        <p class="s2-intro">Talks, panels and the occasional fireside chat.</p>
+      </div>
+    </section>
+
+    <section id="speaking" class="section speaking" data-cue="LX 2 · THE BILL">
+      <div class="speak-grid">
+        <div class="speak-photos reveal">
+          <img class="sp-main" src="/images/speaking-qt-stage.jpg" alt="Nick and three fellow panelists on stage at QT Qonference 2026, Evergreen Brick Works" loading="lazy" width="1400" height="1045" />
+          <img class="sp-side" src="/images/speaking-qt-closeup.jpg" alt="Nick speaking into a mic on the QT Qonference stage, in front of a graffiti brick wall" loading="lazy" width="1600" height="1066" />
+        </div>
+        <div class="speak-copy">
+          <p class="speak-lede">Panels, keynotes, fireside chats. Nick brings a performer’s timing to conversations about AI, work and the people doing it.</p>
+          <ul class="topics">{speakingTopics.map((t) => <li>{t}</li>)}</ul>
+          <a class="speak-cta" href={`mailto:${contact.email}?subject=Speaking%20inquiry`}>Book Nick for your stage →</a>
+        </div>
+      </div>
+
+      <h3 class="bill-head" id="bill-upcoming-head" hidden={upcomingTalks.length === 0}>Coming up</h3>
+      <ul class="bill bill-upcoming">
+        {upcomingTalks.map((e, i) => (
+          <li class="bill-item upcoming reveal" style={`--d:${i * 120}ms`} data-on={e.on}>
+            {e.img && <img class:list={{ wide: e.imgWide }} src={e.img} alt={`${e.event} speaker card`} loading="lazy" width={e.imgWide ? 168 : 96} height={e.imgWide ? 88 : 120} />}
+            <div class="bill-body">
+              <p class="bill-date"><span class="live-dot" aria-hidden="true"></span>{e.date}</p>
+              <p class="bill-title">“{e.title}”</p>
+              <p class="bill-event">{e.url ? <a href={e.url}>{e.event}</a> : e.event} · {e.where}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <h3 class="bill-head">Previously</h3>
+      <ul class="bill past bill-past">
+        {pastTalks.map((e) => (
+          <li class="bill-item reveal">
+            {e.img && <img class:list={{ wide: e.imgWide }} src={e.img} alt={`${e.event} speaker card`} loading="lazy" width={e.imgWide ? 168 : 96} height={e.imgWide ? 88 : 120} />}
+            <div class="bill-body">
+              <p class="bill-date">{e.date}</p>
+              <p class="bill-title">“{e.title}”</p>
+              <p class="bill-event">{e.url ? <a href={e.url}>{e.event}</a> : e.event} · {e.where}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<script>
+  // Talks whose date has passed move from Coming up to Previously.
+  const d = new Date();
+  const todayISO = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const past = document.querySelector('.bill-past');
+  document.querySelectorAll<HTMLElement>('.bill-upcoming .bill-item').forEach((li) => {
+    if ((li.dataset.on ?? '') >= todayISO) return;
+    li.classList.remove('upcoming');
+    li.querySelector('.live-dot')?.remove();
+    past?.prepend(li);
+  });
+  const head = document.getElementById('bill-upcoming-head');
+  if (head) head.hidden = !document.querySelector('.bill-upcoming .bill-item');
+</script>

@@ -2,7 +2,7 @@
 // The marquee header and the Front of House / Backstage switch, shared by every page.
 interface Props {
   home?: boolean;
-  current?: 'projects';
+  current?: 'projects' | 'speaking';
 }
 const { home = false, current } = Astro.props;
 const at = (hash: string) => (home ? hash : `/${hash}`);
@@ -20,7 +20,7 @@ const at = (hash: string) => (home ? hash : `/${hash}`);
   </a>
   <nav class="marquee-nav" aria-label="Sections">
     <a href={at('#whos-who')}>Who’s Who</a>
-    <a href={at('#speaking')}>Speaking</a>
+    <a href="/speaking" aria-current={current === 'speaking' ? 'page' : undefined}>Speaking</a>
     <a href={at('#repertory')}>Theatre</a>
     <a href="/projects" aria-current={current === 'projects' ? 'page' : undefined}>Side Projects</a>
     <a href={at('#stage-door')}>Contact</a>

@@ -22,10 +22,8 @@ const motes = Array.from({ length: 22 }, () => ({
   s: (1 + rand() * 2.5).toFixed(1), d: (8 + rand() * 10).toFixed(1), delay: (-rand() * 10).toFixed(1),
 }));
 const bulbs = Array.from({ length: 19 });
-// Talks sort themselves by date at build time; a script below re-checks in the browser.
-const today = new Date().toISOString().slice(0, 10);
-const upcomingTalks = speaking.filter((e) => e.on >= today).sort((a, b) => a.on.localeCompare(b.on));
-const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.localeCompare(a.on));
+// The speaking teaser names the latest stages, newest first.
+const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map((e) => e.event);
 ---
 
 <Base
@@ -440,47 +438,21 @@ const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.local
       </a>
     </section>
 
-    <!-- SPEAKING -->
-    <section id="speaking" class="section speaking" data-cue="LX 6.5 · SPECIAL">
-      <h2 class="section-title reveal"><span class="eyebrow">A Special Engagement</span><span class="title-text">On the Bill</span></h2>
-      <div class="speak-grid">
-        <div class="speak-photos reveal">
-          <img class="sp-main" src="/images/speaking-qt-stage.jpg" alt="Nick and three fellow panelists on stage at QT Qonference 2026, Evergreen Brick Works" loading="lazy" width="1400" height="1045" />
-          <img class="sp-side" src="/images/speaking-qt-closeup.jpg" alt="Nick speaking into a mic on the QT Qonference stage, in front of a graffiti brick wall" loading="lazy" width="1600" height="1066" />
-        </div>
-        <div class="speak-copy">
-          <p class="speak-lede">Panels, keynotes, fireside chats. Nick brings a performer’s timing to conversations about AI, work and the people doing it.</p>
-          <ul class="topics">{speakingTopics.map((t) => <li>{t}</li>)}</ul>
-          <a class="speak-cta" href={`mailto:${contact.email}?subject=Speaking%20inquiry`}>Book Nick for your stage →</a>
-        </div>
-      </div>
-
-      <h3 class="bill-head" id="bill-upcoming-head" hidden={upcomingTalks.length === 0}>Coming up</h3>
-      <ul class="bill bill-upcoming">
-        {upcomingTalks.map((e, i) => (
-          <li class="bill-item upcoming reveal" style={`--d:${i * 120}ms`} data-on={e.on}>
-            {e.img && <img class:list={{ wide: e.imgWide }} src={e.img} alt={`${e.event} speaker card`} loading="lazy" width={e.imgWide ? 168 : 96} height={e.imgWide ? 88 : 120} />}
-            <div class="bill-body">
-              <p class="bill-date"><span class="live-dot" aria-hidden="true"></span>{e.date}</p>
-              <p class="bill-title">“{e.title}”</p>
-              <p class="bill-event">{e.url ? <a href={e.url}>{e.event}</a> : e.event} · {e.where}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <h3 class="bill-head">Previously</h3>
-      <ul class="bill past bill-past">
-        {pastTalks.map((e) => (
-          <li class="bill-item reveal">
-            {e.img && <img class:list={{ wide: e.imgWide }} src={e.img} alt={`${e.event} speaker card`} loading="lazy" width={e.imgWide ? 168 : 96} height={e.imgWide ? 88 : 120} />}
-            <div class="bill-body">
-              <p class="bill-date">{e.date}</p>
-              <p class="bill-title">“{e.title}”</p>
-              <p class="bill-event">{e.url ? <a href={e.url}>{e.event}</a> : e.event} · {e.where}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+    <!-- SPEAKING: teaser for the speaking page -->
+    <section id="speaking" class="section s2-teaser speak-teaser" data-cue="LX 6.5 · SPECIAL">
+      <a class="s2t reveal" href="/speaking">
+        <span class="s2t-posters" aria-hidden="true">
+          <img src="/images/speaking-qt-stage.jpg" alt="" loading="lazy" width="1400" height="1045" />
+          <img src="/images/speaking-qt-closeup.jpg" alt="" loading="lazy" width="1600" height="1066" />
+        </span>
+        <span class="s2t-copy">
+          <span class="eyebrow">A Special Engagement</span>
+          <span class="s2t-title">On the Bill</span>
+          <span class="s2t-line"><b>Recent stages:</b> {recentStages.join(' · ')}</span>
+          <span class="s2t-line"><b>Talks on:</b> {speakingTopics.slice(0, 3).join(' · ')}</span>
+        </span>
+        <span class="s2t-cta">See the bill <span aria-hidden="true">→</span></span>
+      </a>
     </section>
 
     <!-- INTERMISSION -->
@@ -617,21 +589,6 @@ const pastTalks = speaking.filter((e) => e.on < today).sort((a, b) => b.on.local
         setMotionButton(ev.currentTarget as HTMLButtonElement, held);
         held ? clearInterval(timer) : auto();
       });
-    }
-
-    // Talks whose date has passed move from Coming up to Previously.
-    {
-      const d = new Date();
-      const todayISO = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-      const past = document.querySelector('.bill-past');
-      document.querySelectorAll<HTMLElement>('.bill-upcoming .bill-item').forEach((li) => {
-        if ((li.dataset.on ?? '') >= todayISO) return;
-        li.classList.remove('upcoming');
-        li.querySelector('.live-dot')?.remove();
-        past?.prepend(li);
-      });
-      const head = document.getElementById('bill-upcoming-head');
-      if (head) head.hidden = !document.querySelector('.bill-upcoming .bill-item');
     }
 
     // Act II: lights come up on cue, and a click focuses one.
