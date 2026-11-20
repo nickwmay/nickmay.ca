@@ -1364,3 +1364,7 @@ html[data-mode='backstage'] .s2t-cta { background: var(--accent); color: #000; }
 .rehearsal-hall .dev-card::before, .rehearsal-hall .dev-card::after { content: ''; position: absolute; width: 22px; height: 22px; border: 0 solid #e0703f; pointer-events: none; }
 .rehearsal-hall .dev-card::before { top: -6px; left: -6px; border-top-width: 4px; border-left-width: 4px; }
 .rehearsal-hall .dev-card::after { bottom: -6px; right: -6px; border-bottom-width: 4px; border-right-width: 4px; }
+
+/* On the Bill: QT Qonference photos (keep Nick centred in each crop) */
+.sp-main { object-position: 50% 28%; }
+.sp-side { object-position: 62% 50%; }
