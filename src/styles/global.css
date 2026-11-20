@@ -1441,3 +1441,12 @@ html[data-mode='backstage'] .bill-item .bill-stills img { filter: grayscale(1); 
   .ro-title { font-size: 17px; text-align: right; }
   .ro-list a:hover .ro-title { transform: translateX(-4px); }
 }
+
+/* Homepage teaser for the theatre page: square posters fanned out */
+.rep-teaser .s2t-posters { height: 120px; }
+.rep-teaser .s2t-posters img { width: 92px; aspect-ratio: 1; }
+.rep-teaser .s2t-posters img:nth-child(3) { left: 88px; top: 8px; transform: rotate(-2deg); }
+.rep-teaser .s2t:hover .s2t-posters img:nth-child(3) { transform: rotate(-4deg) translate(6px, -4px); }
+/* Back-to-back teaser cards share one block instead of two full sections */
+.s2-teaser:has(+ .s2-teaser) { border-bottom: 0; padding-bottom: 10px; }
+.s2-teaser + .s2-teaser { padding-top: 10px; }

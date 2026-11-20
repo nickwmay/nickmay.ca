@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import {
-  contact, prologue, earlyJobs, mcdArches, hospitality, onTour, tech, companies, shopifyBag, throughline, speaking, speakingTopics, board, repertory, theatreStats, beliefs, inDevelopment, secondStage,
+  contact, prologue, earlyJobs, mcdArches, hospitality, onTour, tech, companies, shopifyBag, throughline, speaking, speakingTopics, board, repertory, beliefs, inDevelopment, secondStage,
 } from '../data/show';
 
 const acts = {
@@ -392,49 +392,19 @@ const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map(
       </div>
     </section>
 
-    <!-- REPERTORY -->
-    <section id="repertory" class="section repertory" data-cue="LX 6 · FLY OUT">
-      <h2 class="section-title reveal"><span class="eyebrow">Running in Repertory, 2014–now</span><span class="title-text">The Director / Producer</span></h2>
-      <p class="act-sub">
-        With <a href={contact.topikos}>Theatre Topikós</a>, Nick produces, directs and does dramaturgy on bold, topical queer work,
-        and co-leads the Toronto Queer Theatre Festival with Mark Keller. Shows have toured from Toronto to Dublin, Edinburgh and Montreal.
-      </p>
-
-      <ul class="stats">
-        {theatreStats.map((s) => (
-          <li class="stat reveal">
-            <span class="stat-num" data-count={s.value} data-suffix={s.suffix ?? ''}>{s.value}{s.suffix ?? ''}</span>
-            <span class="stat-label">{s.label}</span>
-          </li>
-        ))}
-      </ul>
-
-      <ul class="rep-list">
-        {repertory.map((p, i) => (
-          <li class="rep reveal" style={`--d:${i * 70}ms`}>
-            <img src={p.img} alt={`${p.title} poster`} loading="lazy" width="96" height="96" />
-            <div>
-              <p class="rep-meta">{p.year} · {p.credit}</p>
-              <h3 class="rep-title">{p.title}</h3>
-              <p class="rep-where">{p.where}</p>
-              {p.laurel && <p class="rep-laurel">★ {p.laurel}</p>}
-              <p class="rep-blurb">{p.blurb}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-
-      <a class="topikos-cta reveal" href={contact.topikos}>
-        <span class="tc-logo" role="img" aria-label="Theatre Topikós logo"><span></span></span>
-        <span class="tc-kicker">Now playing</span>
-        <span class="tc-title">Theatre Topikós</span>
-        <span class="tc-arrow" aria-hidden="true">→</span>
-      </a>
-      <a class="board reveal" href={board.url}>
-        <img class="board-logo" src="/images/logos/summerworks.jpg" alt="SummerWorks Performance Festival logo" width="72" height="72" loading="lazy" />
-        <span class="board-role">{board.role}</span>
-        <span class="board-org">{board.org}</span>
-        <span class="board-arrow" aria-hidden="true">↗</span>
+    <!-- REPERTORY: teaser for the theatre page -->
+    <section id="repertory" class="section s2-teaser rep-teaser" data-cue="LX 6 · FLY OUT">
+      <a class="s2t reveal" href="/theatre">
+        <span class="s2t-posters" aria-hidden="true">
+          {repertory.slice(0, 3).map((p) => <img src={p.img} alt="" loading="lazy" width="96" height="96" />)}
+        </span>
+        <span class="s2t-copy">
+          <span class="eyebrow">Running in Repertory, 2014–now</span>
+          <span class="s2t-title">The Director / Producer</span>
+          <span class="s2t-line"><b>With Theatre Topikós:</b> {repertory.map((p) => p.title).join(' · ')}</span>
+          <span class="s2t-line"><b>Toured:</b> Toronto · Dublin · Edinburgh · Montreal</span>
+        </span>
+        <span class="s2t-cta">See the repertory <span aria-hidden="true">→</span></span>
       </a>
     </section>
 
@@ -524,24 +494,6 @@ const recentStages = [...speaking].sort((a, b) => b.on.localeCompare(a.on)).map(
     });
 
     // Count the stats up once they're lit.
-    const countUp = (el: HTMLElement) => {
-      const end = Number(el.dataset.count), suffix = el.dataset.suffix ?? '';
-      if (reduced) return;
-      const t0 = performance.now();
-      const step = (t: number) => {
-        const k = Math.min(1, (t - t0) / 1200);
-        el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))) + suffix;
-        if (k < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    };
-
-    // Stats count up once they're lit (the header's observer fires nm:lit).
-    document.addEventListener('nm:lit', (e) => {
-      const num = (e.target as HTMLElement).querySelector<HTMLElement>('[data-count]');
-      if (num) countUp(num);
-    });
-
     // Deal with it.
     const hsBtn = document.querySelector<HTMLButtonElement>('.headshot-btn');
     hsBtn?.addEventListener('click', () => {
